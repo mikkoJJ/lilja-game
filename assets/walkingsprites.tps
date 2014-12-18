@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.5.3</string>
+        <string>3.6.0</string>
         <key>fileName</key>
         <string>Z:/Work/html_sandbox/snowman/assets/walkingsprites.tps</string>
         <key>autoSDSettings</key>
@@ -188,9 +188,11 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../../../Graphic Novel/muu/rudolph/images/rainbow.png</filename>
-            <filename>../../../Graphic Novel/muu/rudolph/images/rudolph.png</filename>
-            <filename>../../../Graphic Novel/muu/rudolph/images/star.png</filename>
+            <filename>layers/star.png</filename>
+            <filename>layers/ding.png</filename>
+            <filename>layers/point.png</filename>
+            <filename>layers/rainbow.png</filename>
+            <filename>layers/snowman.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
