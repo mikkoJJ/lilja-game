@@ -32,6 +32,7 @@
         stars,
         coins,
         rainbow,
+        emitter,
         
         //texts:
         title,
@@ -91,7 +92,12 @@
 
             //setup background music:
             music = game.add.audio('walking');
-            //music.play('', 0, 1, true);
+            
+            //particle setup
+            emitter = game.add.emitter(0, 0, 100);
+            emitter.makeParticles('sprites', 'ding');
+            emitter.gravity = 100;
+            emitter.setAlpha(1, 0, 2000);
             
             //setup physics:
             game.world.bringToTop(character);
@@ -191,7 +197,8 @@
         
         makeCoins: function(){
             var coin = coins.getFirstExists(false);
-                        
+            coin.rotation = 0;
+            
             var x = 750;
             var y = game.world.randomY;
             
@@ -204,6 +211,10 @@
         
         
         collisionHandler: function(char, coin){
+            emitter.x = coin.x;
+            emitter.y = coin.y;
+            
+            emitter.start(true, 800, null, 20);
             score++;
             coin.kill();
         },
