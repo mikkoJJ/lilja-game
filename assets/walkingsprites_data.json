@@ -10,12 +10,12 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "point",
-	"frame": {"x":83,"y":2,"w":43,"h":47},
+	"filename": "flake",
+	"frame": {"x":129,"y":2,"w":52,"h":52},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":43,"h":47},
-	"sourceSize": {"w":43,"h":47},
+	"spriteSourceSize": {"x":0,"y":0,"w":52,"h":52},
+	"sourceSize": {"w":52,"h":52},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
@@ -38,7 +38,7 @@
 },
 {
 	"filename": "star",
-	"frame": {"x":128,"y":2,"w":44,"h":43},
+	"frame": {"x":83,"y":2,"w":44,"h":43},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":44,"h":43},
@@ -52,6 +52,6 @@
 	"format": "RGBA8888",
 	"size": {"w":233,"h":245},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:64063571dd368906f6312aa95cddb816:deee96a59da9b527a506a52d2a17ca48:b38870755b20907af346365614228cba$"
+	"smartupdate": "$TexturePacker:SmartUpdate:0a00bbf6f97ba64437e1567930b31a6a:55ab9f73dda0ebab4dc14cb572174bc4:b38870755b20907af346365614228cba$"
 }
 }

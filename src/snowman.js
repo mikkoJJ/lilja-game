@@ -12,10 +12,14 @@
 
     var 
         //settings
-        starInterval = 10,
-        rainbowInterval = 20,
+        starInterval = 300,
+        rainbowInterval = 30,
+        coinInterval = 5000,
         moveSpeed = 160,
         sinkSpeed = 140,
+        starsMoveSpeed = 1000,
+        coinMoveSpeed = 90,
+        coinSpinSpeed = 10000,
         rotateSpeed = 0.03,
         rainbowParts = 7,
         rainbowPartWidth = 43,
@@ -26,6 +30,7 @@
         music,
         character,
         stars,
+        coins,
         rainbow,
         
         //helper variables
@@ -54,9 +59,12 @@
             character.anchor.setTo(0, 0.5);
             game.add.tween(character).to({x: character.x + 20}, 300, Phaser.Easing.Linear.None, true, 0, -1, true);
             
-            //setup background stars:
+            //setup object groups:
             stars = game.add.group();
-            stars.createMultiple(20, 'sprites', 'star', false);
+            stars.createMultiple(10, 'sprites', 'star', false);
+            
+            coins = game.add.group();
+            coins.createMultiple(20, 'sprites', 'flake', false);
             
             //setup the lovely rainbow:
             rainbow = game.add.group();
@@ -75,9 +83,15 @@
             game.world.bringToTop(character);
             game.physics.enable(character, Phaser.Physics.ARCADE);
             
+            game.add.text(20, 20, 'JOTAIN', {font: '50px VT323', fill: 'white', align: 'center'});
+            
             //bind input events:
             game.input.onDown.add(this.mouseDown, this);
             game.input.onUp.add(this.mouseUp, this);
+            
+            game.time.events.loop(starInterval, this.makeStars, this);
+            game.time.events.loop(rainbowInterval, this.makeRainbow, this);
+            game.time.events.loop(coinInterval, this.makeCoins, this);
         },
         
         
@@ -86,28 +100,21 @@
         
         
         update: function() {
-            this.makeStars();
-            this.makeRainbow();
-            
-            _t++;
             
             character.body.velocity.y = -moveSpeed;
-            //character.rotation = -0.1;
-            //_targetRotation = -0.15;
             
             if(_sinking) {
                 character.body.velocity.y = sinkSpeed;
-              //  character.rotation = 0.1;
-                //_targetRotation = 0.42;
             }
             
-            //if(_targetRotation < character.rotation) character.rotation -= rotateSpeed;
-            //else if(_targetRotation > character.rotation) character.rotation += rotateSpeed;
+            coins.forEachAlive(function(coin) {
+                if (coin.x < -10) coin.kill();
+            }, this);
         },
         
         
         makeRainbow: function() {
-            if(_t & rainbowInterval != 0) return; //only update at interval
+            //if(_t & rainbowInterval != 0) return; //only update at interval
             
             for(var i=0; i<rainbowParts-1; i++) {
                 rainbow.getAt(i).y = rainbow.getAt(i+1).y;
@@ -116,7 +123,7 @@
         },
         
         makeStars: function() {
-            if(_t % starInterval != 0) return; //only update at interval
+            //if(_t % starInterval != 0) return; //only update at interval
             
             var star = stars.getFirstExists(false);
             star.rotation = 0;
@@ -127,9 +134,22 @@
             
             star.reset(x, y);
             
-            game.add.tween(star).to({x:-50, rotation: -1}, 800, Phaser.Easing.Linear.None, true).onComplete.add(function() {
+            game.add.tween(star).to({x:-50, rotation: -1}, starsMoveSpeed, Phaser.Easing.Linear.None, true).onComplete.add(function() {
                 star.kill();
             });
+        },
+        
+        makeCoins: function(){
+            var coin = coins.getFirstExists(false);
+                        
+            var x = 750;
+            var y = game.world.randomY;
+            
+            coin.reset(x, y);
+            
+            game.add.tween(coin).to({rotation: -Math.PI*4}, coinSpinSpeed, Phaser.Easing.Linear.None, true);
+            game.physics.enable(coin, Phaser.Physics.ARCADE);
+            coin.body.velocity.x = -coinMoveSpeed;
         },
         
         

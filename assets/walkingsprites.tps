@@ -190,9 +190,9 @@
         <array>
             <filename>layers/star.png</filename>
             <filename>layers/ding.png</filename>
-            <filename>layers/point.png</filename>
             <filename>layers/rainbow.png</filename>
             <filename>layers/snowman.png</filename>
+            <filename>layers/flake.psd</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
