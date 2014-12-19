@@ -14,7 +14,7 @@
         //settings
         starInterval = 300,
         rainbowInterval = 30,
-        coinInterval = 5000,
+        coinInterval = 3000,
         moveSpeed = 160,
         sinkSpeed = 140,
         starsMoveSpeed = 1000,
@@ -60,8 +60,8 @@
         //================={Game setup:}=================//
         
         preload: function() {
-            game.load.atlas('sprites', 'assets/walkingsprites.png', 'assets/walkingsprites_data.json');    
-            game.load.audio('walking', 'assets/oskari_walking.ogg');
+            game.load.atlas('sprites', ASSETS_FOLDER + '/walkingsprites.png', 'assets/walkingsprites_data.json');    
+            game.load.audio('walking', ASSETS_FOLDER + '/oskari_walking.ogg');
         },
     
         create: function() {
@@ -127,7 +127,7 @@
             
             credits = game.add.text(20, game.world.height - 70, 'PROGRAMMING & GRAPHICS: MIKKO JAKONEN\nMUSIC: OSKARI JAKONEN', creditStyle);
             
-            soundSetting = game.add.text(game.world.centerX, game.world.centerY + 180, 'MUSIC: ON  :)', gameStyle);
+            soundSetting = game.add.text(game.world.centerX, game.world.centerY + 180, 'MUSIC: ON    ', gameStyle);
             soundSetting.anchor.set(0.5);
             soundSetting.inputEnabled = true;
             
@@ -229,7 +229,7 @@
                         soundSetting.text = 'MUSIC: OFF :(';
                         musicEnabled = false;
                     } else {
-                        soundSetting.text = 'MUSIC: ON  :)';
+                        soundSetting.text = 'MUSIC: ON    ';
                         musicEnabled = true;
                     }
                     return;
