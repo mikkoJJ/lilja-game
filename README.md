@@ -1,9 +1,9 @@
-The Snowman HTML5 game
+Escape from Jyväskylä the Game
 ======================
 
-This is a small silly game I made for a blog's christmas song themed advent calendar. It is open source to spread the christmas magic.
+This a weird shmup game I'm working on just for fun with HTML5. 
 
-You can play the game at http://www.seitti.fi/uutiset/julkaisu/185/21.12
+Based on my snowman game.
 
 
 NOTE
