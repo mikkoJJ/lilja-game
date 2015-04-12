@@ -1,0 +1,28 @@
+{
+  "name": "escape-game",
+  "version": "0.0.1",
+  "description": "A little HTML5 shmup or something",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mikkoJakonen/escape-game.git"
+  },
+  "keywords": [
+    "shmup",
+    "spaceship",
+    "game"
+  ],
+  "author": "Mikko Jakonen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikkoJakonen/escape-game/issues"
+  },
+  "homepage": "https://github.com/mikkoJakonen/escape-game",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.9.1"
+  }
+}
