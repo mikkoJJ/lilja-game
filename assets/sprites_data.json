@@ -1,21 +1,30 @@
 {"frames": {
 
-"player_ship":
+"part":
 {
-	"frame": {"x":2,"y":2,"w":42,"h":32},
+	"frame": {"x":2,"y":2,"w":14,"h":16},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":42,"h":32},
-	"sourceSize": {"w":42,"h":32},
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":16},
+	"sourceSize": {"w":14,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"player_ship":
+{
+	"frame": {"x":18,"y":2,"w":84,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":84,"h":64},
+	"sourceSize": {"w":84,"h":64},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "trail":
 {
-	"frame": {"x":46,"y":2,"w":7,"h":13},
+	"frame": {"x":104,"y":2,"w":14,"h":26},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":7,"h":13},
-	"sourceSize": {"w":7,"h":13},
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
+	"sourceSize": {"w":14,"h":26},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -23,8 +32,8 @@
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":55,"h":36},
+	"size": {"w":120,"h":68},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:3cc224d57126be94242fb235928c341b:279e4766e25ced5738a53b0ba5ed1aef:5095111d59454b4b35b331c994deedbc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ce1732a96aeb9e82078ea9e08099037d:f7108bda1ec16477cea909ca7afa69e3:5095111d59454b4b35b331c994deedbc$"
 }
 }

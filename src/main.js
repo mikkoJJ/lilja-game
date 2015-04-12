@@ -18,17 +18,13 @@
         starsMoveSpeed = 1000,
         coinMoveSpeed = 90,
         coinSpinSpeed = 10000,
-        rainbowParts = 16,
-        rainbowPartWidth = 7,
-        rainbowOffsetY = -5,
         
         //game entities
-        music,
         character,
         stars,
         coins,
-        rainbow,
         emitter,
+        trail,
         
         //texts:
         title,
@@ -57,13 +53,12 @@
 
         create: function() {
             //setup stage:
-            this.game.stage.backgroundColor = 0x2C59B2;
+            this.game.stage.backgroundColor = 0x000000 + 0x0000ff;//0x2C59B2;
             
             //setup player character:
-            character = this.game.add.sprite(100, 300, 'sprites', 'player_ship');
+            character = this.game.add.sprite(108, 300, 'sprites', 'player_ship');
             character.anchor.setTo(0, 0.5);
             this.game.add.tween(character).to({x: character.x + 5}, 300, Phaser.Easing.Linear.None, true, 0, -1, true);
-            _idleTween = this.game.add.tween(character).to({y: character.y + 10}, 1200, Phaser.Easing.Linear.None, true, 0, -1, true);
             
             //setup object groups:
             stars = this.game.add.group();
@@ -72,17 +67,13 @@
             coins = this.game.add.group();
             coins.createMultiple(20, 'sprites', 'flake', false);
             
-            //setup the lovely rainbow:
-            rainbow = this.game.add.group();
-            //rainbow.createMultiple(3, 'sprites', 'rainbow', true);
-            
-            for(var i=0; i < rainbowParts; i++) {
-                var part = rainbow.create(0, 350, 'sprites', 'trail');
-                part.x = i * rainbowPartWidth;
-            }
-
-            //setup background music:
-            music = this.game.add.audio('walking');
+            //setup the trail
+            trail = this.add.emitter(0, 0, 100);
+            trail.makeParticles('sprites', 'part');
+            trail.gravity = 0;
+            trail.start(false, 1000, 1);
+            trail.minParticleSpeed.set(-800, 0);
+            trail.maxParticleSpeed.set(-600, 0);
             
             //particle setup
             emitter = this.game.add.emitter(0, 0, 100);
@@ -95,14 +86,15 @@
             this.game.physics.enable(character, Phaser.Physics.ARCADE);
             
             //menu texts:
-            this.setupTexts();
+            //this.setupTexts();
 
             //bind input events:
             this.game.input.onDown.add(this.mouseDown, this);
             this.game.input.onUp.add(this.mouseUp, this);
             
-            this.game.time.events.loop(rainbowInterval, this.makeRainbow, this);
             this.game.time.events.loop(starInterval, this.makeStars, this);
+            
+            _running = true;
         },
         
         setupTexts: function() {
@@ -126,26 +118,12 @@
         },
         
         
-        //start the actual game from the idle menu state:
-        startGame: function() {
-            _running = true;
-            _idleTween.stop();
-            if(musicEnabled) music.play('', 0, 1, true);
-            
-            this.game.time.events.loop(coinInterval, this.makeCoins, this);
-            
-            this.game.add.tween(title).to({y: -80}, 800, Phaser.Easing.Cubic.Out, true);
-            this.game.add.tween(credits).to({y: this.game.world.height + 80}, 800, Phaser.Easing.Cubic.Out, true);
-            this.game.add.tween(instruction).to({alpha:0}, 2000, Phaser.Easing.Cubic.Out, true);
-            this.game.add.tween(soundSetting).to({alpha:0}, 800, Phaser.Easing.Linear.None, true);
-        },
-        
         //================={Updating:}=================//
-        
         
         update: function() {
             if(!_running) return;
-            
+            trail.x = character.x;
+            trail.y = character.y;
             character.body.velocity.y = -moveSpeed;
             
             if(_sinking) {
@@ -157,16 +135,6 @@
             }, this);
             
             this.game.physics.arcade.collide(character, coins, this.collisionHandler, null, this);
-        },
-        
-        
-        makeRainbow: function() {
-            //if(_t & rainbowInterval != 0) return; //only update at interval
-            
-            for(var i=0; i<rainbowParts-1; i++) {
-                rainbow.getAt(i).y = rainbow.getAt(i+1).y;
-            }
-            rainbow.getAt(rainbowParts-1).y = character.y + rainbowOffsetY;
         },
         
         makeStars: function() {
