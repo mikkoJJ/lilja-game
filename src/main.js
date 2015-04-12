@@ -45,12 +45,12 @@
             
             ///////////////////// setup the trail //////////////////////
             
-            trail = this.add.emitter(0, 0, 100);
+            trail = this.add.emitter(0, 0, 10);
             trail.makeParticles('sprites', 'part');
             trail.gravity = 0;
-            trail.start(false, 1000, 1);
-            trail.minParticleSpeed.set(-800, 0);
-            trail.maxParticleSpeed.set(-600, 0);
+            trail.start(false, 100, 1);
+            trail.minParticleSpeed.set(-500, 0);
+            trail.maxParticleSpeed.set(-800, 0);
             
             
             ////////////////// setup physics: //////////////////////////
