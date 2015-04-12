@@ -18,10 +18,9 @@
         starsMoveSpeed = 1000,
         coinMoveSpeed = 90,
         coinSpinSpeed = 10000,
-        rotateSpeed = 0.03,
-        rainbowParts = 7,
-        rainbowPartWidth = 43,
-        rainbowOffsetY = -15,
+        rainbowParts = 16,
+        rainbowPartWidth = 7,
+        rainbowOffsetY = -5,
         
         //game entities
         music,
@@ -45,9 +44,7 @@
         //helper variables
         _idleTween,
         _running = false,
-        _t = 0,
-        _sinking = true,
-        _targetRotation = 0
+        _sinking = true
     ;
 
     Escape.Main = function() {
@@ -63,10 +60,10 @@
             this.game.stage.backgroundColor = 0x2C59B2;
             
             //setup player character:
-            character = this.game.add.sprite(200, 300, 'sprites', 'snowman');
+            character = this.game.add.sprite(100, 300, 'sprites', 'player_ship');
             character.anchor.setTo(0, 0.5);
-            this.game.add.tween(character).to({x: character.x + 20}, 300, Phaser.Easing.Linear.None, true, 0, -1, true);
-            _idleTween = this.game.add.tween(character).to({y: character.y + 30}, 1200, Phaser.Easing.Linear.None, true, 0, -1, true);
+            this.game.add.tween(character).to({x: character.x + 5}, 300, Phaser.Easing.Linear.None, true, 0, -1, true);
+            _idleTween = this.game.add.tween(character).to({y: character.y + 10}, 1200, Phaser.Easing.Linear.None, true, 0, -1, true);
             
             //setup object groups:
             stars = this.game.add.group();
@@ -80,7 +77,7 @@
             //rainbow.createMultiple(3, 'sprites', 'rainbow', true);
             
             for(var i=0; i < rainbowParts; i++) {
-                var part = rainbow.create(0, 350, 'sprites', 'rainbow');
+                var part = rainbow.create(0, 350, 'sprites', 'trail');
                 part.x = i * rainbowPartWidth;
             }
 
@@ -234,7 +231,7 @@
             _sinking = false; 
         },
         
-        mouseUp: function(e) {
+        mouseUp: function() {
             _sinking = true;
         }
     };

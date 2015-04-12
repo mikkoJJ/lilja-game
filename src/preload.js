@@ -39,7 +39,7 @@
          * @public
          */
         preload: function () {
-            this.game.load.atlas('sprites', 'assets/walkingsprites.png', 'assets/walkingsprites_data.json');
+            this.game.load.atlasJSONHash('sprites', 'assets/sprites.png', 'assets/sprites_data.json');
             
             WebFont.load({
                 google: {
