@@ -10,23 +10,21 @@
 (function(){
     var 
         //settings
-        moveSpeed = 160,
-        maxYVelocity = 360,
-        accRate = 250,
-        deccRate = 190,
+        maxYVelocity = 460,
+        accRate = 280,
+        deccRate = 220,
         
         //game entities
         character,
         trail,
         
-        //y velocity:
-        _vy = 0,
         _running = false
     ;
 
-    Escape.Main = function() {
-
-    };
+    /**
+     * The main game state.
+     */
+    Escape.Main = function() {    };
 
     Escape.Main.prototype = {
         
@@ -34,7 +32,7 @@
 
         create: function() {
             //setup stage:
-            this.game.stage.backgroundColor = 0x000000 + 0x0000ff;//0x2C59B2;
+            this.bColor = new tinycolor('#57667f');
             
             ///////////////// setup player character: //////////////////
             
@@ -87,14 +85,14 @@
             }
             
             character.body.acceleration.y = _acc;
-            console.log(character.body.velocity.y);
+            character.rotation = character.body.velocity.y / 1000;
             
+            var rotationCap = Math.PI / 15;
+            if (character.rotation > rotationCap) character.rotation = rotationCap;
+            if (character.rotation < -rotationCap) character.rotation = -rotationCap;
             
-            /*if(_sinking) {
-                character.body.velocity.y = sinkSpeed;
-            }*/
-            
-            //this.game.physics.arcade.collide(character, coins, this.collisionHandler, null, this);
+            this.bColor.spin(2);
+            this.stage.backgroundColor = this.bColor.toHex();
         }
     };
     
