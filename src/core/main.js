@@ -1,37 +1,42 @@
-/******************************************************
- * ===========
- * ESCAPE GAME
- * ===========
- *          by Mikko Jakonen
- *
- * A little HTML5 shmup or something.
- *****************************************************/
-
+       //////////////////////////////////////////////////////
+      //* =====================
+     //*  E S C A P E   G A M E
+    //*   =====================
+   //*          by Mikko Jakonen
+  //*
+ //*      A little HTML5 shmup game or something.
+//*
 (function(){
     var 
         //settings
         maxYVelocity = 460,
-        accRate = 280,
-        deccRate = 220,
+        accRate = 480,
+        deccRate = 420,
+        
+        //how many houses to keep in reserve
+        houseStore = 10,
+        //the house sprite names
+        houses = [ 'house1', 'house2', 'house3', 'house4' ],
+        //how often to spawn houses
+        houseInterval = 5,
         
         //game entities
         character,
         trail,
         
-        _running = false
+        _running = false,
+        _houseCounter = 0
     ;
 
-    /**
-     * The main game state.
-     */
     Escape.Main = function() {    };
 
     Escape.Main.prototype = {
         
-        //================={Game setup:}=================//
-
+          ///////{ Game setup }/////////////////////////////////////////
+         //
+        //
         create: function() {
-            //setup stage:
+            
             this.bColor = new tinycolor('#57667f');
             
             ///////////////// setup player character: //////////////////
@@ -39,6 +44,7 @@
             character = this.game.add.sprite(112, 300, 'sprites', 'player_ship');
             character.anchor.setTo(0, 0.5);
             this.game.add.tween(character.anchor).to({ y: 0.35 }, 600, Phaser.Easing.Linear.None, true, 0, -1, true);
+            character.tint = 0xffaaaa;
         
             
             ///////////////////// setup the trail //////////////////////
@@ -51,20 +57,24 @@
             trail.maxParticleSpeed.set(-800, 0);
             
             
-            ////////////////// setup physics: //////////////////////////
+            //////////////////// setup physics: //////////////////////////
             
             this.game.world.bringToTop(character);
             this.game.physics.enable(character, Phaser.Physics.ARCADE);
             
 
-            /////////////////// bind input events: /////////////////////
+            ////////////////////////// decor: //////////////////////////
+            
+            this.floorGroup = this.add.group();  
+            this.floorGroup.createMultiple(houseStore, 'sprites', 'house1', false);
             
             _running = true;
         },
                 
         
-        //================={Updating:}=================//
-        
+          ////////// { Updating } ///////////////////////////////////////
+         //
+        //
         update: function() {
             if(!_running) return;
             
@@ -87,12 +97,18 @@
             character.body.acceleration.y = _acc;
             character.rotation = character.body.velocity.y / 1000;
             
-            var rotationCap = Math.PI / 15;
-            if (character.rotation > rotationCap) character.rotation = rotationCap;
-            if (character.rotation < -rotationCap) character.rotation = -rotationCap;
-            
             this.bColor.spin(2);
             this.stage.backgroundColor = this.bColor.toHex();
+            
+            if ( _houseCounter++ % houseInterval === 0 ) {
+                var house = this.floorGroup.getFirstExists(false);
+                house.reset(this.camera.width + 10, this.camera.height - 100);
+                house.frameName = houses[Math.floor(Math.random() * houses.length)];
+                house.scale.set(2);
+                this.add.tween(house).to({x: -50}, 800, Phaser.Easing.Linear.None, true).onComplete.add(function() {
+                    this.kill();
+                }, house);
+            }
         }
     };
     

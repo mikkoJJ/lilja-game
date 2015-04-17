@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.7.1</string>
         <key>fileName</key>
-        <string>Z:/Work/html_sandbox/escape-game/assets/sprites.tps</string>
+        <string>C:/MyTemp/html5 workspace/escape-game/assets/sprites.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">

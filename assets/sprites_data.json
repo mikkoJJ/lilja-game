@@ -1,8 +1,44 @@
 {"frames": {
 
+"house1":
+{
+	"frame": {"x":2,"y":2,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"house2":
+{
+	"frame": {"x":68,"y":2,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"house3":
+{
+	"frame": {"x":134,"y":2,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"house4":
+{
+	"frame": {"x":200,"y":2,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "part":
 {
-	"frame": {"x":2,"y":2,"w":14,"h":16},
+	"frame": {"x":266,"y":2,"w":14,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":16},
@@ -11,7 +47,7 @@
 },
 "player_ship":
 {
-	"frame": {"x":18,"y":2,"w":84,"h":64},
+	"frame": {"x":282,"y":2,"w":84,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":84,"h":64},
@@ -20,7 +56,7 @@
 },
 "trail":
 {
-	"frame": {"x":104,"y":2,"w":14,"h":26},
+	"frame": {"x":368,"y":2,"w":14,"h":26},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
@@ -32,8 +68,8 @@
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":120,"h":68},
+	"size": {"w":384,"h":68},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:ce1732a96aeb9e82078ea9e08099037d:f7108bda1ec16477cea909ca7afa69e3:5095111d59454b4b35b331c994deedbc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:0636a72bb5e2b189fc036690de4efb6a:10eb1b287432bf23ecf89368c2cd66c3:5095111d59454b4b35b331c994deedbc$"
 }
 }
