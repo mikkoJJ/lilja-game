@@ -1,43 +1,36 @@
+   //////////////////////////////////////////////////////
+  //* The Preload state and actions for the ESCAPE GAME!
+ //*
+//*
 (function() {
     
     Escape = { };
 
-    /**
-     * The Preloader state is responsible for all of the asset loading
-     * and showing of the load progress information.
-     * 
-     * @class Escape.Preloader
-     * @constructor
-     */
     Escape.Preloader = function () {
 
     };
 
     Escape.Preloader.prototype = {    
-        /**
-         * The game preloader state creation.
-         * The idea is to specify here all of the other game states.
-         * 
-         * @public
-         */
+        
+          ///////{ create loading screen and setup sates }/////////////////////////
+         //
+        //
         create: function () {
             this.state.add("Main", Escape.Main);
         },
-
-        /**
-         * Updates the load progress information.
-         * 
-         * @public
-         */
+        
+        
+          ///////{ Update loading screen }/////////////////////////////////////////
+         //
+        //
         loadUpdate: function () {
             return;
         },
 
-        /**
-         * Loads all of the game resources.
-         * 
-         * @public
-         */
+        
+          ///////{ define loaded resources }////////////////////////////////////////
+         //
+        //        
         preload: function () {
             this.game.load.atlasJSONHash('sprites', 'assets/sprites.png', 'assets/sprites_data.json');
             
@@ -48,11 +41,10 @@
             });
         },
 
-        /**
-         * Starts the next state once the preloading has finished.
-         * 
-         * @public
-         */
+        
+          ///////{ Start the actual game }//////////////////////////////////////////
+         //
+        //
         update: function () {        
             this.state.start("Main");
         }
