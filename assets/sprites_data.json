@@ -36,9 +36,18 @@
 	"sourceSize": {"w":64,"h":64},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"lazer":
+{
+	"frame": {"x":266,"y":2,"w":36,"h":14},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":36,"h":14},
+	"sourceSize": {"w":36,"h":14},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "part":
 {
-	"frame": {"x":266,"y":2,"w":14,"h":16},
+	"frame": {"x":304,"y":2,"w":14,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":16},
@@ -47,7 +56,7 @@
 },
 "player_ship":
 {
-	"frame": {"x":282,"y":2,"w":84,"h":64},
+	"frame": {"x":320,"y":2,"w":84,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":84,"h":64},
@@ -56,7 +65,7 @@
 },
 "trail":
 {
-	"frame": {"x":368,"y":2,"w":14,"h":26},
+	"frame": {"x":406,"y":2,"w":14,"h":26},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
@@ -68,8 +77,8 @@
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":384,"h":68},
+	"size": {"w":422,"h":68},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:0636a72bb5e2b189fc036690de4efb6a:10eb1b287432bf23ecf89368c2cd66c3:5095111d59454b4b35b331c994deedbc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:70c14d6289ea7732b4b6620921320af0:686960dac334f8538c48d9b8e6e7420c:5095111d59454b4b35b331c994deedbc$"
 }
 }

@@ -8,7 +8,7 @@
 //*
 (function(){
     var 
-        //settings
+        //ship movement settings
         maxYVelocity = 460,
         accRate = 480,
         deccRate = 420,
@@ -24,6 +24,7 @@
         character,
         trail,
         
+        //helper variables
         _running = false,
         _houseCounter = 0
     ;
@@ -39,7 +40,7 @@
             
             this.bColor = new tinycolor('#57667f');
             
-            ///////////////// setup player character: //////////////////
+            ///////////////// setup player character //////////////////
             
             character = this.game.add.sprite(112, 300, 'sprites', 'player_ship');
             character.anchor.setTo(0, 0.5);
@@ -57,16 +58,27 @@
             trail.maxParticleSpeed.set(-800, 0);
             
             
-            //////////////////// setup physics: //////////////////////////
+            //////////////////// setup physics //////////////////////////
             
             this.game.world.bringToTop(character);
             this.game.physics.enable(character, Phaser.Physics.ARCADE);
             
 
-            ////////////////////////// decor: //////////////////////////
+            ////////////////////////// decor ///////////////////////////
             
             this.floorGroup = this.add.group();  
             this.floorGroup.createMultiple(houseStore, 'sprites', 'house1', false);
+            
+            ////////////////////////// input events ///////////////////////////
+            
+            this.shootKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+            this.shootKey.onDown.add(this.shoot, this);
+            
+            this.lasers = this.add.group();
+            this.lasers.enableBody = true;
+            this.lasers.physicsBodyType = Phaser.Physics.ARCADE;
+            this.lasers.createMultiple(5, 'sprites', 'lazer', false);
+            
             
             _running = true;
         },
@@ -86,7 +98,7 @@
             if ( this.game.input.keyboard.isDown(Phaser.Keyboard.UP) ) {
                 if ( Math.abs(character.body.velocity.y) < maxYVelocity ) _acc = -accRate;
             }
-            else if ( this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN) ) {
+            else if ( this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN) ) { 
                 if ( Math.abs(character.body.velocity.y) < maxYVelocity ) _acc = accRate;
             }
             else {
@@ -109,6 +121,18 @@
                     this.kill();
                 }, house);
             }
+            
+            this.lasers.forEachAlive(function(laser) {
+                if (laser.x > this.camera.width + 10)
+                    laser.kill();
+            }, this);
+        },
+        
+        shoot: function() {
+            var lazer = this.lasers.getFirstExists(false);
+            lazer.reset(character.x, character.y);
+            lazer.body.velocity.x = 900;
+            //this.game.add.tween(lazer).to({x: 1000}, 300, null, true);
         }
     };
     
