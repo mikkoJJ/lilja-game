@@ -14,11 +14,11 @@
         deccRate = 420,
         
         //how many houses to keep in reserve
-        houseStore = 10,
+        houseStore = 18,
         //the house sprite names
         houses = [ 'house1', 'house2', 'house3', 'house4' ],
         //how often to spawn houses
-        houseInterval = 5,
+        houseInterval = 4,
         
         //game entities
         character,
@@ -68,6 +68,7 @@
             
             this.floorGroup = this.add.group();  
             this.floorGroup.createMultiple(houseStore, 'sprites', 'house1', false);
+            this.floorGroup.setAll('anchor.y', 1);
             
             ////////////////////////// input events ///////////////////////////
             
@@ -114,10 +115,9 @@
             
             if ( _houseCounter++ % houseInterval === 0 ) {
                 var house = this.floorGroup.getFirstExists(false);
-                house.reset(this.camera.width + 10, this.camera.height - 100);
+                house.reset(this.camera.width + 10, this.camera.height);
                 house.frameName = houses[Math.floor(Math.random() * houses.length)];
-                house.scale.set(2);
-                this.add.tween(house).to({x: -50}, 800, Phaser.Easing.Linear.None, true).onComplete.add(function() {
+                this.add.tween(house).to({x: -100}, 900, Phaser.Easing.Linear.None, true).onComplete.add(function() {
                     this.kill();
                 }, house);
             }

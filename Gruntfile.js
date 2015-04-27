@@ -52,7 +52,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'lib/',
-                        src: ['*.min.js'],
+                        src: ['*.js'],
                         dest: 'dist/lib/'
                     }
                 ]
