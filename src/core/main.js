@@ -37,7 +37,7 @@
             character = this.game.add.sprite(112, 300, 'sprites', 'player_ship');
             character.anchor.setTo(0, 0.5);
             this.game.add.tween(character.anchor).to({ y: 0.35 }, 600, Phaser.Easing.Linear.None, true, 0, -1, true);
-            character.tint = 0xffaaaa;
+            //character.tint = 0xffaaaa;
         
             
             ///////////////////// setup the trail //////////////////////
@@ -49,17 +49,22 @@
             trail.minParticleSpeed.set(-500, 0);
             trail.maxParticleSpeed.set(-800, 0);
             
-            
-            //////////////////// setup physics //////////////////////////
-            
-            this.game.world.bringToTop(character);
-            this.game.physics.enable(character, Phaser.Physics.ARCADE);
-            
 
             ////////////////////////// decor ///////////////////////////
             
-            this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'clouds', 5, 10);
-            this.houseDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 4, 18);
+            this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'clouds', 5, 11, 20);
+            this.cloudDecor.speed = 1800;
+            this.cloudDecor.tint = 0x999999;
+            
+            this.game.world.bringToTop(character);
+            
+            this.houseDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 4, 3, 40);
+            this.houseDecor.speed = 1200;
+            
+            
+            //////////////////// setup physics //////////////////////////
+            
+            this.game.physics.enable(character, Phaser.Physics.ARCADE);
             
             ////////////////////////// input events ///////////////////////////
             

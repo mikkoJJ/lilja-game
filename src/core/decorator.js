@@ -26,9 +26,13 @@
         /** the Phaser group used for storing spawned objects */
         this.group = game.add.group();
         
+        /** How many milliseconds to cross. */
+        this.speed = 800;
+        
         var amount = storage ? storage : 10;
         
         this.group.createMultiple(amount, key, sprite + 1, false);
+        
         this.group.setAll('anchor.y', 1);
         
         this.__counter = 0;
@@ -42,7 +46,7 @@
                 var decor = this.group.getFirstExists(false);
                 decor.reset(this.x, this.y);
                 decor.frameName = this.sprite + Math.floor(Math.random() * this.numSprites + 1);
-                this.game.add.tween(decor).to({x: -400}, 900, Phaser.Easing.Linear.None, true).onComplete.add(function() {
+                this.game.add.tween(decor).to({x: -200}, this.speed, Phaser.Easing.Linear.None, true).onComplete.add(function() {
                     this.kill();
                 }, decor);
             }
@@ -51,6 +55,15 @@
         
     
     };
+    
+    
+    Object.defineProperty(Escape.Decorator.prototype, 'tint', {
+        
+        set: function(value) {
+            this.group.setAll('tint', value);
+        }
+        
+    });
     
     
 })();
