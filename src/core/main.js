@@ -13,20 +13,12 @@
         accRate = 480,
         deccRate = 420,
         
-        //how many houses to keep in reserve
-        houseStore = 18,
-        //the house sprite names
-        houses = [ 'house1', 'house2', 'house3', 'house4' ],
-        //how often to spawn houses
-        houseInterval = 4,
-        
         //game entities
         character,
         trail,
         
         //helper variables
-        _running = false,
-        _houseCounter = 0
+        _running = false
     ;
 
     Escape.Main = function() {    };
@@ -66,9 +58,8 @@
 
             ////////////////////////// decor ///////////////////////////
             
-            this.floorGroup = this.add.group();  
-            this.floorGroup.createMultiple(houseStore, 'sprites', 'house1', false);
-            this.floorGroup.setAll('anchor.y', 1);
+            this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'clouds', 5, 10);
+            this.houseDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 4, 18);
             
             ////////////////////////// input events ///////////////////////////
             
@@ -113,14 +104,8 @@
             this.bColor.spin(2);
             this.stage.backgroundColor = this.bColor.toHex();
             
-            if ( _houseCounter++ % houseInterval === 0 ) {
-                var house = this.floorGroup.getFirstExists(false);
-                house.reset(this.camera.width + 10, this.camera.height);
-                house.frameName = houses[Math.floor(Math.random() * houses.length)];
-                this.add.tween(house).to({x: -100}, 900, Phaser.Easing.Linear.None, true).onComplete.add(function() {
-                    this.kill();
-                }, house);
-            }
+            this.houseDecor.update();
+            this.cloudDecor.update();
             
             this.lasers.forEachAlive(function(laser) {
                 if (laser.x > this.camera.width + 10)
