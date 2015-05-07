@@ -30,7 +30,7 @@
         //
         create: function() {
             
-            this.bColor = new tinycolor('#57667f');
+            this.bColor = new tinycolor('#FF0000');
             this.stage.backgroundColor = 0x550000;
             
             ///////////////// setup player character //////////////////
@@ -53,22 +53,31 @@
 
             ////////////////////////// decor ///////////////////////////
             
-            this.backCloudDecor2 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 140, 'sprites', 'clouds', 5, 30, 20);
-            this.backCloudDecor2.speed = 3900;
-            this.backCloudDecor2.tint = 0x333333;
+            this.backCloudDecor2 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 140, 'sprites', 'cloud', 1, 130, 3);
+            this.backCloudDecor2.speed = 5500;
+            this.backCloudDecor2.tint = 0x2D0505;
+            this.backCloudDecor2.backRoom = 1500;
             
-            this.backCloudDecor1 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 70, 'sprites', 'clouds', 5, 30, 20);
-            this.backCloudDecor1.speed = 3500;
-            this.backCloudDecor1.tint = 0x666666;
+            this.backCloudDecor1 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 70, 'sprites', 'cloud', 1, 100, 4);
+            this.backCloudDecor1.speed = 5000;
+            this.backCloudDecor1.tint = 0x7C0707;
+            this.backCloudDecor1.backRoom = 1500;
             
-            this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height, 'sprites', 'clouds', 5, 30, 20);
-            this.cloudDecor.speed = 2900;
-            this.cloudDecor.tint = 0x999999;
+            this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height, 'sprites', 'cloud', 1, 90, 5);
+            this.cloudDecor.speed = 4500;
+            this.cloudDecor.tint = 0xA50808;
+            this.cloudDecor.backRoom = 1500;
+            
+            this.houseDecor2 = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 2, 60, 5);
+            this.houseDecor2.speed = 2900;
+            this.houseDecor2.tint = 0x300505;
             
             this.game.world.bringToTop(character);
             
-            this.houseDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 4, 30, 20);
-            this.houseDecor.speed = 2400;
+            this.houseDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 2, 40, 5);
+            this.houseDecor.speed = 2000;
+            this.houseDecor.tint = 0x000000;
+            
             
             
             //////////////////// setup physics //////////////////////////
@@ -115,10 +124,12 @@
             character.body.acceleration.y = _acc;
             character.rotation = character.body.velocity.y / 1000;
             
-            //this.bColor.spin(2);
-            //this.stage.backgroundColor = this.bColor.toHex();
+            /*this.bColor.spin(2);
+            character.tint = 0xff0000;//this.bColor.toHex();
+            this.stage.backgroundColor = this.bColor.toHex();*/
             
             this.houseDecor.update();
+            this.houseDecor2.update();
             this.backCloudDecor2.update();
             this.backCloudDecor1.update();
             this.cloudDecor.update();
