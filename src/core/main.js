@@ -31,6 +31,7 @@
         create: function() {
             
             this.bColor = new tinycolor('#57667f');
+            this.stage.backgroundColor = 0x550000;
             
             ///////////////// setup player character //////////////////
             
@@ -41,25 +42,33 @@
         
             
             ///////////////////// setup the trail //////////////////////
-            
+            /*
             trail = this.add.emitter(0, 0, 10);
             trail.makeParticles('sprites', 'part');
             trail.gravity = 0;
             trail.start(false, 100, 1);
             trail.minParticleSpeed.set(-500, 0);
             trail.maxParticleSpeed.set(-800, 0);
-            
+            */
 
             ////////////////////////// decor ///////////////////////////
             
-            this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'clouds', 5, 11, 20);
-            this.cloudDecor.speed = 1800;
+            this.backCloudDecor2 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 140, 'sprites', 'clouds', 5, 30, 20);
+            this.backCloudDecor2.speed = 3900;
+            this.backCloudDecor2.tint = 0x333333;
+            
+            this.backCloudDecor1 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 70, 'sprites', 'clouds', 5, 30, 20);
+            this.backCloudDecor1.speed = 3500;
+            this.backCloudDecor1.tint = 0x666666;
+            
+            this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height, 'sprites', 'clouds', 5, 30, 20);
+            this.cloudDecor.speed = 2900;
             this.cloudDecor.tint = 0x999999;
             
             this.game.world.bringToTop(character);
             
-            this.houseDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 4, 3, 40);
-            this.houseDecor.speed = 1200;
+            this.houseDecor = new Escape.Decorator(this.game, this.camera.width + 10, this.camera.height, 'sprites', 'house', 4, 30, 20);
+            this.houseDecor.speed = 2400;
             
             
             //////////////////// setup physics //////////////////////////
@@ -86,10 +95,10 @@
         //
         update: function() {
             if(!_running) return;
-            
+            /*
             trail.x = character.x;
             trail.y = character.y;
-            
+            */
             var _acc = 0; 
             
             if ( this.game.input.keyboard.isDown(Phaser.Keyboard.UP) ) {
@@ -106,10 +115,12 @@
             character.body.acceleration.y = _acc;
             character.rotation = character.body.velocity.y / 1000;
             
-            this.bColor.spin(2);
-            this.stage.backgroundColor = this.bColor.toHex();
+            //this.bColor.spin(2);
+            //this.stage.backgroundColor = this.bColor.toHex();
             
             this.houseDecor.update();
+            this.backCloudDecor2.update();
+            this.backCloudDecor1.update();
             this.cloudDecor.update();
             
             this.lasers.forEachAlive(function(laser) {
