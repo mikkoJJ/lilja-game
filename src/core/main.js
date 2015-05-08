@@ -30,8 +30,13 @@
         //
         create: function() {
             
-            this.bColor = new tinycolor('#FF0000');
+            this.bColor = new tinycolor('#FFFFFF');
             this.stage.backgroundColor = 0x550000;
+            
+            this.fpsCounter = this.add.text(10, 10);
+            this.fpsCounter.fontSize = '14px';
+            this.fpsCounter.text = '100 FPS';
+            this.game.time.advancedTiming = true;
             
             ///////////////// setup player character //////////////////
             
@@ -53,18 +58,18 @@
 
             ////////////////////////// decor ///////////////////////////
             
-            this.backCloudDecor2 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 140, 'sprites', 'cloud', 1, 130, 3);
-            this.backCloudDecor2.speed = 5500;
+            this.backCloudDecor2 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 140, 'sprites', 'cloud', 1, 180, 3);
+            this.backCloudDecor2.speed = 7500;
             this.backCloudDecor2.tint = 0x2D0505;
             this.backCloudDecor2.backRoom = 1500;
             
             this.backCloudDecor1 = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height - 70, 'sprites', 'cloud', 1, 100, 4);
-            this.backCloudDecor1.speed = 5000;
+            this.backCloudDecor1.speed = 6000;
             this.backCloudDecor1.tint = 0x7C0707;
             this.backCloudDecor1.backRoom = 1500;
             
             this.cloudDecor = new Escape.Decorator(this.game, this.camera.width + 20, this.camera.height, 'sprites', 'cloud', 1, 90, 5);
-            this.cloudDecor.speed = 4500;
+            this.cloudDecor.speed = 5000;
             this.cloudDecor.tint = 0xA50808;
             this.cloudDecor.backRoom = 1500;
             
@@ -103,11 +108,13 @@
          //
         //
         update: function() {
+            
             if(!_running) return;
-            /*
-            trail.x = character.x;
-            trail.y = character.y;
-            */
+            
+            this.fpsCounter.text = this.game.time.fps;
+            
+            ////////////////////////// acceleration and turning //////////////////////////
+            
             var _acc = 0; 
             
             if ( this.game.input.keyboard.isDown(Phaser.Keyboard.UP) ) {
@@ -124,9 +131,16 @@
             character.body.acceleration.y = _acc;
             character.rotation = character.body.velocity.y / 1000;
             
-            /*this.bColor.spin(2);
-            character.tint = 0xff0000;//this.bColor.toHex();
-            this.stage.backgroundColor = this.bColor.toHex();*/
+            
+            ////////////////////// color effect on the character ////////////////////////
+            
+            var color = new tinycolor(this.bColor.toString());
+            console.log((character.y / this.camera.height));
+            color.darken( Math.floor((character.y / this.camera.height) * 80));
+            character.tint = parseInt('0x' + color.toHex());
+            
+            
+            ///////////////////// updating objects //////////////////////////////////////
             
             this.houseDecor.update();
             this.houseDecor2.update();
