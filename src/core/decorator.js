@@ -31,7 +31,7 @@
         
         var amount = storage ? storage : 10;
         
-        this.backRoom = 900;
+        this.backRoom = 1500;
         
         this.group.createMultiple(amount, key, sprite + 1, false);
         
