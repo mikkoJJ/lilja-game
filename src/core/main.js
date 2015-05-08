@@ -83,7 +83,6 @@
             this.story = this.add.text(this.camera.width / 2, this.camera.height);
             this.story.font = 'VT323';
             this.story.fontSize = '24px';
-            this.story.color = 'white';
             this.story.addColor('#00FF00', 0);
             this.story.anchor.set(0.5, 0);
             this.story.text = this.game.cache.getJSON('main_story').beginning;
@@ -92,6 +91,26 @@
             
             this.add.tween(this.story).to({ y: -1000 }, 1000 * 60 * 2, Phaser.Easing.Linear.none, true)
                 .onComplete.add(this.curtainUp, this);
+            
+            this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onUp.addOnce(this.skipIntro, this);
+            
+            this.skipText = this.add.text(this.camera.width / 2, 50);
+            this.skipText.font = 'VT323';
+            this.skipText.fontSize = '28px';
+            this.skipText.addColor('#FFFFFF', 0);
+            this.skipText.anchor.set(0.5, 0);
+            this.skipText.text = 'Press SPACEBAR to skip the intro';
+            
+            this.add.tween(this.skipText).from({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 2000);
+            
+            this.skipText2 = this.add.text(this.camera.width / 2, 100);
+            this.skipText2.font = 'VT323';
+            this.skipText2.fontSize = '28px';
+            this.skipText2.addColor('#FFFFFF', 0);
+            this.skipText2.anchor.set(0.5, 0);
+            this.skipText2.text = '(You really should skip the intro)';
+            
+            this.add.tween(this.skipText2).from({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 12000);
             
             _running = true;
         },
@@ -102,9 +121,15 @@
         //
         curtainUp: function() {
             this.add.tween(this.curtain).to({ alpha: 0 }, 1500, Phaser.Easing.Quadratic.Out, true);
+            this.skipText.visible = false;
+            this.skipText2.visible = false;
         },
         curtainDown: function() {
             this.add.tween(this.curtain).to({ alpha: 1 }, 1500, Phaser.Easing.Quadratic.Out, true);
+        },
+        skipIntro: function() {
+            this.add.tween(this.story).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true)
+                .onComplete.add(this.curtainUp, this);
         },
         
         
