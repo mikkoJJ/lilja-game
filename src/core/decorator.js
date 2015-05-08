@@ -31,31 +31,28 @@
         
         var amount = storage ? storage : 10;
         
-        this.backRoom = 1500;
+        //this.backRoom = 1500;
         
         this.group.createMultiple(amount, key, sprite + 1, false);
         
         this.group.setAll('anchor.y', 1);
+        this.group.setAll('anchor.x', 1);
         
         this.__counter = 0;
     };
     
-    Escape.Decorator.prototype = {
-    
-        update: function() {
-            
-            if ( this.__counter++ % this.interval === 0 ) {
-                var decor = this.group.getFirstExists(false);
-                decor.reset(this.x, this.y);
-                decor.frameName = this.sprite + Math.floor(Math.random() * this.numSprites + 1);
-                this.game.add.tween(decor).to({x: -this.backRoom}, this.speed, Phaser.Easing.Linear.None, true).onComplete.add(function() {
-                    this.kill();
-                }, decor);
-            }
-        }
-    
+    Escape.Decorator.prototype.update = function () {
         
-    
+        if ( this.__counter++ % this.interval === 0 ) {
+            var decor = this.group.getFirstExists(false);
+            decor.reset(this.x, this.y);
+            decor.frameName = this.sprite + Math.floor(Math.random() * this.numSprites + 1);
+            this.game.add.tween(decor).to({
+                x: -10
+            }, this.speed, Phaser.Easing.Linear.None, true).onComplete.add(function () {
+                this.kill();
+            }, decor);
+        }
     };
     
     

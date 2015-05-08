@@ -1,3 +1,7 @@
+   //////////////////////////////////////////////////////
+  //* Collection of useful utility functions.
+ //*
+//*
 var GameUtils = {
 
     /**
