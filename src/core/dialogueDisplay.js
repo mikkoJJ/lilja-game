@@ -26,7 +26,7 @@
         var picture = this.create(13, 16, 'sprites', picture_id);
         var frame = this.create(0, 0, 'sprites', 'dialogue_display');
 
-        var diaText = game.add.text(110, 20, text, { font: '18px VT323', fill: '#00FF00' });
+        var diaText = game.add.text(110, 20, '', { font: '18px VT323', fill: '#00FF00' });
         diaText.wordWrap = true;
         diaText.wordWrapWidth = 220;
 
@@ -35,6 +35,11 @@
         this.x = 50;
         this.y = 20;
         
+        /** the text string to display. */
+        this.fullText = text;
+        
+        this.partText = '';
+          
         /** the text object containing the text displayed by this window. */
         this.text = diaText;
         
@@ -47,17 +52,31 @@
         /** signal emitted when the dialogue disappears. */
         this.onEnd = new Phaser.Signal();
         
-        var dur = duration ? duration : text.length * 70;
+        /** A timer for looping the text ticking effect. */
+        this.letterTimer = this.game.time.events.loop(30, this.textTick, this);
+        
+        var dur = duration ? duration : text.length * 50;
         
         this.timer = this.game.time.create(true);
         this.timer.add(dur, this.hide, this);
         this.timer.start();
+        
+        this._current = 0;
         
         this.show();
     };
     
     Escape.DialogueWindow.prototype = Object.create(Phaser.Group.prototype);
     Escape.DialogueWindow.constructor = Escape.DialogueWindow;
+    
+    /**
+     * A looping event. Progresses the text forward.
+     */
+    Escape.DialogueWindow.prototype.textTick = function() {
+        if ( this._current >= this.text.length ) return;
+        this.partText += this.fullText.charAt(this._current++);
+        this.text.text = this.partText + ' □';
+    };
     
     /**
      * Do a tween show effect for this window.
@@ -70,8 +89,10 @@
      * Hide the window, then destroy it.
      */
     Escape.DialogueWindow.prototype.hide = function() {
-        var tween = this.game.add.tween(this.scale).to({ y: 0 }, 100, Phaser.Easing.Back.In, true)
+        this.game.add.tween(this.scale).to({ y: 0 }, 100, Phaser.Easing.Back.In, true)
                     .onComplete.add(this.end, this);
+        
+        this.game.time.events.remove(this.letterTimer);
     };
     
     /**

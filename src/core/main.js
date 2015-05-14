@@ -93,13 +93,13 @@
             
             this.skipText = this.add.text(this.camera.width / 2, 50, '', { font: '28px VT323', fill: '#FFFFFF' });
             this.skipText.anchor.set(0.5, 0);
-            this.skipText.text = 'Press <SPACEBAR> to skip the intro';
+            this.skipText.text = 'Press <SPACEBAR> to skip the story';
             
             this.add.tween(this.skipText).from({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 2000);
             
             this.skipText2 = this.add.text(this.camera.width / 2, 100, '', { font: '28px VT323', fill: '#FFFFFF' } );
             this.skipText2.anchor.set(0.5, 0);
-            this.skipText2.text = '(You really should skip the intro)';
+            this.skipText2.text = '(You probably should skip the story)';
             
             this.add.tween(this.skipText2).from({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 12000);
             

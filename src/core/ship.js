@@ -8,13 +8,16 @@
     var 
         //ship movement settings
         maxYVelocity = 460,
+        maxXVelocity = 300,
+        xAccRate = 350,
+        xDeccRate = 450,
         accRate = 480,
         deccRate = 420
     ;
     
     /**
-     * Escape.Ship
-     * -----------
+     * S H I P
+     * -------
      * The player ship object.
      * 
      * @class Escape.Ship
@@ -46,8 +49,25 @@
     Escape.Ship.prototype.update = function() {
         
         Phaser.Sprite.prototype.update.call(this);
+        
+        ////////////////////// forward and backward ///////////////////////////////
     
-        ////////////////////// steering and handling ////////////////////////////////
+        var _forward = 0;
+        
+        if ( this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) ) {
+            if ( Math.abs(this.body.velocity.x) < maxXVelocity ) _forward = xAccRate;
+        }
+        else if ( this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) ) { 
+            if ( Math.abs(this.body.velocity.x) < maxXVelocity ) _forward = -xAccRate;
+        }
+        else {
+            if ( this.body.velocity.x > 0 ) _forward = -xDeccRate;
+            if ( this.body.velocity.x < 0 ) _forward = xDeccRate;
+        }
+        
+        this.body.acceleration.x = _forward;
+        
+        ////////////////////// upward and downward ////////////////////////////////
 
         var _acc = 0; 
 
@@ -64,7 +84,6 @@
 
         this.body.acceleration.y = _acc;
         this.rotation = this.body.velocity.y / 1000;
-
 
         ////////////////////// color effect on the this ////////////////////////
 
