@@ -1,0 +1,38 @@
+{
+    "dialogues":{
+        "beginning1": [
+            {
+                "picture": "face_hero",
+                "line": "I don't remember asking for your god damn life story, captain exposition. Jesus."
+            },
+            {
+                "picture": "face_command",
+                "line": "MISSION PARAMETERS NEED TO BE CLEAR. HISTORY OF REGION IMPORTANT."
+            },
+            {
+                "picture": "face_hero",
+                "line": "What's important is that I get you people off my ass. I don't even want to be here."
+            },
+            {
+                "picture": "face_command",
+                "line": "WHAT YOU WANT IS IRRELEVANT. THE MISSION IS RELEVANT. THE MISSION IS YOUR LIFE."
+            },
+            {
+                "picture": "face_hero",
+                "line": "Yeah yeah, just let me do what I do best: kick ass. Heh. Over and out."
+            },
+            {
+                "picture": "face_command",
+                "line": "REMEMBER: THE PRESIDENT IS KEY. YOU SHOULD BE ARRIVING NEAR THE CRASH SITE."
+            },
+            {
+                "picture": "face_hero",
+                "line": "What part of 'over and out' don't you get? Shut the hell up already."
+            },
+            {
+                "picture": "face_hero",
+                "line": "Shit, I think they've spotted me!"
+            }
+        ]
+    }
+}

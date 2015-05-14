@@ -80,10 +80,7 @@
             
             //--- the story scroll ----------------
             
-            this.story = this.add.text(this.camera.width / 2, this.camera.height);
-            this.story.font = 'VT323';
-            this.story.fontSize = '24px';
-            this.story.addColor('#00FF00', 0);
+            this.story = this.add.text(this.camera.width / 2, this.camera.height, '', { font: '24px VT323', fill: '#00FF00' });
             this.story.anchor.set(0.5, 0);
             this.story.text = this.game.cache.getJSON('main_story').beginning;
             this.story.wordWrap = true;
@@ -94,25 +91,23 @@
             
             this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onUp.addOnce(this.skipIntro, this);
             
-            this.skipText = this.add.text(this.camera.width / 2, 50);
-            this.skipText.font = 'VT323';
-            this.skipText.fontSize = '28px';
-            this.skipText.addColor('#FFFFFF', 0);
+            this.skipText = this.add.text(this.camera.width / 2, 50, '', { font: '28px VT323', fill: '#FFFFFF' });
             this.skipText.anchor.set(0.5, 0);
-            this.skipText.text = 'Press SPACEBAR to skip the intro';
+            this.skipText.text = 'Press <SPACEBAR> to skip the intro';
             
             this.add.tween(this.skipText).from({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 2000);
             
-            this.skipText2 = this.add.text(this.camera.width / 2, 100);
-            this.skipText2.font = 'VT323';
-            this.skipText2.fontSize = '28px';
-            this.skipText2.addColor('#FFFFFF', 0);
+            this.skipText2 = this.add.text(this.camera.width / 2, 100, '', { font: '28px VT323', fill: '#FFFFFF' } );
             this.skipText2.anchor.set(0.5, 0);
             this.skipText2.text = '(You really should skip the intro)';
             
             this.add.tween(this.skipText2).from({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 12000);
             
             _running = true;
+            
+            //------------- dialogue test ---------------//
+            
+            this.dialogue = new Escape.DialogueManager(this.game);
         },
                 
         
@@ -121,8 +116,6 @@
         //
         curtainUp: function() {
             this.add.tween(this.curtain).to({ alpha: 0 }, 1500, Phaser.Easing.Quadratic.Out, true);
-            this.skipText.visible = false;
-            this.skipText2.visible = false;
         },
         curtainDown: function() {
             this.add.tween(this.curtain).to({ alpha: 1 }, 1500, Phaser.Easing.Quadratic.Out, true);
@@ -130,6 +123,10 @@
         skipIntro: function() {
             this.add.tween(this.story).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true)
                 .onComplete.add(this.curtainUp, this);
+            
+            this.skipText.visible = false;
+            this.skipText2.visible = false;
+            this.dialogue.start('beginning1');
         },
         
         
