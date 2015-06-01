@@ -1,4 +1,4 @@
-Copyright (c) 2014 Mikko Jakonen
+Copyright (c) 2015 Mikko J. Jakonen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

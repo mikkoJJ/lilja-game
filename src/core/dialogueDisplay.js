@@ -3,6 +3,7 @@
   //*  to the player.
  //*
 //*
+this.Escape = this.Escape || {};
 (function() {
     
     /**

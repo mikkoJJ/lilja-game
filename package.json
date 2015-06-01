@@ -1,21 +1,19 @@
 {
-  "name": "escape-game",
+  "name": "lilja-game",
   "version": "0.0.1",
-  "description": "A little HTML5 shmup or something",
+  "description": "A comic tie-in game (or something) about Teräslilja",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:mikkoJakonen/escape-game.git"
+    "url": "git@github.com:mikkoJakonen/lilja-game.git"
   },
   "keywords": [
-    "shmup",
-    "spaceship",
-    "game"
+    "sidescroller"
   ],
-  "author": "Mikko Jakonen",
+  "author": "Mikko J. Jakonen",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mikkoJakonen/escape-game/issues"

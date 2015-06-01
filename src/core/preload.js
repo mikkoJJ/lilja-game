@@ -4,19 +4,19 @@
 //*
 (function() {
     
-    Escape = { };
+    Lilja = { };
 
-    Escape.Preloader = function () {
+    Lilja.Preloader = function () {
 
     };
 
-    Escape.Preloader.prototype = {    
+    Lilja.Preloader.prototype = {    
         
           ///////{ create loading screen and setup sates }/////////////////////////
          //
         //
         create: function () {
-            this.state.add("Main", Escape.Main);
+            this.state.add("Main", Lilja.Main);
         },
         
         
@@ -52,7 +52,7 @@
         }
     };
     
-    var game = new Phaser.Game(1028, 720, Phaser.AUTO, 'escape-game');
-    game.state.add('Preload', Escape.Preloader, true);
+    var game = new Phaser.Game(1028, 720, Phaser.AUTO, 'lilja-game');
+    game.state.add('Preload', Lilja.Preloader, true);
     
 })();

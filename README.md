@@ -1,10 +1,7 @@
-Escape from Jyväskylä the Game
-======================
+Teräslilja ja mutanttizombiet: the Movie: the Game
+==================================================
 
-This a weird shmup game I'm working on just for fun with HTML5. 
-
-Based on my snowman game.
-
+A comic book tie-in game of sorts just for fun.
 
 NOTE
 ----
