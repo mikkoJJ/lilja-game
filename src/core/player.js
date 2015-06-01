@@ -49,6 +49,10 @@
         this.body.maxVelocity = 500;
         this.body.collideWorldBounds = true;
         
+        this.animations.add('walk', [ 'lilja_walk1', 'lilja_walk2'], 5, true);
+        this._gunFrames = ['lilja_walk_gun1', 'lilja_walk_gun2'];
+        this.animations.add('stand', [ 'lilja_stand' ], 1, true);
+                
     };
     
     Lilja.Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -79,25 +83,18 @@
         if (this.cursors.left.isDown)
         {
             this.body.velocity.x = -150;
-
-            if (this.facingRight)
-            {
-                //this.animations.play('left');
-                this.faceLeft();
-            }
+            this.animations.play('walk');
+            this.scale.x = -1;
         }
         else if (this.cursors.right.isDown)
         {
             this.body.velocity.x = 150;
-
-            if (!this.facingRight)
-            {
-                //this.animations.play('right');
-                this.faceRight();
-            }
+            this.animations.play('walk');
+            this.scale.x = 1;
         }
         else
         {
+            this.animations.play('stand');
            /* if (facing != 'idle')
             {
                 //this.animations.stop();
