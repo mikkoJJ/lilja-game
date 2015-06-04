@@ -33,13 +33,14 @@
             
             //---- setup player character ------------------ 
             
-            this.character = new Lilja.Player(this.game, 112, 300);
+            this.player = new Lilja.Player(this.game, 112, 300);
             
             //---- other game objects ----------------------
             
             this.floor = this.add.sprite(0, this.camera.height - 50, 'sprites', 'floor');
             this.game.physics.arcade.enable(this.floor);
             this.floor.body.immovable = true;
+            this.floor.body.allowGravity = false;
             
             //--- curtain -------------------------
             
@@ -64,6 +65,7 @@
             this.game.physics.arcade.collide(this.player, this.floor);
             this.fpsCounter.text = this.game.time.fps;
         }
+        
     };
     
 })();
