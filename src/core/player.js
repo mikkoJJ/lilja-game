@@ -39,15 +39,15 @@
         
         
         Phaser.Sprite.call(this, game, x, y, 'sprites', 'lilja_stand');
-        
         this.game.add.existing(this);
         
         this.anchor.setTo(0.5, 0.9);
         
-        this.game.physics.arcade.enable(this);
         
+        this.game.physics.arcade.enable(this);
         this.body.maxVelocity = 500;
-        this.body.collideWorldBounds = true;
+        this.body.width = 40;
+        //this.body.collideWorldBounds = true;
         
         this.animations.add('walk', [ 'lilja_walk1', 'lilja_walk2'], 5, true);
         this._gunFrames = ['lilja_walk_gun1', 'lilja_walk_gun2'];

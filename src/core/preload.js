@@ -35,6 +35,8 @@
             this.game.load.atlasJSONHash('sprites', 'assets/sprites.png', 'assets/sprites_data.json');
             this.game.load.json('main_story', 'assets/main_story.json');
             this.game.load.json('dialogues', 'assets/dialogues.json');
+            this.game.load.tilemap('level01', 'assets/level01.json', null, Phaser.Tilemap.TILED_JSON);
+            this.game.load.image('tiles', 'assets/tiles.png');
             
             WebFont.load({
                 google: {
