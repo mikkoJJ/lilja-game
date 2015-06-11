@@ -1,53 +1,44 @@
 {"frames": {
 
-"cloud1":
+"bullet":
 {
-	"frame": {"x":2,"y":2,"w":1188,"h":306},
+	"frame": {"x":2,"y":2,"w":14,"h":10},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1188,"h":306},
-	"sourceSize": {"w":1188,"h":306},
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":10},
+	"sourceSize": {"w":14,"h":10},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"floor":
+"bang":
 {
-	"frame": {"x":2,"y":310,"w":1024,"h":71},
+	"frame": {"x":18,"y":2,"w":33,"h":26},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1024,"h":71},
-	"sourceSize": {"w":1024,"h":71},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"floor_tile":
-{
-	"frame": {"x":1028,"y":310,"w":64,"h":64},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
-	"sourceSize": {"w":64,"h":64},
+	"spriteSourceSize": {"x":0,"y":0,"w":33,"h":26},
+	"sourceSize": {"w":33,"h":26},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "lilja":
 {
-	"frame": {"x":1094,"y":310,"w":46,"h":32},
+	"frame": {"x":53,"y":2,"w":46,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":46,"h":32},
 	"sourceSize": {"w":46,"h":32},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"lilja_stand":
+"lilja_walk1":
 {
-	"frame": {"x":2,"y":383,"w":92,"h":64},
+	"frame": {"x":101,"y":2,"w":92,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":64},
 	"sourceSize": {"w":92,"h":64},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"lilja_walk1":
+"lilja_walk1_gun":
 {
-	"frame": {"x":96,"y":383,"w":92,"h":64},
+	"frame": {"x":195,"y":2,"w":92,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":64},
@@ -56,20 +47,47 @@
 },
 "lilja_walk2":
 {
-	"frame": {"x":190,"y":383,"w":92,"h":64},
+	"frame": {"x":289,"y":2,"w":92,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":64},
 	"sourceSize": {"w":92,"h":64},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"sky_tile":
+"lilja_stand_gun":
 {
-	"frame": {"x":284,"y":383,"w":64,"h":64},
+	"frame": {"x":383,"y":2,"w":92,"h":64},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
-	"sourceSize": {"w":64,"h":64},
+	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":64},
+	"sourceSize": {"w":92,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"lilja_stand":
+{
+	"frame": {"x":477,"y":2,"w":92,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":64},
+	"sourceSize": {"w":92,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"lilja_walk2_gun":
+{
+	"frame": {"x":571,"y":2,"w":92,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":92,"h":64},
+	"sourceSize": {"w":92,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"cloud1":
+{
+	"frame": {"x":2,"y":68,"w":1188,"h":306},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1188,"h":306},
+	"sourceSize": {"w":1188,"h":306},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -77,8 +95,8 @@
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":1192,"h":449},
+	"size": {"w":1192,"h":376},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:59a28e823fc68785a9e6dad8069ebbcb:90d37157cba52d50532ea39c9f882593:5095111d59454b4b35b331c994deedbc$"
+	"smartupdate": "$TexturePacker:SmartUpdate:782ff398412151fb4555e513dd1c6eac:bc9da397bec4df8ed152443a94609bb7:5095111d59454b4b35b331c994deedbc$"
 }
 }

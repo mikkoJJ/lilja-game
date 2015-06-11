@@ -1,5 +1,5 @@
 {
   "undef": true,
   "unused": true,
-  "predef": [ "Escape", "Phaser", "document", "window", "console", "WebFont", "$", "jQuery", "tinycolor" ]
+  "predef": [ "Escape", "Phaser", "document", "window", "console", "WebFont", "$", "jQuery", "tinycolor", "Lilja" ]
 }
