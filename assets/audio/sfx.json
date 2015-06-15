@@ -1,0 +1,23 @@
+{
+  "resources": [
+    "assets/audio/sfx.mp3",
+    "assets/audio/sfx.ogg"
+  ],
+  "spritemap": {
+    "bang1": {
+      "start": 0,
+      "end": 0.5297052154195011,
+      "loop": false
+    },
+    "bigsplat": {
+      "start": 2,
+      "end": 2.924444444444444,
+      "loop": false
+    },
+    "splat": {
+      "start": 4,
+      "end": 4.416507936507936,
+      "loop": false
+    }
+  }
+}

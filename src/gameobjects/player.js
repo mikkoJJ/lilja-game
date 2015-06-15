@@ -131,7 +131,7 @@
      */
     Lilja.Player.prototype.shoot = function() {
         if (!this.fireButton.isDown) return;
-        this.bullets.make(this.x + 45, this.y - 35);
+        this.bullets.make(this.x + this.scale.x * 45, this.y - 35, this.scale.x);
         //var bang = this.game.add.tween(this.bang.scale).to({ x: 1 }, 50).to({ x: 0 }, 50);
         var bang = this.game.add.tween(this.bang.scale).from({ x: 1 }, 100);
         bang.start();
@@ -177,24 +177,33 @@
         /**
          * How fast do the bullets spin.
          */
-        bulletSpin: 500
+        bulletSpin: 500,
+        
+        /**
+         * Bounce value for bullets
+         */
+        bulletBounce: 0.7
     };
     
     
     /**
      * Fire a bullet at the specified location.
      * 
-     * @param {Number} x x coordinate of location
-     * @param {Number} y y coordinate of location
+     * @param {Number} x             x coordinate of location
+     * @param {Number} y             y coordinate of location
+     * @param {Number} [direction=1] direction to fire bullets, 1=right, -1=left
      */
-    Lilja.Bullets.prototype.make = function(x, y) {
+    Lilja.Bullets.prototype.make = function(x, y, direction) {
         var bullet = this.create(x, y, 'sprites', 'bullet');
         bullet.anchor.set(0.5);
         this.game.physics.arcade.enable(bullet);
-        bullet.body.velocity.x = this.settings.bulletSpeed;
+        bullet.body.velocity.x = direction * this.settings.bulletSpeed;
         bullet.body.velocity.y = this.game.rnd.between(-this.settings.shootScatter, this.settings.shootScatter);
         bullet.body.angularVelocity = this.settings.bulletSpin;
+        bullet.body.bounce.set(this.settings.bulletBounce);
         bullet.body.allowGravity = false;
+        
+        Lilja.sfx.play('bang1');
     };
     
     /**

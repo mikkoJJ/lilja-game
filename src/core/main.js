@@ -31,6 +31,8 @@
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
             this.game.physics.arcade.gravity.y = 1000;
             
+            Lilja.sfx = this.add.audioSprite('sfx');
+            
             //---- tilemap setup ---------------------------
             
             this.map = this.add.tilemap('level01');
@@ -40,20 +42,17 @@
             this.layerTerrain = this.map.createLayer('terrain');
             this.map.setCollision(1, true, this.layerTerrain);
             
-            //---- setup player character ------------------ 
+            //---- setup game objects ------------------ 
             
             this.player = new Lilja.Player(this.game, 112, 300);
+            this.camera.follow(this.player);
             
-            //---- other game objects ----------------------
-    
-            //--- curtain -------------------------
+            this.enemies = this.add.group();
             
-            /*
-            this.curtain = this.add.graphics(0, 0);
-            this.curtain.beginFill(0x000000);
-            this.curtain.drawRect(0, 0, this.camera.width, this.camera.height);
-            this.curtain.endFill();
-            */
+            this.bullets = this.player.bullets;
+            
+            for (var i = 0; i < 10; i++) 
+                new Lilja.Zombie(this.game, 612 + i * 20, 400, this.player, this.enemies);
             
             //--- dialogue test --------------------
             
@@ -67,7 +66,35 @@
             if(!this._running) return;
             
             this.game.physics.arcade.collide(this.player, this.layerTerrain);
+            this.game.physics.arcade.collide(this.enemies, this.layerTerrain);
+            this.game.physics.arcade.collide(this.bullets, this.layerTerrain, this._bulletWallCollision, null, this);
+            this.game.physics.arcade.collide(this.bullets, this.enemies, this._bulletEnemyCollision, null, this);
             this.fpsCounter.text = this.game.time.fps;
+        },
+        
+        
+        /**
+         * Called when a bullet collides with a wall.
+         */
+        _bulletWallCollision: function(bullet) {
+            bullet.frameName = 'bang';
+            bullet.body.enable = false;
+            this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
+                .onComplete.add(function() { this.destroy(); }, bullet);
+            
+        },
+        
+        /**
+         * Called when a bullet hits an enemy.
+         * @param {Phaser.Sprite} bullet the bullet hitting
+         * @param {Lilja.Enemy}   enemy  the enemy hit
+         */
+        _bulletEnemyCollision: function(bullet, enemy) {
+            enemy.onHit(bullet);
+            bullet.frameName = 'bang';
+            bullet.body.enable = false;
+            this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
+                .onComplete.add(function() { this.destroy(); }, bullet);
         }
         
     };

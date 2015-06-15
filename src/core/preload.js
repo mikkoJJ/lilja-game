@@ -37,6 +37,7 @@
             this.game.load.json('dialogues', 'assets/dialogues.json');
             this.game.load.tilemap('level01', 'assets/level01.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/tiles.png');
+            this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.ogg'], 'assets/audio/sfx.json');
             
             WebFont.load({
                 google: {

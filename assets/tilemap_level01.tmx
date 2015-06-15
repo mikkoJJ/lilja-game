@@ -10,7 +10,7 @@
  </layer>
  <layer name="terrain" width="20" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgx0wUtksRiQ2KXaiizEyYJrHiEU9ujgutbjMw+ZebGpogQEbNAAy
+   eJxjYBgFo4A4wEhls6hhHiONMQAKEAAc
   </data>
  </layer>
 </map>
