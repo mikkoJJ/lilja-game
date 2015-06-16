@@ -51,6 +51,16 @@
         this.maxHits = this.settings.hits;
         
         /**
+         * @property {Lilja.Giblets} giblets for gibbing.
+         */
+        this.giblets = game.add.emitter(0, 0, 25);
+        
+        /**
+         * @property {Phaser.TilemapLayer} reference to the ground layer for gib collision.
+         */
+        this.ground = null;
+        
+        /**
          * @property {Number} a random seed number to create more varying speeds across zombies.
          */
         this._speedBase = game.rnd.between(0, 25);
@@ -67,6 +77,12 @@
         
         this.splatter.makeParticles('sprites', 'splatter');
         this.splatter.gravity = -1000;
+        
+        this.giblets.makeParticles('sprites', 'gib', 60, true);
+        this.giblets.enableBody = true;
+        this.giblets.physicsBodyType = Phaser.Physics.ARCADE;
+        this.giblets.setXSpeed(-300, 300);
+        this.giblets.setYSpeed(-550, -200);
     };
     
     Lilja.Zombie.prototype = Object.create(Phaser.Sprite.prototype);
@@ -106,6 +122,8 @@
                     + Math.sin(this.game.time.totalElapsedSeconds() + this._speedBase ) * this.settings.speedVariance
         ;
         
+        this.game.physics.arcade.collide(this.giblets, this.ground, this.gibSplat, null, this);
+        
         this.body.velocity.x = direction * speed;
         this.scale.x = direction;
     };
@@ -114,7 +132,7 @@
      * Called by the main state when this zombie is hit
      * (with a bullet).
      */
-    Lilja.Zombie.prototype.onHit = function(bullet) {
+    Lilja.Zombie.prototype.hit = function(bullet) {
         this.splatter.x = bullet.x;
         this.splatter.y = bullet.y;
         
@@ -129,8 +147,31 @@
      */
     Lilja.Zombie.prototype.die = function() {
         Lilja.sfx.play('bigsplat');
-        this.body.enable = false;
-        this.frameName = this.zombieType + '_splattered';
+        
+        this.splatter.x = this.x;
+        this.splatter.y = this.y;
+        this.splatter.start(true, 400, null, 25);
+        
+        this.giblets.x = this.x;
+        this.giblets.y = this.y;
+        this.giblets.start(true, 1000, null, 20);
+        
+        this.alpha = 0;
+        
+        this.game.time.events.add(4000, this.destroy, this);
+    };
+    
+    
+    /**
+     * Called when a gib hits the ground. Create a little gib splatter
+     * where the hit occurred.
+     */
+    Lilja.Zombie.prototype.gibSplat = function(gib, ground) {
+        if ( gib.y > ground.top ) return;
+        var x = Phaser.Math.clamp(gib.x, ground.left, ground.right);
+        var spl = this.game.add.image(x, ground.top, 'sprites', 'smallsplat');
+        spl.anchor.set(0.5, 1);
+        gib.kill();
     };
     
 })();

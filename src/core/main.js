@@ -51,8 +51,10 @@
             
             this.bullets = this.player.bullets;
             
-            for (var i = 0; i < 10; i++) 
-                new Lilja.Zombie(this.game, 612 + i * 20, 400, this.player, this.enemies);
+            for (var i = 0; i < 10; i++) {
+                var zombie = new Lilja.Zombie(this.game, 612 + i * 20, 400, this.player, this.enemies);
+                zombie.ground = this.layerTerrain;
+            }
             
             //--- dialogue test --------------------
             
@@ -67,6 +69,7 @@
             
             this.game.physics.arcade.collide(this.player, this.layerTerrain);
             this.game.physics.arcade.collide(this.enemies, this.layerTerrain);
+            this.game.physics.arcade.collide(this.giblets, this.layerTerrain);
             this.game.physics.arcade.collide(this.bullets, this.layerTerrain, this._bulletWallCollision, null, this);
             this.game.physics.arcade.collide(this.bullets, this.enemies, this._bulletEnemyCollision, null, this);
             this.fpsCounter.text = this.game.time.fps;
@@ -89,7 +92,7 @@
          * @param {Lilja.Enemy}   enemy  the enemy hit
          */
         _bulletEnemyCollision: function(bullet, enemy) {
-            enemy.onHit(bullet);
+            enemy.hit(bullet);
             bullet.frameName = 'bang';
             bullet.body.enable = false;
             this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
