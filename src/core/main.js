@@ -76,12 +76,11 @@
         /**
          * Called when a bullet collides with a wall.
          */
-        _bulletWallCollision: function(bullet) {
+        _bulletWallCollision: function(bullet, wall) {
             bullet.frameName = 'bang';
             bullet.body.enable = false;
             this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
                 .onComplete.add(function() { this.destroy(); }, bullet);
-            
         },
         
         /**
