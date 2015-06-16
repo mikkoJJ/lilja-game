@@ -14,9 +14,19 @@
       "end": 2.924444444444444,
       "loop": false
     },
-    "splat": {
+    "energyshot": {
       "start": 4,
-      "end": 4.416507936507936,
+      "end": 4.92140589569161,
+      "loop": false
+    },
+    "energyshot2": {
+      "start": 6,
+      "end": 6.5,
+      "loop": false
+    },
+    "splat": {
+      "start": 8,
+      "end": 8.416507936507937,
       "loop": false
     }
   }
