@@ -29,7 +29,7 @@
             this.game.time.advancedTiming = true;
             
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
-            this.game.physics.arcade.gravity.y = 1000;
+            this.game.physics.arcade.gravity.y = 1400;
             
             Lilja.sfx = this.add.audioSprite('sfx');
             
@@ -40,11 +40,11 @@
             this.layerBg = this.map.createLayer('bg');
             this.layerBg.resizeWorld();
             this.layerTerrain = this.map.createLayer('terrain');
-            this.map.setCollision(1, true, this.layerTerrain);
+            this.map.setCollisionByExclusion([], true, this.layerTerrain, true);
             
             //---- setup game objects ------------------ 
             
-            this.player = new Lilja.Player(this.game, 112, 300);
+            this.player = new Lilja.Player(this.game, 1612, this.world.height - 150);
             this.camera.follow(this.player);
             
             this.enemies = this.add.group();
@@ -52,7 +52,7 @@
             this.bullets = this.player.bullets;
             
             for (var i = 0; i < 10; i++) {
-                var zombie = new Lilja.Zombie(this.game, 612 + i * 20, 400, this.player, this.enemies);
+                var zombie = new Lilja.Zombie(this.game, 612 + i * 20, this.world.height - 50, this.player, this.enemies);
                 zombie.ground = this.layerTerrain;
             }
             

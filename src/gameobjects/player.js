@@ -65,7 +65,9 @@
         this.animations.add('walk', [ 'lilja_walk1', 'lilja_walk2'], 5, true);
         this.animations.add('gun_walk', [ 'lilja_walk1_gun', 'lilja_walk2_gun'], 5, true);
         this.animations.add('stand', [ 'lilja_stand' ], 1, true);
+        this.animations.add('jump', [ 'lilja_jump' ], 1, true);
         this.animations.add('stand_gun', [ 'lilja_stand_gun' ], 1, true);
+        this.animations.add('jump_gun', [ 'lilja_jump_gun' ], 1, true);
         
         this.shootTimer = this.game.time.create(false);
         this.shootTimer.loop(this.settings.shootInterval, this.shoot, this);
@@ -87,7 +89,17 @@
         /**
          * The interval in milliseconds it takes for the gun to shoot.
          */
-        shootInterval: 200
+        shootInterval: 200,
+        
+        /**
+         * The (absolute) velocity to apply when jumping.
+         */
+        jumpVelocity: 640,
+        
+        /**
+         * The (absolute) velocity to apply when walking.
+         */
+        walkVelocity: 190
     };
     
     
@@ -101,28 +113,31 @@
 
         if (this.cursors.left.isDown)
         {
-            this.body.velocity.x = -150;
+            this.body.velocity.x = -this.settings.walkVelocity;
             if (firing) this.animations.play('gun_walk');
             else this.animations.play('walk');
             this.scale.x = -1;
         }
         else if (this.cursors.right.isDown)
         {
-            this.body.velocity.x = 150;
+            this.body.velocity.x = this.settings.walkVelocity;
             if (firing) this.animations.play('gun_walk');
             else this.animations.play('walk');
             this.scale.x = 1;
         }
         else
         {
-            if (firing) this.animations.play('stand_gun');
+            if ( firing ) this.animations.play('stand_gun');
             else this.animations.play('stand');
         }
 
-        if (this.jumpButton.isDown && this.body.onFloor() && this.game.time.now > this._jumpTimer)
+        if ( !this.body.onFloor() )
         {
-            this.body.velocity.y = -500;
-            this._jumpTimer = this.game.time.now + 750;
+            if ( firing ) this.animations.play('jump_gun');
+            else this.animations.play('jump');
+        }
+        else if ( this.jumpButton.isDown ) {
+            this.body.velocity.y = -this.settings.jumpVelocity;
         }
     };
     
