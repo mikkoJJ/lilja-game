@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="16">
  <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64">
   <image source="tiles.png" width="256" height="64"/>
  </tileset>
@@ -13,4 +13,9 @@
    eJztlkEKwDAIBKX+/88lh0IoSbr2Et3sgCdLcYiamAkhhBBCCFGbKxAMoB7yzUGkL91q+yJz9s5X9m2c4uvgd0z9jDiznO/D1576W3dmXzSPzgDy312M6vIuRv1c+X3V9y1SN4svmmfwXc0lo29kPzP4RvLVfVcw7ucZGe4jPyxuWOECJw==
   </data>
  </layer>
+ <objectgroup name="spawnpoints">
+  <object id="13" gid="4" x="1560" y="1208" width="64" height="64"/>
+  <object id="14" gid="4" x="1522" y="1856" width="64" height="64"/>
+  <object id="15" gid="4" x="1340" y="1854" width="64" height="64"/>
+ </objectgroup>
 </map>

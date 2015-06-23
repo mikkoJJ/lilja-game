@@ -42,6 +42,7 @@
             this.layerTerrain = this.map.createLayer('terrain');
             this.map.setCollisionByExclusion([], true, this.layerTerrain, true);
             
+            
             //---- setup game objects ------------------ 
             
             this.player = new Lilja.Player(this.game, 1612, this.world.height - 150);
@@ -51,10 +52,10 @@
             
             this.bullets = this.player.bullets;
             
-            for (var i = 0; i < 10; i++) {
-                var zombie = new Lilja.Zombie(this.game, 612 + i * 20, this.world.height - 50, this.player, this.enemies);
-                zombie.ground = this.layerTerrain;
-            }
+            //---- spawn zombies ---------------------------
+            this.map.createFromObjects('spawnpoints', 4, 'sprites', 'zombie1', true, false, this.enemies, Lilja.Zombie, true);
+            this.enemies.setAll('chase', this.player);
+            this.enemies.setAll('ground', this.layerTerrain);
             
             //--- dialogue test --------------------
             

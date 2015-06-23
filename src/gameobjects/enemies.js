@@ -18,7 +18,7 @@
      * @param {Lilja.Player} player reference to the player object for tracking purposes.
      * @param {Phaser.Group} group  group to add this zombie in
      */
-    Lilja.Zombie = function(game, x, y, player, group) {
+    Lilja.Zombie = function(game, x, y, key, frame) {
         
         /**
          * @property {Boolean} wether this sprite is facing right or not [default = true]
@@ -33,7 +33,7 @@
         /**
          * @property {Phaser.DisplayObject} chase this object around.
          */
-        this.chase = player;
+        this.chase = null;
         
         /**
          * @property {String} the zombie type, ie. the base sprite name for this particular dude.
@@ -65,9 +65,8 @@
          */
         this._speedBase = game.rnd.between(0, 25);
         
-        Phaser.Sprite.call(this, game, x, y, 'sprites', this.zombieType);
+        Phaser.Sprite.call(this, game, x, y, key, frame);
         this.game.add.existing(this);
-        group.add(this);
         
         this.anchor.setTo(0.5, 0.9);
         
@@ -137,7 +136,7 @@
         this.splatter.y = bullet.y;
         
         this.splatter.start(true, 200, null, 5);
-        Lilja.sfx.play('splat');
+        Lilja.sfx.play('zombiehit');
         
         if ( ++this.hitsTaken >= this.maxHits ) this.die();
     };
@@ -146,7 +145,8 @@
      * Die a painful and gory death (again?).
      */
     Lilja.Zombie.prototype.die = function() {
-        Lilja.sfx.play('bigsplat');
+        Lilja.sfx.play('zombiedie');
+        this.kill();
         
         this.splatter.x = this.x;
         this.splatter.y = this.y;

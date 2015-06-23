@@ -24,9 +24,29 @@
       "end": 6.5,
       "loop": false
     },
-    "splat": {
+    "jump1": {
       "start": 8,
-      "end": 8.416507936507937,
+      "end": 8.134240362811791,
+      "loop": false
+    },
+    "shot1": {
+      "start": 10,
+      "end": 10.261224489795918,
+      "loop": false
+    },
+    "splat": {
+      "start": 12,
+      "end": 12.416507936507937,
+      "loop": false
+    },
+    "zombiedie": {
+      "start": 14,
+      "end": 14.815102040816326,
+      "loop": false
+    },
+    "zombiehit": {
+      "start": 16,
+      "end": 16.09201814058957,
       "loop": false
     }
   }

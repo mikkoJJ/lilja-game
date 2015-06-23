@@ -47,11 +47,14 @@
         this.bang = game.add.sprite(45, -35, 'sprites', 'bang');
         
         /**
+         * @property {Phaser.Emitter} emitter for dust particles when jumping
+         */
+        this.dustTrail = game.add.emitter(0, 0, 15);
+        
+        /**
          * @property {Number} a helper timer for jumping
          */
         this._jumpTimer = 0;
-        
-        
         
         Phaser.Sprite.call(this, game, x, y, 'sprites', 'lilja_stand');
         this.game.add.existing(this);
@@ -76,6 +79,11 @@
         this.addChild(this.bang);
         this.bang.anchor.set(0, 0.5);
         this.bang.scale.x = 0;
+        
+        this.dustTrail.makeParticles('sprites', 'dust');
+        this.dustTrail.gravity = 0;
+        this.dustTrail.setXSpeed(-140, 140);
+        this.dustTrail.setYSpeed(-100, -400);
     };
     
     Lilja.Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -138,6 +146,10 @@
         }
         else if ( this.jumpButton.isDown ) {
             this.body.velocity.y = -this.settings.jumpVelocity;
+            Lilja.sfx.play('jump1');
+            this.dustTrail.x = this.x;
+            this.dustTrail.y = this.y;
+            this.dustTrail.start(true, 300, null, 6);
         }
     };
     
@@ -218,7 +230,7 @@
         bullet.body.bounce.set(this.settings.bulletBounce);
         bullet.body.allowGravity = false;
         
-        Lilja.sfx.play('bang1');
+        Lilja.sfx.play('shot1');
     };
     
     /**

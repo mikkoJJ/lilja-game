@@ -21,8 +21,68 @@
          "width":60,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
+         "name":"spawnpoints",
+         "objects":[
+                {
+                 "gid":4,
+                 "height":64,
+                 "id":13,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1560,
+                 "y":1208
+                }, 
+                {
+                 "gid":4,
+                 "height":64,
+                 "id":14,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1522,
+                 "y":1856
+                }, 
+                {
+                 "gid":4,
+                 "height":64,
+                 "id":15,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1340,
+                 "y":1854
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
+         "x":0,
+         "y":0
         }],
- "nextobjectid":1,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "properties":
     {
