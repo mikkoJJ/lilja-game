@@ -50,18 +50,21 @@
             this.camera.follow(this.player);
             
             this.enemies = this.add.group();
-            
             this.bullets = this.player.bullets;
             
             //---- spawn zombies ---------------------------
+            
             this.map.createFromObjects('spawnpoints', 4, 'sprites', 'zombie1', true, false, this.enemies, Lilja.Zombie, true);
             this.enemies.setAll('chase', this.player);
             this.enemies.setAll('ground', this.layerTerrain);
             
-            //--- dialogue test --------------------
+            //--- intro --------------------
             
-            this.dialogue = new Escape.DialogueManager(this.game);
-        },
+            this.player.disableControls = true;
+            this.player.animations.play('walk');
+            var walk = this.add.tween(this.player).from({x: -30 }, 2000, Phaser.Easing.Linear.None, true);
+            walk.onComplete.add(this._beginIntro, this);
+        },  
         
           ////////// { Updating } /////////////////////////////////////////////////////////////////
          //
@@ -106,6 +109,25 @@
             bullet.body.enable = false;
             this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
                 .onComplete.add(function() { this.destroy(); }, bullet);
+        },
+        
+        /**
+         * Start the level introduction.
+         */
+        _beginIntro: function() {
+            this.player.animations.play('stand');
+            this.dialogue = new Lilja.DialogueManager(this.game);
+            this.dialogue.start('intro');
+            this.dialogue.onFinished.addOnce(this._startMission, this);
+        },
+        
+        /**
+         * Start player involvement and show 'start mission' text.
+         * Called after the intro has finished.
+         */
+        _startMission: function() {
+            this.player.disableControls = false;
+            this.player._makeHP();
         }
         
     };

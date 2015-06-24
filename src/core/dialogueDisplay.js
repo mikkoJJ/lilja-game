@@ -3,7 +3,6 @@
   //*  to the player.
  //*
 //*
-this.Escape = this.Escape || {};
 (function() {
     
     /**
@@ -13,28 +12,35 @@ this.Escape = this.Escape || {};
      * A single dialogue window showing a character and a line of dialogue
      * from the script, spoken by that character.
      * 
-     * @class Escape.DialogueWindow
+     * @class Lilja.DialogueWindow
      * @extends Phaser.Group
      * @param {Phase.Game} game       reference to the game objec.
      * @param {String}     picture_id the sprite frame name of the speaker's picture
+     * @param {String}     speaker    the name of the speaker
      * @param {String}     text       the text content to show
      * @param {Number}     duration   the duration in milliseconds how long to show the text. Defaults to a value
      *                                dependent on the lenght of the text
      */
-    Escape.DialogueWindow = function(game, picture_id, text, duration) {
+    Lilja.DialogueWindow = function(game, picture_id, speaker, text, duration) {
         Phaser.Group.call(this, game);
         
-        var picture = this.create(13, 16, 'sprites', picture_id);
-        var frame = this.create(0, 0, 'sprites', 'dialogue_display');
+        this.fixedToCamera = true;
+        //var picture = this.create(13, 16, 'sprites', picture_id);
+        //var frame = this.create(0, 0, 'sprites', 'dialogue_display');
+        var frame = game.add.graphics(150, 50);
+        frame.beginFill(0x000000);
+        frame.drawRect(0, 0, 600, 200);
+        frame.endFill();
+        this.add(frame);
 
-        var diaText = game.add.text(110, 20, '', { font: '18px VT323', fill: '#00FF00' });
+        var diaText = game.add.text(180, 90, '', { font: '18px VT323', fill: '#FFFFFF' });
         diaText.wordWrap = true;
-        diaText.wordWrapWidth = 220;
+        diaText.wordWrapWidth = 560;
 
         this.add(diaText);
-
-        this.x = 50;
-        this.y = 20;
+        
+        var speakerText = game.add.text(180, 70, speaker, { font: '18px VT323', fill: '#0BEAB6' });
+        this.add(speakerText);
         
         /** the text string to display. */
         this.fullText = text;
@@ -48,13 +54,15 @@ this.Escape = this.Escape || {};
         this.frame = frame;
         
         /** the speaker picture sprite. */
-        this.picture = picture;
+        //this.picture = picture;
         
         /** signal emitted when the dialogue disappears. */
         this.onEnd = new Phaser.Signal();
         
         /** A timer for looping the text ticking effect. */
-        this.letterTimer = this.game.time.events.loop(30, this.textTick, this);
+        this.letterTimer = this.game.time.events.loop(20, this.textTick, this);
+        
+        this.skipKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         
         var dur = duration ? duration : text.length * 50;
         
@@ -67,39 +75,44 @@ this.Escape = this.Escape || {};
         this.show();
     };
     
-    Escape.DialogueWindow.prototype = Object.create(Phaser.Group.prototype);
-    Escape.DialogueWindow.constructor = Escape.DialogueWindow;
+    Lilja.DialogueWindow.prototype = Object.create(Phaser.Group.prototype);
+    Lilja.DialogueWindow.constructor = Lilja.DialogueWindow;
     
     /**
      * A looping event. Progresses the text forward.
      */
-    Escape.DialogueWindow.prototype.textTick = function() {
+    Lilja.DialogueWindow.prototype.textTick = function() {
         if ( this._current >= this.text.length ) return;
+        if ( this.skipKey.isDown ) {
+            this.game.time.events.remove(this.letterTimer);
+            this.timer.destroy();
+            this.hide();
+        }
         this.partText += this.fullText.charAt(this._current++);
+        if (this.partText.length === this.fullText.length) this.game.time.events.remove(this.letterTimer);
         this.text.text = this.partText + ' □';
+        Lilja.sfx.play('blop');
     };
     
     /**
      * Do a tween show effect for this window.
      */
-    Escape.DialogueWindow.prototype.show = function() {
+    Lilja.DialogueWindow.prototype.show = function() {
         this.game.add.tween(this.scale).from({ y: 0 }, 100, Phaser.Easing.Back.Out, true);
     };
     
     /**
      * Hide the window, then destroy it.
      */
-    Escape.DialogueWindow.prototype.hide = function() {
+    Lilja.DialogueWindow.prototype.hide = function() {
         this.game.add.tween(this.scale).to({ y: 0 }, 100, Phaser.Easing.Back.In, true)
                     .onComplete.add(this.end, this);
-        
-        this.game.time.events.remove(this.letterTimer);
     };
     
     /**
      * Destroys the window after dispatching an event.
      */
-    Escape.DialogueWindow.prototype.end = function() {
+    Lilja.DialogueWindow.prototype.end = function() {
         this.onEnd.dispatch();
         this.destroy();
     };
@@ -113,10 +126,10 @@ this.Escape = this.Escape || {};
      * windows between the game characters to the player. References script data
      * found in the dialogues.json file under assets/
      * 
-     * @class Escape.DialogueManager
+     * @class Lilja.DialogueManager
      * @param {Phaser.Game} game reference to the Phaser game object
      */
-    Escape.DialogueManager = function(game) {
+    Lilja.DialogueManager = function(game) {
         
         /** reference to the Phaser game. */
         this.game = game;
@@ -133,13 +146,13 @@ this.Escape = this.Escape || {};
      * Start a new dialogue.
      * @param {String} id the dialogue id inside the dialogue data file.
      */
-    Escape.DialogueManager.prototype.start = function(id) {
+    Lilja.DialogueManager.prototype.start = function(id) {
         this._current = 0;
         this.conversation = this.data.dialogues[id];
         this.lines = [];
         
         var line = this.conversation[this._current];
-        var w = new Escape.DialogueWindow(this.game, line.picture, line.line, line.duration);
+        var w = new Lilja.DialogueWindow(this.game, line.picture, line.speaker, line.line, line.duration);
         w.onEnd.addOnce(this.next, this);
         //this.lines.push(w);
     };   
@@ -147,13 +160,14 @@ this.Escape = this.Escape || {};
     /**
      * Proceed to the next line of dialogue.
      */
-    Escape.DialogueManager.prototype.next = function() {
+    Lilja.DialogueManager.prototype.next = function() {
         this._current++;
         if (this._current >= this.conversation.length) {
+            this.onFinished.dispatch();
             return;
         }
         var line = this.conversation[this._current];
-        var w = new Escape.DialogueWindow(this.game, line.picture, line.line, line.duration);
+        var w = new Lilja.DialogueWindow(this.game, line.picture, line.speaker, line.line, line.duration);
         w.onEnd.addOnce(this.next, this);
         
         //this.lines.push(w);

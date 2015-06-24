@@ -82,7 +82,6 @@
          * @property {Phaser.Group} group containing the hitpoint ui component.
          */
         this.hitTracker = this.game.add.group();
-        this._makeHP();
         
         /**
          * @property {Phaser.Timer} timer that keeps track of shooting.
@@ -94,7 +93,7 @@
         /**
          * @property {Phaser.Sprite} a bang sprite for shooting
          */
-        this.bang = game.add.sprite(45, -35, 'sprites', 'bang');
+        this.bang = game.add.sprite(58, -40, 'sprites', 'bang');
         this.addChild(this.bang);
         this.bang.anchor.set(0, 0.5);
         this.bang.scale.x = 0;
@@ -188,8 +187,7 @@
      */
     Lilja.Player.prototype.shoot = function() {
         if (!this.fireButton.isDown) return;
-        this.bullets.make(this.x + this.scale.x * 45, this.y - 35, this.scale.x);
-        //var bang = this.game.add.tween(this.bang.scale).to({ x: 1 }, 50).to({ x: 0 }, 50);
+        this.bullets.make(this.x + this.scale.x * 58, this.y - 40, this.scale.x);
         var bang = this.game.add.tween(this.bang.scale).from({ x: 1 }, 100);
         bang.start();
     };
@@ -324,7 +322,7 @@
         bullet.anchor.set(0.5);
         this.game.physics.arcade.enable(bullet);
         bullet.body.velocity.x = direction * this.settings.bulletSpeed;
-        bullet.body.velocity.y = this.game.rnd.between(-this.settings.shootScatter, this.settings.shootScatter);
+        //bullet.body.velocity.y = this.game.rnd.between(-this.settings.shootScatter, this.settings.shootScatter);
         bullet.body.angularVelocity = this.settings.bulletSpin;
         bullet.body.bounce.set(this.settings.bulletBounce);
         bullet.body.allowGravity = false;

@@ -9,4 +9,5 @@ AUDIO CREDITS:
 * *zombiedie* by [Corsica_S](http://www.facebook.com/corsica.ess)
 * *zombiehit* by StaneStane
 * *hurt* by timgormly
-
+* *blop* by [GreenCouch](http://www.greencouch.nl/)
+* *ding* by n_audioman

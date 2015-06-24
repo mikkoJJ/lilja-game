@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.7.1</string>
+        <string>3.9.0</string>
         <key>fileName</key>
-        <string>Z:/Work/html_sandbox/escape-game/assets/sprites.tps</string>
+        <string>Z:/Work/html_sandbox/lilja/assets/sprites.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -56,7 +56,7 @@
         <key>jxrCompressionLevel</key>
         <uint>0</uint>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">FloydSteinberg</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>

@@ -1,38 +1,25 @@
-{
-    "dialogues":{
-        "beginning1": [
+{ "dialogues":{
+        "intro": [
             {
                 "picture": "face_hero",
-                "line": "I don't remember asking for your god damn life story, captain exposition. Jesus."
-            },
-            {
-                "picture": "face_command",
-                "line": "MISSION PARAMETERS NEED TO BE CLEAR. HISTORY OF REGION IMPORTANT."
+                "speaker": "Komentaja",
+                "line": "Teräslilja! Saavut **Mutanttizombievyöhykkeelle**! Etene tästä eteenpäin varovasti."
             },
             {
                 "picture": "face_hero",
-                "line": "What's important is that I get you people off my ass. I don't even want to be here."
-            },
-            {
-                "picture": "face_command",
-                "line": "WHAT YOU WANT IS IRRELEVANT. THE MISSION IS RELEVANT. THE MISSION IS YOUR LIFE."
+                "speaker": "Teräslilja",
+                "line": "Juu. Pysykää vain poissa tieltä"
             },
             {
                 "picture": "face_hero",
-                "line": "Yeah yeah, just let me do what I do best: kick ass. Heh. Over and out."
-            },
-            {
-                "picture": "face_command",
-                "line": "REMEMBER: THE PRESIDENT IS KEY. YOU SHOULD BE ARRIVING NEAR THE CRASH SITE."
+                "speaker": "Teräslilja",
+                "line": "Hmm. Minun on löydettävä vyöhykkeeltä **Zombellan** asunto, ja saatava hänet yhtenä palana ulos."
             },
             {
                 "picture": "face_hero",
-                "line": "What part of 'over and out' don't you get? Shut the hell up already."
-            },
-            {
-                "picture": "face_hero",
-                "line": "Shit, I think they've spotted me!"
-            }
+                "speaker": "Teräslilja",
+                "line": "Ensin hoidellaan nämä zombit."
+            }            
         ]
     }
 }

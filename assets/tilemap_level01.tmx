@@ -21,11 +21,11 @@
  <objectgroup name="spawnpoints">
   <object id="13" gid="4" x="1560" y="1208" width="64" height="64"/>
   <object id="14" gid="4" x="1522" y="1856" width="64" height="64"/>
-  <object id="15" gid="4" x="1340" y="1854" width="64" height="64"/>
-  <object id="16" gid="4" x="1114" y="1840" width="64" height="64"/>
-  <object id="17" gid="4" x="926" y="1850" width="64" height="64"/>
-  <object id="18" gid="4" x="756" y="1850" width="64" height="64"/>
-  <object id="19" gid="4" x="646" y="1834" width="64" height="64"/>
+  <object id="15" gid="4" x="1712" y="1786" width="64" height="64"/>
+  <object id="16" gid="4" x="1442" y="1844" width="64" height="64"/>
+  <object id="17" gid="4" x="1322" y="1852" width="64" height="64"/>
+  <object id="18" gid="4" x="1178" y="1846" width="64" height="64"/>
+  <object id="19" gid="4" x="1068" y="1830" width="64" height="64"/>
   <object id="21" gid="4" x="3014" y="1068" width="64" height="64"/>
   <object id="22" gid="4" x="3228" y="1078" width="64" height="64"/>
   <object id="23" gid="4" x="3380" y="1076" width="64" height="64"/>
