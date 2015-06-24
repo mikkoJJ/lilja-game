@@ -39,13 +39,14 @@
             this.map.addTilesetImage('tileset', 'tiles');
             this.layerBg = this.map.createLayer('bg');
             this.layerBg.resizeWorld();
+            this.map.createLayer('decor');
             this.layerTerrain = this.map.createLayer('terrain');
             this.map.setCollisionByExclusion([], true, this.layerTerrain, true);
             
             
             //---- setup game objects ------------------ 
             
-            this.player = new Lilja.Player(this.game, 1612, this.world.height - 150);
+            this.player = new Lilja.Player(this.game, 112, this.world.height - 150);
             this.camera.follow(this.player);
             
             this.enemies = this.add.group();
@@ -69,13 +70,13 @@
             if(!this._running) return;
             
             this.game.physics.arcade.collide(this.player, this.layerTerrain);
+            this.game.physics.arcade.collide(this.player, this.enemies, this._playerEnemyCollision, null, this);
             this.game.physics.arcade.collide(this.enemies, this.layerTerrain);
             this.game.physics.arcade.collide(this.giblets, this.layerTerrain);
             this.game.physics.arcade.collide(this.bullets, this.layerTerrain, this._bulletWallCollision, null, this);
             this.game.physics.arcade.collide(this.bullets, this.enemies, this._bulletEnemyCollision, null, this);
             this.fpsCounter.text = this.game.time.fps;
         },
-        
         
         /**
          * Called when a bullet collides with a wall.
@@ -85,6 +86,13 @@
             bullet.body.enable = false;
             this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
                 .onComplete.add(function() { this.destroy(); }, bullet);
+        },
+        
+        /**
+         * Called when a bullet collides with a wall.
+         */
+        _playerEnemyCollision: function(player, enemy) {
+            player.hit(enemy.damage);
         },
         
         /**

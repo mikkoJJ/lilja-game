@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="64" tileheight="64" nextobjectid="31">
  <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64">
-  <image source="tiles.png" width="256" height="64"/>
+  <image source="tiles.png" width="320" height="64"/>
  </tileset>
  <layer name="bg" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1EEKACAIBVGD7n/m9i1KCzJ1FrMM/gOpi0gnIiIiIqJQNUXeG/HW9Vq3a7w/myt5T3ZX8mqtv3qt9xzdujNkuuUT7/zGe/tLr/ful97I4c3rjfzP4r33ZjWv/F67Bg6HGbc=
+   eJzt1jsKACEMRdEI2f+a7S0kpMj3FrcU3oFBR0VEiYiIiIioVcdQ9ka8O72e7ZYzVc148XqsVb0Wwyav91ue4n3PZG+P9GbvjvR2Du9cb9c7Nsrb/T3a+n/182TtuhRYGWk=
+  </data>
+ </layer>
+ <layer name="decor" width="60" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztxTENAAAIA7A9+LeMgSGApH2aAAAAAAAAQDfH/LU3FAAQ
   </data>
  </layer>
  <layer name="terrain" width="60" height="30">
   <data encoding="base64" compression="zlib">
-   eJztlkEKwDAIBKX+/88lh0IoSbr2Et3sgCdLcYiamAkhhBBCCFGbKxAMoB7yzUGkL91q+yJz9s5X9m2c4uvgd0z9jDiznO/D1576W3dmXzSPzgDy312M6vIuRv1c+X3V9y1SN4svmmfwXc0lo29kPzP4RvLVfVcw7ucZGe4jPyxuWOECJw==
+   eJztltEKwCAIRaP+/5/HHoIhTbzSg1fuASEowrNZNoYQQgghhBDcTCA6EPWQbw3QumT2jZyzrC8rHXwXsDbju8y6lYibIPui/3PvW7EOdl5ez0Ty/n7Hir4vyH3l1YOtRybfv7xP9cD2vppmHOm/XXwj8x18vXPZ0dfLtaMvMs/u61G5r9ymQh/NvEOZ4wFd1wI0
   </data>
  </layer>
  <objectgroup name="spawnpoints">
   <object id="13" gid="4" x="1560" y="1208" width="64" height="64"/>
   <object id="14" gid="4" x="1522" y="1856" width="64" height="64"/>
   <object id="15" gid="4" x="1340" y="1854" width="64" height="64"/>
+  <object id="16" gid="4" x="1114" y="1840" width="64" height="64"/>
+  <object id="17" gid="4" x="926" y="1850" width="64" height="64"/>
+  <object id="18" gid="4" x="756" y="1850" width="64" height="64"/>
+  <object id="19" gid="4" x="646" y="1834" width="64" height="64"/>
+  <object id="21" gid="4" x="3014" y="1068" width="64" height="64"/>
+  <object id="22" gid="4" x="3228" y="1078" width="64" height="64"/>
+  <object id="23" gid="4" x="3380" y="1076" width="64" height="64"/>
+  <object id="24" gid="4" x="3488" y="1076" width="64" height="64"/>
+  <object id="25" gid="4" x="3624" y="1068" width="64" height="64"/>
+  <object id="26" gid="4" x="2236" y="1850" width="64" height="64"/>
+  <object id="27" gid="4" x="2400" y="1836" width="64" height="64"/>
+  <object id="28" gid="4" x="2504" y="1854" width="64" height="64"/>
+  <object id="29" gid="4" x="2612" y="1862" width="64" height="64"/>
+  <object id="30" gid="4" x="2720" y="1828" width="64" height="64"/>
  </objectgroup>
 </map>

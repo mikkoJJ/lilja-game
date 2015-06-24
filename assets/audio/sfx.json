@@ -24,29 +24,34 @@
       "end": 6.5,
       "loop": false
     },
-    "jump1": {
+    "hurt": {
       "start": 8,
-      "end": 8.134240362811791,
+      "end": 8.225351473922903,
+      "loop": false
+    },
+    "jump1": {
+      "start": 10,
+      "end": 10.134240362811791,
       "loop": false
     },
     "shot1": {
-      "start": 10,
-      "end": 10.261224489795918,
+      "start": 12,
+      "end": 12.261224489795918,
       "loop": false
     },
     "splat": {
-      "start": 12,
-      "end": 12.416507936507937,
+      "start": 14,
+      "end": 14.416507936507937,
       "loop": false
     },
     "zombiedie": {
-      "start": 14,
-      "end": 14.815102040816326,
+      "start": 16,
+      "end": 16.815102040816328,
       "loop": false
     },
     "zombiehit": {
-      "start": 16,
-      "end": 16.09201814058957,
+      "start": 18,
+      "end": 18.09201814058957,
       "loop": false
     }
   }

@@ -15,6 +15,9 @@
      * @param {Number}      y    y position to spawn in
      */
     Lilja.Player = function(game, x, y) {
+        
+        Phaser.Sprite.call(this, game, x, y, 'sprites', 'lilja_stand');
+        this.game.add.existing(this);
 
         /**
          * @property {Phaser.Key} cursor key buttons for movement
@@ -42,22 +45,25 @@
         this.bullets = new Lilja.Bullets(game, this);
         
         /**
-         * @property {Phaser.Sprite} a bang sprite for shooting
+         * @property {Boolean} set to true to not allow the player to be hit by enemies.
          */
-        this.bang = game.add.sprite(45, -35, 'sprites', 'bang');
+        this.invincible = false;
         
         /**
-         * @property {Phaser.Emitter} emitter for dust particles when jumping
+         * @property {Boolean} set to true to not allow the player to be controlled.
          */
-        this.dustTrail = game.add.emitter(0, 0, 15);
+        this.disableControls = false;
         
         /**
          * @property {Number} a helper timer for jumping
          */
         this._jumpTimer = 0;
         
-        Phaser.Sprite.call(this, game, x, y, 'sprites', 'lilja_stand');
-        this.game.add.existing(this);
+        /**
+         * @property {Number} how many hitpoints do we currently have.
+         */
+        this._hitpoints = this.settings.hitpoints;
+        
         
         this.anchor.setTo(0.5, 0.9);
         
@@ -72,14 +78,31 @@
         this.animations.add('stand_gun', [ 'lilja_stand_gun' ], 1, true);
         this.animations.add('jump_gun', [ 'lilja_jump_gun' ], 1, true);
         
+        /**
+         * @property {Phaser.Group} group containing the hitpoint ui component.
+         */
+        this.hitTracker = this.game.add.group();
+        this._makeHP();
+        
+        /**
+         * @property {Phaser.Timer} timer that keeps track of shooting.
+         */
         this.shootTimer = this.game.time.create(false);
         this.shootTimer.loop(this.settings.shootInterval, this.shoot, this);
         this.shootTimer.start();
         
+        /**
+         * @property {Phaser.Sprite} a bang sprite for shooting
+         */
+        this.bang = game.add.sprite(45, -35, 'sprites', 'bang');
         this.addChild(this.bang);
         this.bang.anchor.set(0, 0.5);
         this.bang.scale.x = 0;
         
+        /**
+         * @property {Phaser.Emitter} emitter for dust particles when jumping
+         */
+        this.dustTrail = game.add.emitter(0, 0, 15);
         this.dustTrail.makeParticles('sprites', 'dust');
         this.dustTrail.gravity = 0;
         this.dustTrail.setXSpeed(-140, 140);
@@ -88,7 +111,6 @@
     
     Lilja.Player.prototype = Object.create(Phaser.Sprite.prototype);
     Lilja.Player.constructor = Lilja.Player;
-    
     
     /**
      * Character settings
@@ -107,16 +129,24 @@
         /**
          * The (absolute) velocity to apply when walking.
          */
-        walkVelocity: 190
+        walkVelocity: 190, 
+        
+        /**
+         * How many hitpoints does the player have.
+         */
+        hitpoints: 10
     };
     
-    
+    /**
+     * Updates the player. Calculates movement and other important stuff.
+     */
     Lilja.Player.prototype.update = function() {
         Phaser.Sprite.prototype.update.call(this);
         
         var firing = false;
         if (this.fireButton.isDown) firing = true;        
         
+        if (this.disableControls) return;
         this.body.velocity.x = 0;
 
         if (this.cursors.left.isDown)
@@ -164,6 +194,76 @@
         bang.start();
     };
     
+    /**
+     * Called when the player is hit with a damaging attack.
+     *
+     * @param {Number} [damage=1]   how much damage does the attack do.
+     */
+    Lilja.Player.prototype.hit = function(damage) {
+        if (this.invincible) return;
+        damage = damage || 1;
+        
+        this.game.time.events.add(1000, this._removeInvincibility, this);
+        this.game.time.events.add(400, this._returnControl, this);
+        
+        this.tint = 0xff0000;
+        this.body.velocity.x = -400;
+        this.body.velocity.y = -300;
+        this.invincible = true;
+        this.disableControls = true;
+        
+        this.hitpoints -= damage;
+        
+        Lilja.sfx.play('hurt');
+    };
+    
+    /**
+     * Call to disable invincibility after a hit.
+     */
+    Lilja.Player.prototype._removeInvincibility = function() {
+        this.tint = 0xffffff;
+        this.invincible = false;
+    };
+    
+    /**
+     * Call to return normal controls after a hit
+     */
+    Lilja.Player.prototype._returnControl = function() {
+        this.disableControls = false;
+    };
+    
+    /**
+     * Animates the hitpoint tracker coming in.
+     */
+    Lilja.Player.prototype._makeHP = function() {
+        var hpSprite;
+        for (var hp = 0; hp < this.settings.hitpoints; hp++) {
+            hpSprite = this.hitTracker.create(10 + 18 * hp, 20, 'sprites', 'hp_full');
+            hpSprite.fixedToCamera = true;
+            hpSprite.anchor.set(0.5);
+            this.game.add.tween(hpSprite.scale).from({x: 0, y: 0 }, 500, Phaser.Easing.Bounce.Out, true, hp * 50);
+        }
+    };
+    
+    /**
+     * @property {Number} hitpoints the number of hitpoints we currently have.
+     * Setting this will update the hitpoint tracker.
+     */
+    Object.defineProperty(Lilja.Player.prototype, 'hitpoints', {
+        get: function() {
+            return this._hitpoints;
+        },
+        set: function(newhp) {
+            if (newhp < this._hitpoints) {
+                for (var i = this._hitpoints; i > newhp; i--) {
+                    var hpSprite = this.hitTracker.getChildAt(i-1);
+                    hpSprite.frameName = 'hp_empty';
+                    this.game.add.tween(hpSprite.scale).to({x: 0.3, y: 0.3 }, 200, Phaser.Easing.Back.In, true);
+                }
+            }
+            this._hitpoints = newhp;
+        }
+    });
     
     
     /**
@@ -211,7 +311,6 @@
          */
         bulletBounce: 0.7
     };
-    
     
     /**
      * Fire a bullet at the specified location.

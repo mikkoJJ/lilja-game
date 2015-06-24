@@ -35,14 +35,23 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
 	"sourceSize": {"w":64,"h":64},
 	"pivot": {"x":0.5,"y":0.5}
+},
+"x_barbedwire":
+{
+	"frame": {"x":256,"y":0,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "tiles.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":64},
+	"size": {"w":320,"h":64},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:89b97e6bcb60b56badc37cef7b9e8e0b:76a50d85cbd58de17afa9712a9916afa:f443a2ddfdc874d43f89e137ec5a8dfd$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f08893432cceda059c916d25f6e2488e:8db316b97a708de0fb79038ca4325930:f443a2ddfdc874d43f89e137ec5a8dfd$"
 }
 }

@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.7.1</string>
+        <string>3.9.0</string>
         <key>fileName</key>
-        <string>C:/MyTemp/html5 workspace/lilja-game/assets/tiles.tps</string>
+        <string>Z:/Work/html_sandbox/lilja/assets/tiles.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -56,7 +56,7 @@
         <key>jxrCompressionLevel</key>
         <uint>0</uint>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">FloydSteinberg</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>

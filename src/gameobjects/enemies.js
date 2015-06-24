@@ -114,14 +114,19 @@
     Lilja.Zombie.prototype.update = function() {
         Phaser.Sprite.prototype.update.call(this);
         
-        var direction = (this.chase.x - this.x) / (Math.abs(this.chase.x - this.x)); //plus or minus
+        this.game.physics.arcade.collide(this.giblets, this.ground, this.gibSplat, null, this);
+        
+        var delta = this.chase.x - this.x;
+        
+        if (Math.abs(delta) > 1000) return;
+        
+        var direction = delta / (Math.abs(delta)); //plus or minus
         
         var speed = this.settings.speed 
                     + this.settings.speedVariance / 2 
                     + Math.sin(this.game.time.totalElapsedSeconds() + this._speedBase ) * this.settings.speedVariance
         ;
         
-        this.game.physics.arcade.collide(this.giblets, this.ground, this.gibSplat, null, this);
         
         this.body.velocity.x = direction * speed;
         this.scale.x = direction;

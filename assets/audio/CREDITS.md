@@ -8,4 +8,5 @@ AUDIO CREDITS:
 * *shot1* by [Taira Komori](http://taira-komori.jpn.org/freesounden.html)
 * *zombiedie* by [Corsica_S](http://www.facebook.com/corsica.ess)
 * *zombiehit* by StaneStane
+* *hurt* by timgormly
 
