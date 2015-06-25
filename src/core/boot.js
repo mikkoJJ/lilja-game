@@ -37,7 +37,9 @@
             this.game.load.json('dialogues', 'assets/dialogues.json');
             this.game.load.tilemap('level01', 'assets/level01.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/tiles.png');
-            this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.ogg'], 'assets/audio/sfx.json');
+            this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.mp3'], 'assets/audio/sfx.json');
+            this.game.load.audio('leveldrums', ['assets/audio/leveldrums.ogg', 'assets/audio/leveldrums.mp3']);
+            this.game.load.audio('intromusic', ['assets/audio/intromusic.ogg', 'assets/audio/intromusic.mp3']);
             
             WebFont.load({
                 google: {

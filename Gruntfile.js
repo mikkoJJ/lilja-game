@@ -28,8 +28,8 @@ module.exports = function(grunt) {
                     },
                     data: {
                         // Data to pass to templates
-                        version: '<%= grunt.template.today("dd.mm.yyyy") %>',
-                        title: 'Escape',  
+                        version: '<%= pkg.version %>',
+                        title: 'Lilja',  
                     },
                 }
             }
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                     { 
                         expand: true,
                         cwd: 'assets/',
-                        src: ['*'], 
+                        src: ['*', 'audio/*'], 
                         dest: 'dist/assets',
                         filter: 'isFile'
                     },

@@ -2,24 +2,19 @@
         "intro": [
             {
                 "picture": "face_hero",
-                "speaker": "Komentaja",
+                "speaker": "Poliisikomentaja",
                 "line": "Teräslilja! Saavut **Mutanttizombievyöhykkeelle**! Etene tästä eteenpäin varovasti."
             },
             {
                 "picture": "face_hero",
                 "speaker": "Teräslilja",
-                "line": "Juu. Pysykää vain poissa tieltä"
+                "line": "Liikuttavaa. Kuulostat ihan siltä kuin välittäisit, mitä minulle tapahtuu."
             },
             {
                 "picture": "face_hero",
-                "speaker": "Teräslilja",
-                "line": "Hmm. Minun on löydettävä vyöhykkeeltä **Zombellan** asunto, ja saatava hänet yhtenä palana ulos."
-            },
-            {
-                "picture": "face_hero",
-                "speaker": "Teräslilja",
-                "line": "Ensin hoidellaan nämä zombit."
-            }            
+                "speaker": "Poliisikomentaja",
+                "line": "No... \nPoliisilaitos on panostanut sinuun paljon rahaa. Minä olen vastuussa."
+            }  
         ]
     }
 }

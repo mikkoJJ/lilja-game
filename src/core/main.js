@@ -23,9 +23,8 @@
             
             this._running = true;
             
-            this.fpsCounter = this.add.text(10, 10);
-            this.fpsCounter.fontSize = '14px';
-            this.fpsCounter.text = '100 FPS';
+            this.fpsCounter = this.add.text(10, 10, 'aa', { font: '14px VT323', fill: '#000000' });
+            this.fpsCounter.fixedToCamera = true;
             this.game.time.advancedTiming = true;
             
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -35,6 +34,9 @@
             
             //---- tilemap setup ---------------------------
             
+            /** 
+             * @property {Phaser.Tilemap} the level tilemap
+             */
             this.map = this.add.tilemap('level01');
             this.map.addTilesetImage('tileset', 'tiles');
             this.layerBg = this.map.createLayer('bg');
@@ -46,10 +48,20 @@
             
             //---- setup game objects ------------------ 
             
+            /**
+             * @property {Lilja.Player} the player character
+             */
             this.player = new Lilja.Player(this.game, 112, this.world.height - 150);
             this.camera.follow(this.player);
             
+            /**
+             * @property {Phaser.Group} the group containing enemies
+             */
             this.enemies = this.add.group();
+            
+            /**
+             * @property {Lilja.Bullets} the group containing player bullets
+             */
             this.bullets = this.player.bullets;
             
             //---- spawn zombies ---------------------------
@@ -59,6 +71,19 @@
             this.enemies.setAll('ground', this.layerTerrain);
             
             //--- intro --------------------
+            
+            /**
+             * @property {Phaser.Audio} intro music for the level
+             */
+            this.introMusic = this.add.audio('intromusic');
+            this.introMusic.play();
+            
+            /**
+             * @property {Phaser.Audio} the background music for the level.
+             */
+            this.bgMusic = this.add.audio('leveldrums');
+            this.bgMusic.loop = true;
+            this.bgMusic.volume = 0.6;
             
             this.player.disableControls = true;
             this.player.animations.play('walk');
@@ -78,7 +103,7 @@
             this.game.physics.arcade.collide(this.giblets, this.layerTerrain);
             this.game.physics.arcade.collide(this.bullets, this.layerTerrain, this._bulletWallCollision, null, this);
             this.game.physics.arcade.collide(this.bullets, this.enemies, this._bulletEnemyCollision, null, this);
-            this.fpsCounter.text = this.game.time.fps;
+            this.fpsCounter.text = '' + this.game.time.fps + ' FPS'; 
         },
         
         /**
@@ -128,6 +153,22 @@
         _startMission: function() {
             this.player.disableControls = false;
             this.player._makeHP();
+            this.introMusic.stop();
+            this.bgMusic.play();
+            this._showMissionStartText();
+        },
+        
+        /**
+         * Shows a flashing 'mission start' text.
+         */
+        _showMissionStartText: function() {
+            this._flash = this.add.text(this.camera.width / 2, this.camera.height / 2, 'MISSION START', { font: '32px VT323', fill: '#FFFFFF' });
+            this._flash.anchor.set(0.5);
+            this._flash.fixedToCamera = true;
+            
+            this._flashTimer = this.game.time.create(false);
+            this._flashTimer.repeat(600, 5, function() { this._flash.visible = !this._flash.visible; }, this);
+            this._flashTimer.start();
         }
         
     };
