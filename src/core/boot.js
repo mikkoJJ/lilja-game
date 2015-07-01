@@ -1,22 +1,23 @@
-   //////////////////////////////////////////////////////
-  //* The Preload state and actions for the ESCAPE GAME!
+    //////////////////////////////////////////////////////
+   //* The Boot state preloads assets that the preloader
+  //* state needs.
  //*
 //*
 (function() {
     
     Lilja = { };
 
-    Lilja.Preloader = function () {
+    Lilja.Booter = function () {
 
     };
 
-    Lilja.Preloader.prototype = {    
+    Lilja.Booter.prototype = {    
         
           ///////{ create loading screen and setup sates }/////////////////////////
          //
         //
         create: function () {
-            this.state.add("Main", Lilja.Main);
+            this.state.add('Preload', Lilja.Preloader);
         },
         
         
@@ -27,20 +28,20 @@
             return;
         },
 
+          ///////{ initialize scale }//////////////////////////////////////////////
+         //
+        //
+        init: function() {
+            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            this.scale.pageAlignHorizontally = true;
+            this.scale.setMinMax(500, 400, 1028, 720);
+            this.scale.setScreenSize(true);
+        },
         
           ///////{ define loaded resources }////////////////////////////////////////
          //
         //        
-        preload: function () {
-            this.game.load.atlasJSONHash('sprites', 'assets/sprites.png', 'assets/sprites_data.json');
-            this.game.load.json('main_story', 'assets/main_story.json');
-            this.game.load.json('dialogues', 'assets/dialogues.json');
-            this.game.load.tilemap('level01', 'assets/level01.json', null, Phaser.Tilemap.TILED_JSON);
-            this.game.load.image('tiles', 'assets/tiles.png');
-            this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.mp3'], 'assets/audio/sfx.json');
-            this.game.load.audio('leveldrums', ['assets/audio/leveldrums.ogg', 'assets/audio/leveldrums.mp3']);
-            this.game.load.audio('intromusic', ['assets/audio/intromusic.ogg', 'assets/audio/intromusic.mp3']);
-            
+        preload: function () {            
             WebFont.load({
                 google: {
                   families: ['VT323']
@@ -53,11 +54,11 @@
          //
         //
         update: function () {        
-            this.state.start("Main");
+            this.state.start('Preload');
         }
     };
     
     var game = new Phaser.Game(1028, 720, Phaser.AUTO, 'lilja-game');
-    game.state.add('Preload', Lilja.Preloader, true);
+    game.state.add('Preload', Lilja.Booter, true);
     
 })();

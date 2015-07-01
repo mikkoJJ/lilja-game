@@ -41,9 +41,8 @@
             this.map.addTilesetImage('tileset', 'tiles');
             this.layerBg = this.map.createLayer('bg');
             this.layerBg.resizeWorld();
-            this.map.createLayer('decor');
-            this.layerTerrain = this.map.createLayer('terrain');
-            this.map.setCollisionByExclusion([], true, this.layerTerrain, true);
+            //this.layerTerrain = this.map.createLayer('terrain');
+            this.map.setCollision([2, 3, 4, 5], true, this.layerBg, true);
             
             
             //---- setup game objects ------------------ 
@@ -66,9 +65,9 @@
             
             //---- spawn zombies ---------------------------
             
-            this.map.createFromObjects('spawnpoints', 4, 'sprites', 'zombie1', true, false, this.enemies, Lilja.Zombie, true);
+            this.map.createFromObjects('spawnpoints', 4, 'sprites', null, true, false, this.enemies, Lilja.Zombie, true);
             this.enemies.setAll('chase', this.player);
-            this.enemies.setAll('ground', this.layerTerrain);
+            this.enemies.setAll('ground', this.layerBg);
             
             //--- intro --------------------
             
@@ -97,11 +96,11 @@
         update: function() {
             if(!this._running) return;
             
-            this.game.physics.arcade.collide(this.player, this.layerTerrain);
+            this.game.physics.arcade.collide(this.player, this.layerBg);
             this.game.physics.arcade.collide(this.player, this.enemies, this._playerEnemyCollision, null, this);
-            this.game.physics.arcade.collide(this.enemies, this.layerTerrain);
-            this.game.physics.arcade.collide(this.giblets, this.layerTerrain);
-            this.game.physics.arcade.collide(this.bullets, this.layerTerrain, this._bulletWallCollision, null, this);
+            this.game.physics.arcade.collide(this.enemies, this.layerBg);
+            this.game.physics.arcade.collide(this.giblets, this.layerBg);
+            this.game.physics.arcade.collide(this.bullets, this.layerBg, this._bulletWallCollision, null, this);
             this.game.physics.arcade.collide(this.bullets, this.enemies, this._bulletEnemyCollision, null, this);
             this.fpsCounter.text = '' + this.game.time.fps + ' FPS'; 
         },

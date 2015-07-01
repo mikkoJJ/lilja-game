@@ -1,5 +1,7 @@
-AUDIO CREDITS:
-==============
+AUDIO CREDITS
+=============
+
+All audio assets are from artists at [Freesound](http://freesound.org), licenced under Creative Commons Attribution licences.
 
 * *intromusic* by [FoolBoyMedia](http://www.foolboymedia.co.uk/)
 * *leveldrums* by **mastertronic**

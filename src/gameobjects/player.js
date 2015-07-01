@@ -187,6 +187,7 @@
      */
     Lilja.Player.prototype.shoot = function() {
         if (!this.fireButton.isDown) return;
+        if ( this.disableControls ) return; 
         this.bullets.make(this.x + this.scale.x * 58, this.y - 40, this.scale.x);
         var bang = this.game.add.tween(this.bang.scale).from({ x: 1 }, 100);
         bang.start();

@@ -18,7 +18,7 @@
      * @param {Lilja.Player} player reference to the player object for tracking purposes.
      * @param {Phaser.Group} group  group to add this zombie in
      */
-    Lilja.Zombie = function(game, x, y, key, frame) {
+    Lilja.Zombie = function(game, x, y, key) {
         
         /**
          * @property {Boolean} wether this sprite is facing right or not [default = true]
@@ -38,7 +38,7 @@
         /**
          * @property {String} the zombie type, ie. the base sprite name for this particular dude.
          */
-        this.zombieType = 'zombie1';
+        this.zombieType = 'zombi1';
         
         /**
          * @property {Number} how many times has this zombie been hit.
@@ -65,10 +65,13 @@
          */
         this._speedBase = game.rnd.between(0, 25);
         
-        Phaser.Sprite.call(this, game, x, y, key, frame);
+        Phaser.Sprite.call(this, game, x, y, key, this.zombieType + 'a');
         this.game.add.existing(this);
         
         this.anchor.setTo(0.5, 0.9);
+        
+        this.animations.add('walk', [ this.zombieType + 'a', this.zombieType + 'b', this.zombieType + 'c' ], 3, true);
+        this.animations.play('walk');
         
         this.game.physics.arcade.enable(this);
         this.body.maxVelocity = 500;
