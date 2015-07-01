@@ -71,8 +71,8 @@
         this.body.maxVelocity = 500;
         this.body.width = 40;
         
-        this.animations.add('walk', [ 'lilja_walk1', 'lilja_walk2'], 5, true);
-        this.animations.add('gun_walk', [ 'lilja_walk1_gun', 'lilja_walk2_gun'], 5, true);
+        this.animations.add('walk', [ 'lilja_walk1', 'lilja_walk2', 'lilja_walk3', 'lilja_walk2'], 5, true);
+        this.animations.add('gun_walk', [ 'lilja_walk1_gun', 'lilja_walk2_gun', 'lilja_walk3_gun', 'lilja_walk2_gun'], 5, true);
         this.animations.add('stand', [ 'lilja_stand' ], 1, true);
         this.animations.add('jump', [ 'lilja_jump' ], 1, true);
         this.animations.add('stand_gun', [ 'lilja_stand_gun' ], 1, true);
