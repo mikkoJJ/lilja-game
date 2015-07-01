@@ -16,7 +16,6 @@
          //
         //
         create: function () {
-            this.state.add('Main', Lilja.Main);
         },
         
         
@@ -41,12 +40,6 @@
             this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.mp3'], 'assets/audio/sfx.json');
             this.game.load.audio('leveldrums', ['assets/audio/leveldrums.ogg', 'assets/audio/leveldrums.mp3']);
             this.game.load.audio('intromusic', ['assets/audio/intromusic.ogg', 'assets/audio/intromusic.mp3']);
-            
-            WebFont.load({
-                google: {
-                  families: ['VT323']
-                }
-            });
         },
 
         

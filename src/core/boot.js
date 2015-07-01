@@ -18,6 +18,7 @@
         //
         create: function () {
             this.state.add('Preload', Lilja.Preloader);
+            this.state.add('Main', Lilja.Main);
         },
         
         
@@ -59,6 +60,6 @@
     };
     
     var game = new Phaser.Game(1028, 720, Phaser.AUTO, 'lilja-game');
-    game.state.add('Preload', Lilja.Booter, true);
+    game.state.add('Boot', Lilja.Booter, true);
     
 })();

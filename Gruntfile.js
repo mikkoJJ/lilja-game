@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                     { 
                         expand: true,
                         cwd: 'assets/',
-                        src: ['*', 'audio/*'], 
+                        src: ['*', 'audio/*', 'graphics/*'], 
                         dest: 'dist/assets',
                         filter: 'isFile'
                     },
