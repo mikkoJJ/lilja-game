@@ -119,17 +119,15 @@
         
         this.game.physics.arcade.collide(this.giblets, this.ground, this.gibSplat, null, this);
         
+        if ( !this.inCamera ) return;
+        
         var delta = this.chase.x - this.x;
-        
-        if (Math.abs(delta) > 1000) return;
-        
         var direction = delta / (Math.abs(delta)); //plus or minus
         
         var speed = this.settings.speed 
                     + this.settings.speedVariance / 2 
                     + Math.sin(this.game.time.totalElapsedSeconds() + this._speedBase ) * this.settings.speedVariance
         ;
-        
         
         this.body.velocity.x = direction * speed;
         this.scale.x = direction;

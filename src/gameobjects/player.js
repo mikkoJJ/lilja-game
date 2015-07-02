@@ -93,7 +93,7 @@
         /**
          * @property {Phaser.Sprite} a bang sprite for shooting
          */
-        this.bang = game.add.sprite(58, -40, 'sprites', 'bang');
+        this.bang = game.add.sprite(this.settings.shootPoint.x, this.settings.shootPoint.y, 'sprites', 'bang');
         this.addChild(this.bang);
         this.bang.anchor.set(0, 0.5);
         this.bang.scale.x = 0;
@@ -133,7 +133,13 @@
         /**
          * How many hitpoints does the player have.
          */
-        hitpoints: 10
+        hitpoints: 10,
+        
+        /**
+         * The point in relation to the player sprite where bullets are
+         * shot from.
+         */
+        shootPoint: { x: 68, y: -69}
     };
     
     /**
@@ -188,7 +194,7 @@
     Lilja.Player.prototype.shoot = function() {
         if (!this.fireButton.isDown) return;
         if ( this.disableControls ) return; 
-        this.bullets.make(this.x + this.scale.x * 58, this.y - 40, this.scale.x);
+        this.bullets.make(this.x + this.scale.x * this.settings.shootPoint.x, this.y + this.settings.shootPoint.y, this.scale.x);
         var bang = this.game.add.tween(this.bang.scale).from({ x: 1 }, 100);
         bang.start();
     };
@@ -277,10 +283,21 @@
      *                                 
      */
     Lilja.Bullets = function(game, character) {
-        this.character = character;
-        
         Phaser.Group.call(this, game);
         game.add.existing(this);
+        
+        this.character = character;
+        
+        this.createMultiple(10, 'sprites', 'bullet', false);
+        this.forEach(function(bullet) {
+            bullet.anchor.set(0.5);
+            this.game.physics.arcade.enable(bullet);
+            bullet.hit = Lilja.bulletHit;
+            
+            //bullet.body.velocity.y = this.game.rnd.between(-this.settings.shootScatter, this.settings.shootScatter);
+            bullet.body.angularVelocity = this.settings.bulletSpin;
+            bullet.body.allowGravity = false;
+        }, this);
     };
     
     Lilja.Bullets.prototype = Object.create(Phaser.Group.prototype);
@@ -319,14 +336,12 @@
      * @param {Number} [direction=1] direction to fire bullets, 1=right, -1=left
      */
     Lilja.Bullets.prototype.make = function(x, y, direction) {
-        var bullet = this.create(x, y, 'sprites', 'bullet');
-        bullet.anchor.set(0.5);
-        this.game.physics.arcade.enable(bullet);
+        var bullet = this.getFirstExists(false);
+        bullet.reset(x, y);
+        bullet.frameName = 'bullet';
+        bullet.scale.set(1);
+        bullet.body.enable = true;
         bullet.body.velocity.x = direction * this.settings.bulletSpeed;
-        //bullet.body.velocity.y = this.game.rnd.between(-this.settings.shootScatter, this.settings.shootScatter);
-        bullet.body.angularVelocity = this.settings.bulletSpin;
-        bullet.body.bounce.set(this.settings.bulletBounce);
-        bullet.body.allowGravity = false;
         
         Lilja.sfx.play('shot1');
     };
@@ -336,10 +351,21 @@
      */
     Lilja.Bullets.prototype.update = function() {
         Phaser.Group.prototype.update.call(this);
-        
-        this.forEach(function(bullet) {
-            if (Math.abs(bullet.x - this.character.x) > 1000) bullet.destroy();
+            
+        this.forEachAlive(function(bullet) {
+            if ( bullet.x > this.game.camera.x + this.game.camera.width || bullet.x < this.game.camera.x ) bullet.kill();
         }, this);
+    };
+    
+    /**
+     * Callback to when a bullet hits an enemy.
+     * @param {Lilja.Enemy} enemy the enemy hit
+     */
+    Lilja.bulletHit = function(enemy) {
+        this.frameName = 'bang';
+        this.body.enable = false;
+        this.game.add.tween(this.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
+            .onComplete.add(function() { this.kill(); }, this);
     };
     
 })();

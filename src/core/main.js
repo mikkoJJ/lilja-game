@@ -51,7 +51,7 @@
              * @property {Lilja.Player} the player character
              */
             this.player = new Lilja.Player(this.game, 112, this.world.height - 150);
-            this.camera.follow(this.player);
+            this.camera.y = this.world.height - this.camera.height;
             
             /**
              * @property {Phaser.Group} the group containing enemies
@@ -96,6 +96,14 @@
         update: function() {
             if(!this._running) return;
             
+            //move camera around in scenes
+            var cameraDeltaX = this.player.x - this.camera.x;
+            var cameraDeltaY = this.player.y - this.camera.y;
+            if ( cameraDeltaX > this.camera.width ) this.camera.x += this.camera.width;  
+            if ( cameraDeltaX < 0 ) this.camera.x -= this.camera.width;
+            if ( cameraDeltaY > this.camera.height ) this.camera.y += this.camera.height;
+            if ( cameraDeltaY < 0 ) this.camera.y -= this.camera.height;
+            
             this.game.physics.arcade.collide(this.player, this.layerBg);
             this.game.physics.arcade.collide(this.player, this.enemies, this._playerEnemyCollision, null, this);
             this.game.physics.arcade.collide(this.enemies, this.layerBg);
@@ -109,10 +117,7 @@
          * Called when a bullet collides with a wall.
          */
         _bulletWallCollision: function(bullet, wall) {
-            bullet.frameName = 'bang';
-            bullet.body.enable = false;
-            this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
-                .onComplete.add(function() { this.destroy(); }, bullet);
+            bullet.hit(wall);
         },
         
         /**
@@ -129,10 +134,7 @@
          */
         _bulletEnemyCollision: function(bullet, enemy) {
             enemy.hit(bullet);
-            bullet.frameName = 'bang';
-            bullet.body.enable = false;
-            this.add.tween(bullet.scale).to({x: 0, y: 0}, 200, Phaser.Easing.Linear.None, true)
-                .onComplete.add(function() { this.destroy(); }, bullet);
+            bullet.hit(enemy);
         },
         
         /**
