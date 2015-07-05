@@ -16,6 +16,7 @@
          //
         //
         create: function () {
+            this.add.text(this.camera.width, this.camera.height, 'Loading', { font: '24px VT323' });
         },
         
         
@@ -30,8 +31,6 @@
          //
         //        
         preload: function () {
-            this.add.text(this.camera.width, this.camera.height, 'Loading', { font: '24px VT323' });
-            
             this.game.load.atlasJSONHash('sprites', 'assets/graphics/sprites.png', 'assets/graphics/sprites_data.json');
             this.game.load.json('main_story', 'assets/main_story.json');
             this.game.load.json('dialogues', 'assets/dialogues.json');

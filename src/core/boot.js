@@ -35,7 +35,7 @@
         init: function() {
             this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             this.scale.pageAlignHorizontally = true;
-            this.scale.setMinMax(500, 400, 1028, 720);
+            this.scale.setMinMax(514, 384, 1280, 768);
             this.scale.setScreenSize(true);
         },
         
@@ -59,7 +59,7 @@
         }
     };
     
-    var game = new Phaser.Game(1028, 720, Phaser.AUTO, 'lilja-game');
+    var game = new Phaser.Game(1280, 768, Phaser.AUTO, 'lilja-game');
     game.state.add('Boot', Lilja.Booter, true);
     
 })();
