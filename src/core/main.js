@@ -42,7 +42,7 @@
             this.layerBg = this.map.createLayer('bg');
             this.layerBg.resizeWorld();
             //this.layerTerrain = this.map.createLayer('terrain');
-            this.map.setCollision([2, 3, 4, 5], true, this.layerBg, true);
+            this.map.setCollision([2, 3, 4, 5, 6, 8, 9, 10, 11, 12], true, this.layerBg, true);
             
             
             //---- setup game objects ------------------ 
