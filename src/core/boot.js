@@ -28,16 +28,6 @@
         loadUpdate: function () {
             return;
         },
-
-          ///////{ initialize scale }//////////////////////////////////////////////
-         //
-        //
-        init: function() {
-            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-            this.scale.pageAlignHorizontally = true;
-            this.scale.setMinMax(514, 384, 1280, 768);
-            this.scale.setScreenSize(true);
-        },
         
           ///////{ define loaded resources }////////////////////////////////////////
          //
