@@ -135,7 +135,7 @@
         this.game = game;
         
         /** Data object containing dialogue texts. */
-        this.data = game.cache.getJSON('dialogues');
+        this.data = game.cache.getJSON('level_meta');
         
         /** Signal that is emitted when the current dialogue has been run out. */
         this.onFinished = new Phaser.Signal();

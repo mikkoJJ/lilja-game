@@ -212,7 +212,7 @@
         this.game.time.events.add(400, this._returnControl, this);
         
         this.tint = 0xff0000;
-        this.body.velocity.x = -400;
+        this.body.velocity.x = -400 * this.scale.x;
         this.body.velocity.y = -300;
         this.invincible = true;
         this.disableControls = true;

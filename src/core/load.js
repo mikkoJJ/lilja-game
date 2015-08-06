@@ -3,8 +3,6 @@
  //*
 //*
 (function() {
-    
-    Lilja = { };
 
     Lilja.Preloader = function () {
 
@@ -33,7 +31,7 @@
         init: function() {
             this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             this.scale.pageAlignHorizontally = true;
-            this.scale.setMinMax(514, 384, 1280, 768);
+            this.scale.setMinMax(514, 384, Lilja.gameWidth, Lilja.gameHeight);
             this.scale.setScreenSize(true);
             this.scale.windowConstraints.bottom = "visual";
         },
@@ -44,7 +42,7 @@
         preload: function () {
             this.game.load.atlasJSONHash('sprites', 'assets/graphics/sprites.png', 'assets/graphics/sprites_data.json');
             this.game.load.json('main_story', 'assets/main_story.json');
-            this.game.load.json('dialogues', 'assets/dialogues.json');
+            this.game.load.json('level_meta', 'assets/level_meta.json');
             this.game.load.tilemap('level01', 'assets/level01.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/graphics/tiles.png');
             this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.mp3'], 'assets/audio/sfx.json');

@@ -5,7 +5,10 @@
 //*
 (function() {
     
-    Lilja = { };
+    Lilja = { 
+        gameWidth: 800,
+        gameHeight: 600
+    };
 
     Lilja.Booter = function () {
 
@@ -49,7 +52,7 @@
         }
     };
     
-    var game = new Phaser.Game(1280, 768, Phaser.AUTO, 'lilja-game');
+    var game = new Phaser.Game(Lilja.gameWidth, Lilja.gameHeight, Phaser.AUTO, 'lilja-game');
     game.state.add('Boot', Lilja.Booter, true);
     
 })();
