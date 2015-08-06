@@ -139,7 +139,7 @@
          * The point in relation to the player sprite where bullets are
          * shot from.
          */
-        shootPoint: { x: 68, y: -69}
+        shootPoint: { x: 46, y: -40}
     };
     
     /**

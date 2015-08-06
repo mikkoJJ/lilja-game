@@ -38,11 +38,11 @@
              * @property {Phaser.Tilemap} the level tilemap
              */
             this.map = this.add.tilemap('level01');
-            this.map.addTilesetImage('tileset', 'tiles');
+            this.map.addTilesetImage('tiles', 'tiles');
             this.layerBg = this.map.createLayer('bg');
             this.layerBg.resizeWorld();
             //this.layerTerrain = this.map.createLayer('terrain');
-            this.map.setCollision([2, 3, 4, 5, 6, 8, 9, 10, 11, 12], true, this.layerBg, true);
+            this.map.setCollisionByExclusion([1, 10], true, this.layerBg, true);
             
             
             //---- setup game objects ------------------ 
@@ -65,7 +65,7 @@
             
             //---- spawn zombies ---------------------------
             
-            this.map.createFromObjects('spawnpoints', 4, 'sprites', null, true, false, this.enemies, Lilja.Zombie, true);
+            this.map.createFromObjects('spawnpoints', 11, 'sprites', null, true, false, this.enemies, Lilja.Zombie, true);
             this.enemies.setAll('chase', this.player);
             this.enemies.setAll('ground', this.layerBg);
             

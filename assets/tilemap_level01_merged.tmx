@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="24" tilewidth="64" tileheight="64" nextobjectid="51">
- <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64">
-  <image source="graphics/tiles.png" width="960" height="64"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="120" height="48" tilewidth="32" tileheight="32" nextobjectid="60">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="graphics/tiles.png" width="64" height="416"/>
  </tileset>
- <layer name="bg" width="60" height="24">
+ <layer name="bg" width="120" height="48">
   <data encoding="base64" compression="zlib">
-   eJzl19EOgjAMBdAhImOg/v/fGhOWNE2b3Y2yTXxoQMDR47qlzs65uaO4GcfIorUP8Q6ZsZAY92tX9kpxFa//A68HnPF+jXrm+Wr3LevZO3m+R3Z+lpe+U8q5xIvWbmuvZLae3968khn1Tuz5lJE+19Kr5YV4J3BMbV9u7c2pZyT42LS/qjG/SFh5NevVvFLNtPLG/tVi/ZZaa3pL96sZ/C5ipd6z+yspr8By9AbeVB20mN8HC239eiD/3OihnhfFq63f3PqW/v/W8Go9wtle3m/U8PIaPtJv1PY+C+c3tc8c8QbgHXRfzvG+Mr3au3mOqFeyrcL11G9AvW92tPSGPb9N8E6AdyMWeoznK/us7Rtf7/2HYjAY4wPOSBim
+   eJzt2rsKg0AQQFENeRnS5NHk/380FgpBdKOmiDOc4hQLO7BwQXHxUlXVBQAAAAAAAAAAAGCm3Rf/Ph+/97126gF949M3N31z2410bfRNQ9/cxvp6Puehb276xjB2NzGnlb4xlDrpG5++uembm7656Ztbqa2+8emb29q+a2bYXt9a39D0zU3f3Ja+f6fuqfXdpqlGTWeslb5xlP7D8H0U31SnW+s+aHVoHT/m+j2lmSheC9dRTPV9tJ6DVqfW+WOu31Oa2bI9qb0BppLTFA==
   </data>
  </layer>
  <objectgroup name="spawnpoints">
-  <object id="19" gid="4" x="1076" y="1470" width="64" height="64"/>
-  <object id="31" gid="4" x="2192" y="1460" width="64" height="64"/>
-  <object id="33" gid="4" x="1646" y="1376" width="64" height="64"/>
-  <object id="34" gid="4" x="1530" y="1398" width="64" height="64"/>
-  <object id="35" gid="4" x="1146" y="1482" width="64" height="64"/>
-  <object id="39" gid="4" x="2627.33" y="504" width="64" height="64"/>
-  <object id="40" gid="4" x="2790" y="628.667" width="64" height="64"/>
-  <object id="41" gid="4" x="2880" y="632.667" width="64" height="64"/>
-  <object id="42" gid="4" x="2980" y="624.667" width="64" height="64"/>
-  <object id="44" gid="4" x="3116" y="1382" width="64" height="64"/>
-  <object id="45" gid="4" x="3366" y="1380" width="64" height="64"/>
-  <object id="46" gid="4" x="3472" y="1454" width="64" height="64"/>
-  <object id="47" gid="4" x="2904" y="1014" width="64" height="64"/>
-  <object id="48" gid="4" x="2730" y="1018" width="64" height="64"/>
-  <object id="49" gid="4" x="3178" y="818" width="64" height="64"/>
+  <object id="51" gid="11" x="627" y="1506" width="32" height="32"/>
+  <object id="52" gid="11" x="738" y="1505" width="32" height="32"/>
+  <object id="53" gid="11" x="850" y="1502" width="32" height="32"/>
+  <object id="54" gid="11" x="1526" y="1507" width="32" height="32"/>
+  <object id="55" gid="11" x="1607" y="1510" width="32" height="32"/>
+  <object id="56" gid="11" x="1433" y="1507" width="32" height="32"/>
+  <object id="57" gid="11" x="2444" y="1431" width="32" height="32"/>
+  <object id="58" gid="11" x="2378" y="1477" width="32" height="32"/>
+  <object id="59" gid="11" x="2328" y="1416" width="32" height="32"/>
  </objectgroup>
- <layer name="divide" width="60" height="24" visible="0">
+ <layer name="divide" width="120" height="48" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztz7EJACAUxNDfuP/KVm4QIWIC1z64Ga4FWjc8uv66PLr+ujy6/ro8uv66PLr+urxj/jQyu0fXX5dH11+XR9dfl0fXX5dH11+XR/fC3w3wOQIT
+   eJztwTEBAAAAwqD1T20JT6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeBpaAAAB
   </data>
  </layer>
 </map>
