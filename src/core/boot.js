@@ -24,14 +24,6 @@
             this.state.add('Main', Lilja.Main);
         },
         
-        
-          ///////{ Update loading screen }/////////////////////////////////////////
-         //
-        //
-        loadUpdate: function () {
-            return;
-        },
-        
           ///////{ define loaded resources }////////////////////////////////////////
          //
         //        
