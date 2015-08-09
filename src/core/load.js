@@ -32,7 +32,7 @@
             this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             this.scale.pageAlignHorizontally = true;
             this.scale.setMinMax(514, 384, Lilja.gameWidth, Lilja.gameHeight);
-            this.scale.setScreenSize(true);
+            //this.scale.setScreenSize(true);
             this.scale.windowConstraints.bottom = "visual";
         },
         

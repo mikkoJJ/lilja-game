@@ -23,8 +23,6 @@
             
             this._running = true;
             
-            this.fpsCounter = this.add.text(10, 10, 'aa', { font: '14px VT323', fill: '#000000' });
-            this.fpsCounter.fixedToCamera = true;
             this.game.time.advancedTiming = true;
             
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -38,22 +36,14 @@
             
             //---- setup game objects ------------------ 
             
-            /**
-             * @property {Lilja.Player} the player character
-             */
-            this.player = new Lilja.Player(this.game, 112, this.world.height - 64);
-            this.camera.y = this.world.height - this.camera.height;
+            this.level.createObjects();
+            this.player = this.level.player;
             
-            /**
-             * @property {Lilja.Bullets} the group containing player bullets
-             */
-            this.bullets = this.player.bullets;
+            //---- debug info ------------------------------
+            this.fpsCounter = this.add.text(10, 10, 'aa', { font: '14px VT323', fill: '#000000' });
+            this.fpsCounter.fixedToCamera = true;
             
-            //---- spawn zombies ---------------------------
-            
-            this.level.createObjects(this.player);
-            
-            //--- intro --------------------
+            //--- intro ------------------------------------
             
             this.level.intro();
         },  

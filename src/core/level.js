@@ -74,21 +74,21 @@
         
         /**
          * Populate the map with enemies and get references for other 
-         * objects based on the objects in the tilemap.
+         * objects based on the objects in the tilemap. Also creates
+         * the player object to be controlled on the level.
          *
          * @see Lilja.Level.settings.zombieID
-         * @param {Lilja.Player} player reference to the player object
-         * @returns {Phaser.Group} the enemy group created
          */
-        createObjects: function(player) {
-            this.player = player;
-            this.bullets = player.bullets;
+        createObjects: function() {
+            this.player = new Lilja.Player(this.game, 112, this.game.world.height - 64);
+            this.game.camera.y = this.game.world.height - this.game.camera.height;
             
-            this.map.createFromObjects('spawnpoints', this.settings.zombieID, 'sprites', null, true, false, this.enemies, Lilja.Zombie, true);
+            this.bullets = this.player.bullets;
+            this.enemies = this.game.add.group();
+                
+            this.map.createFromObjects('spawnpoints', this.settings.zombieID, 'sprites', 'zombi1a', true, false, this.enemies, Lilja.Zombie, true);
             this.enemies.setAll('chase', this.player);
             this.enemies.setAll('ground', this.mapLayer);
-            
-            return this.enemies;
         },
         
         /**

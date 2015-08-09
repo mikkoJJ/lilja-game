@@ -18,7 +18,7 @@
      * @param {Lilja.Player} player reference to the player object for tracking purposes.
      * @param {Phaser.Group} group  group to add this zombie in
      */
-    Lilja.Zombie = function(game, x, y, key) {
+    Lilja.Zombie = function(game, x, y, key, frame) {
         
         /**
          * @property {Boolean} wether this sprite is facing right or not [default = true]
@@ -64,6 +64,11 @@
          * @property {Number} a random seed number to create more varying speeds across zombies.
          */
         this._speedBase = game.rnd.between(0, 25);
+        
+        /**
+         * @property {Boolean} set to true if the zombie can't move.
+         */
+        this.immobile = false;
         
         Phaser.Sprite.call(this, game, x, y, key, this.zombieType + 'a');
         this.game.add.existing(this);
@@ -120,6 +125,7 @@
         this.game.physics.arcade.collide(this.giblets, this.ground, this.gibSplat, null, this);
         
         if ( !this.inCamera ) return;
+        if ( this.immobile ) return;
         
         var delta = this.chase.x - this.x;
         var direction = delta / (Math.abs(delta)); //plus or minus
@@ -179,5 +185,22 @@
         spl.anchor.set(0.5, 1);
         gib.kill();
     };
+    
+    
+    
+    
+    ///// MOLOTOV ZOMBIE ///////////////////////////////////////////////////////////////
+    
+    Lilja.MolotovZombie = function(game, x, y) {
+        Lilja.Zombie.call(this, game, x, y, 'zombi2');
+        
+        this.immobile = true;
+        
+        this.animations.add('throw', ['zombi2', 'zombi2_throw1', 'zombi2_throw2'], 1, true);
+        this.animations.play('throw');
+    };
+    
+    Lilja.MolotovZombie.prototype = Object.create(Lilja.Zombie.prototype);
+    Lilja.MolotovZombie.constructor = Lilja.MolotovZombie;
     
 })();
