@@ -5,7 +5,7 @@ The graphical assets found under this folder are by the following artitsts.
 
 [Mikko Jakonen](http://www.mikkojakonen.net)
 --------------------------------------------
-bang, bullet, dust, hp, lilja, bg_brick, brick, floor, sky, barbedwire, steelbar, whirl, woodcrate
+bang, bullet, dust, hp, lilja, bg_brick, brick, floor, sky, barbedwire, steelbar, whirl, woodcrate, explosion1, zombi2
 
 [Henri Tervapuro](http://www.seitti.fi/piirtajat/piirtaja/henri)
 ----------------------------------------------------------------

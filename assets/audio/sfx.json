@@ -34,44 +34,49 @@
       "end": 10.5,
       "loop": false
     },
-    "hurt": {
+    "explosion1": {
       "start": 12,
-      "end": 12.225351473922903,
+      "end": 12.538548752834467,
+      "loop": false
+    },
+    "hurt": {
+      "start": 14,
+      "end": 14.225351473922903,
       "loop": false
     },
     "jump1": {
-      "start": 14,
-      "end": 14.134240362811791,
+      "start": 16,
+      "end": 16.13424036281179,
       "loop": false
     },
     "missionstart": {
-      "start": 16,
-      "end": 19.455419501133786,
+      "start": 18,
+      "end": 21.455419501133786,
       "loop": false
     },
     "shot1": {
-      "start": 21,
-      "end": 21.261224489795918,
+      "start": 23,
+      "end": 23.261224489795918,
       "loop": false
     },
     "splat": {
-      "start": 23,
-      "end": 23.416507936507937,
+      "start": 25,
+      "end": 25.416507936507937,
       "loop": false
     },
     "tick": {
-      "start": 25,
-      "end": 25.074013605442175,
+      "start": 27,
+      "end": 27.074013605442175,
       "loop": false
     },
     "zombiedie": {
-      "start": 27,
-      "end": 27.815102040816328,
+      "start": 29,
+      "end": 29.815102040816328,
       "loop": false
     },
     "zombiehit": {
-      "start": 29,
-      "end": 29.09201814058957,
+      "start": 31,
+      "end": 31.09201814058957,
       "loop": false
     }
   }

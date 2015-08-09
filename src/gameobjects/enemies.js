@@ -11,14 +11,14 @@
      * The main bad guys of the game. They can slowly shuffle
      * towards the player very menacingly.
      * 
-     * @extends Phaser.Sprite
+     * @extends {Phaser.Sprite}
      * @param {Phaser.Game}  game   reference to the Phaser Game object
      * @param {Number}       x      x position to spawn in
      * @param {Number}       y      y position to spawn in
      * @param {Lilja.Player} player reference to the player object for tracking purposes.
      * @param {Phaser.Group} group  group to add this zombie in
      */
-    Lilja.Zombie = function(game, x, y, key, frame) {
+    Lilja.Zombie = function(game, x, y, key) {
         
         /**
          * @property {Boolean} wether this sprite is facing right or not [default = true]
@@ -61,14 +61,14 @@
         this.ground = null;
         
         /**
+         * @property {Phaser.Group} a group in which to spawn projectiles created by some zombies
+         */
+        this.projectiles = null;
+        
+        /**
          * @property {Number} a random seed number to create more varying speeds across zombies.
          */
         this._speedBase = game.rnd.between(0, 25);
-        
-        /**
-         * @property {Boolean} set to true if the zombie can't move.
-         */
-        this.immobile = false;
         
         Phaser.Sprite.call(this, game, x, y, key, this.zombieType + 'a');
         this.game.add.existing(this);
@@ -125,8 +125,14 @@
         this.game.physics.arcade.collide(this.giblets, this.ground, this.gibSplat, null, this);
         
         if ( !this.inCamera ) return;
-        if ( this.immobile ) return;
         
+        this.move();
+    };
+    
+    /**
+     * Perform movement.
+     */
+    Lilja.Zombie.prototype.move = function() {
         var delta = this.chase.x - this.x;
         var direction = delta / (Math.abs(delta)); //plus or minus
         
@@ -138,6 +144,7 @@
         this.body.velocity.x = direction * speed;
         this.scale.x = direction;
     };
+    
     
     /**
      * Called by the main state when this zombie is hit
@@ -189,18 +196,78 @@
     
     
     
-    ///// MOLOTOV ZOMBIE ///////////////////////////////////////////////////////////////
-    
+    /**
+     * M O L O T O V   Z O M B I E
+     * ===========================
+     * 
+     * A zombie that stands in place and throws molotovs at
+     * the player.
+     * 
+     * @extends {Lilja.Zombie}
+     * @param {Phaser.Game}  game   reference to the Phaser Game object
+     * @param {Number}       x      x position to spawn in
+     * @param {Number}       y      y position to spawn in
+     * @param {Lilja.Player} player reference to the player object for tracking purposes.
+     */
     Lilja.MolotovZombie = function(game, x, y) {
-        Lilja.Zombie.call(this, game, x, y, 'zombi2');
+        Lilja.Zombie.call(this, game, x, y, 'sprites');
         
-        this.immobile = true;
-        
-        this.animations.add('throw', ['zombi2', 'zombi2_throw1', 'zombi2_throw2'], 1, true);
+        var attack = this.animations.add('throw', ['zombi2_throw2', 'zombi2', 'zombi2_throw1'], 1, true);
+        attack.onLoop.add(this._throw, this);
         this.animations.play('throw');
+        
+        this.body.immovable = true;
     };
     
     Lilja.MolotovZombie.prototype = Object.create(Lilja.Zombie.prototype);
     Lilja.MolotovZombie.constructor = Lilja.MolotovZombie;
+    
+    /**
+     * Molotov zombie doesn't move.
+     */
+    Lilja.MolotovZombie.prototype.move = function() {};
+    
+    /**
+     * How fast does the molotov fly (when the player is 500 units away).
+     */ 
+    Lilja.MolotovZombie.prototype.settings.molotovSpeed = 500;
+    
+    /**
+     * Throw a molotov in the correct position of the animation.
+     */
+    Lilja.MolotovZombie.prototype._throw = function() {
+        if (!this.inCamera) return;
+        
+        var molotov = this.game.add.sprite(this.x, this.y, 'sprites', 'molotov');
+        molotov.anchor.set(0.5);
+        molotov.damage = 2;
+        molotov.hit = Lilja.MolotovZombie._molotovHit;
+        this.projectiles.add(molotov);
+        
+        var delta = this.chase.x - this.x;
+        var direction = delta / (Math.abs(delta));
+        
+        var speed = this.settings.molotovSpeed * (Math.abs(delta) / 500);
+        
+        var time = Math.abs(delta) / speed;
+        
+        this.game.physics.arcade.enable(molotov);
+        molotov.body.velocity.x = direction * speed;
+        molotov.body.velocity.y = -this.game.physics.arcade.gravity.y * time / 2;
+        
+        this.scale.x = direction;  
+    };
+    
+    
+    Lilja.MolotovZombie._molotovHit = function(target) {
+        if (this._exploded ) return;
+        this.frameName = 'explosion1';
+        this.body.immovable = true;
+        this._exploded = true;
+        this.body.velocity.set(0);
+        this.game.time.events.loop(100, function(){ this.visible = !this.visible; }, this);
+        this.game.time.events.add(1000, function(){ this.destroy(); }, this);
+        Lilja.sfx.play('explosion1');
+    };
     
 })();

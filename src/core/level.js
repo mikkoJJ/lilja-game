@@ -42,7 +42,7 @@
          * @property {Object} static settings for the level objects
          */
         settings: {
-            zombieID: 11
+            zombieID: 11, molotovZombieID: 9
         },
         
         /**
@@ -55,7 +55,7 @@
             this.mapLayer = this.map.createLayer('bg');
             this.mapLayer.resizeWorld();
             
-            this.map.setCollisionByExclusion([1, 10], true, this.layerBg, true);
+            this.map.setCollisionByExclusion([1, 10, 25], true, this.layerBg, true);
             
             this.game.world.sendToBack(this.mapLayer);
             
@@ -85,10 +85,15 @@
             
             this.bullets = this.player.bullets;
             this.enemies = this.game.add.group();
+            this.projectiles = this.game.add.group();
                 
-            this.map.createFromObjects('spawnpoints', this.settings.zombieID, 'sprites', 'zombi1a', true, false, this.enemies, Lilja.Zombie, true);
+            this.map.createFromObjects('spawnpoints', this.settings.zombieID, 'sprites', 'zombi1a', true, false, 
+                                       this.enemies, Lilja.Zombie, true);
+            this.map.createFromObjects('spawnpoints', this.settings.molotovZombieID, 'sprites', 'zombi1a', true, false, 
+                                       this.enemies, Lilja.MolotovZombie, true);
             this.enemies.setAll('chase', this.player);
             this.enemies.setAll('ground', this.mapLayer);
+            this.enemies.setAll('projectiles', this.projectiles);
         },
         
         /**
@@ -98,6 +103,8 @@
             this.game.physics.arcade.collide(this.player, this.enemies, this._playerEnemyCollision, this._playerEnemyProcess, this);
             this.game.physics.arcade.collide(this.bullets, this.mapLayer, this._bulletWallCollision, null, this);
             this.game.physics.arcade.collide(this.bullets, this.enemies, this._bulletEnemyCollision, null, this);
+            this.game.physics.arcade.collide(this.projectiles, this.player, this._playerEnemyCollision, null, this);
+            this.game.physics.arcade.collide(this.projectiles, this.mapLayer, this._bulletWallCollision, null, this);
             this.game.physics.arcade.collide(this.player, this.mapLayer);
             this.game.physics.arcade.collide(this.enemies, this.mapLayer);
             this.game.physics.arcade.collide(this.giblets, this.mapLayer);
@@ -113,7 +120,7 @@
         },
         
         /**
-         * Called when a bullet collides with a wall.
+         * Called when a bullet or projectile collides with a wall.
          */
         _bulletWallCollision: function(bullet, wall) {
             bullet.hit(wall);
@@ -141,6 +148,16 @@
         _bulletEnemyCollision: function(bullet, enemy) {
             enemy.hit(bullet);
             bullet.hit(enemy);
+        },
+        
+        /**
+         * Called when a projectile hits a player. Maybe?
+         * @param {Object}   projectile [[Description]]
+         * @param {[[Type]]} player     [[Description]]
+         */
+        _projectilePlayerCollision: function(projectile, player) {
+            projectile.hit(player);
+            player.hit(projectile.damage);
         },
         
         /**

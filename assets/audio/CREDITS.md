@@ -15,3 +15,4 @@ All audio assets are from artists at [Freesound](http://freesound.org), licenced
 * *hurt* by **timgormly**
 * *blop* by [GreenCouch](http://www.greencouch.nl/)
 * *ding* by **n_audioman**
+* *explosion1* by [timgormly](http://freesound.org/people/timgormly/)
