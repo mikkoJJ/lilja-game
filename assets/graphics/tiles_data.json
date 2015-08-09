@@ -20,7 +20,7 @@
 },
 "dark_brick":
 {
-	"frame": {"x":0,"y":32,"w":32,"h":32},
+	"frame": {"x":64,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -29,7 +29,7 @@
 },
 "floor":
 {
-	"frame": {"x":32,"y":32,"w":32,"h":32},
+	"frame": {"x":96,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -38,7 +38,7 @@
 },
 "rautalevy":
 {
-	"frame": {"x":0,"y":64,"w":64,"h":64},
+	"frame": {"x":128,"y":0,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -47,7 +47,7 @@
 },
 "tynnyri":
 {
-	"frame": {"x":0,"y":64,"w":64,"h":64},
+	"frame": {"x":128,"y":0,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -56,7 +56,7 @@
 },
 "rautapalkki":
 {
-	"frame": {"x":0,"y":128,"w":32,"h":32},
+	"frame": {"x":192,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -65,7 +65,7 @@
 },
 "sky":
 {
-	"frame": {"x":32,"y":128,"w":32,"h":32},
+	"frame": {"x":224,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -74,16 +74,25 @@
 },
 "steelbar":
 {
-	"frame": {"x":0,"y":160,"w":32,"h":32},
+	"frame": {"x":256,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"tiles":
+{
+	"frame": {"x":288,"y":0,"w":256,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":128},
+	"sourceSize": {"w":256,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "whirl":
 {
-	"frame": {"x":32,"y":160,"w":32,"h":32},
+	"frame": {"x":544,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -92,7 +101,7 @@
 },
 "woodcrate":
 {
-	"frame": {"x":0,"y":192,"w":64,"h":64},
+	"frame": {"x":576,"y":0,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -101,7 +110,7 @@
 },
 "woodcrate2":
 {
-	"frame": {"x":0,"y":256,"w":64,"h":64},
+	"frame": {"x":640,"y":0,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -110,7 +119,7 @@
 },
 "woodcrate3":
 {
-	"frame": {"x":0,"y":320,"w":64,"h":64},
+	"frame": {"x":704,"y":0,"w":64,"h":64},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
@@ -119,7 +128,7 @@
 },
 "x_barbedwire":
 {
-	"frame": {"x":0,"y":384,"w":32,"h":32},
+	"frame": {"x":768,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -131,8 +140,8 @@
 	"version": "1.0",
 	"image": "tiles.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":416},
+	"size": {"w":800,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:bad7a7a6eb1415c625dec5bcb5996f7b:0cc04538ce912150adc8b01db02e428b:f443a2ddfdc874d43f89e137ec5a8dfd$"
+	"smartupdate": "$TexturePacker:SmartUpdate:dd7f568fc063bde2ff05dcb42531be11:9764c2c1f4dfb14b21591a253af7231f:f443a2ddfdc874d43f89e137ec5a8dfd$"
 }
 }

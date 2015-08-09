@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="154" height="24" tilewidth="32" tileheight="32" nextobjectid="74">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="154" height="24" tilewidth="32" tileheight="32" nextobjectid="79">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
-  <image source="graphics/tiles.png" width="64" height="416"/>
+  <image source="graphics/tiles.png" width="800" height="128"/>
  </tileset>
  <layer name="bg" width="154" height="24">
   <data encoding="base64" compression="zlib">
-   eJztmttuwyAMQOmyW2i67tp1//+jc6VYtahNSCCBgh+OSFIDLTkyF9UaY6yymAdgGMtYdoS5dbsRrI/3ucdHSeeZ68hc3DaWOKqe1c0ang0jvjoDwe2/M+pZbaAjeyP7w82tXFzPtLEE9aw+qGc+12jukTxL4ZbOm/ldoLifxbYdOif6ch4+60nZO8+k5+pZeY5Ja+6tPfPtN2Pymc6b+TwLWYenaH/vIPUvuW+ZUrqmpeaztjwLyWfS/kDXZ/dLaZ65jrmeWaaUrrl85s6duce/FeiZgUQKz56AZzN/HxAao/msbLbKZy/Aq6ft0JxnmVK61vVZOWzlGV37S55N7Ttj8hmX29SzejyzE+37zlTUs3oI9SymjxCHU56VUXBd2AnkHv9WCH2va3vG/XcohV+4LlTP2vOMO6cdzO1/LGJcQ7/UszIoJZ+tjXpWvmcx+4B+ov2cjqln7Xh24QC8AT/AaSI2FvUsH1PvZs1zjQtH4B34Bc4B3yelb7nHviXcd/ABfJIyhWfYFu3jYK657GTkvEbrYsxujKP1ud9B41OvO9fib+b9veCO/RfwTcoUnmFbtI+jueays5HzGq2LMbsxjtbnfgeNL9mzR6VqcvuF/AP0pG+9
+   eJzt18sKgkAYhmGNFrbpvOkKOlxD566hk3X/19EnFMgw1Kj0m/EuHgZRh3/xMmISRVECAAAAAH+m5eHeq3tGNJuvsUz85GsPKMrtyofOUBWdwQKdwcKroc4bdIaqOM9ggc5ggc5gIbSzuudEs4V0Fv/AnGg2OoMFOoMF/gNQRld60pdBwPN0hjKmMpO5LALf+fTNpDMsZSVr2chWdrKXQ+AeblfZOTjMrXRma1Lw2sJRTnKWi1wllZvcA/dwOxvJOLfS2fe1AQMP23lyFg==
   </data>
  </layer>
  <objectgroup name="spawnpoints">
-  <object id="51" gid="11" x="1041" y="726" width="32" height="32"/>
-  <object id="52" gid="11" x="1196" y="721" width="32" height="32"/>
-  <object id="53" gid="11" x="1114" y="720.667" width="32" height="32"/>
   <object id="57" gid="11" x="2444" y="663" width="32" height="32"/>
   <object id="58" gid="11" x="2378" y="709" width="32" height="32"/>
   <object id="59" gid="11" x="2328" y="648" width="32" height="32"/>
@@ -23,12 +20,15 @@
   <object id="66" gid="11" x="3152" y="541.33" width="32" height="32"/>
   <object id="67" gid="11" x="2560" y="346.67" width="32" height="32"/>
   <object id="68" gid="11" x="2748" y="152" width="32" height="32"/>
-  <object id="71" gid="9" x="1508" y="720" width="32" height="32"/>
-  <object id="72" gid="11" x="715.333" y="724.667" width="32" height="32"/>
+  <object id="74" gid="7" x="1320.17" y="656.833" width="32" height="32"/>
+  <object id="75" gid="9" x="1184" y="728" width="32" height="32"/>
+  <object id="76" gid="9" x="1113.33" y="730.667" width="32" height="32"/>
+  <object id="77" gid="9" x="1032" y="730.667" width="32" height="32"/>
+  <object id="78" gid="9" x="642.667" y="726.667" width="32" height="32"/>
  </objectgroup>
  <layer name="divide" width="154" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt0LEJAEAMw8D02X/fn+GbIIQErg+8M7MNuRE5F+XkXGT7K4eZ7a8cZra/cpjZ/sphZvsrh5ntrxxmtr9ymNn+ymFm+yuHme2vHGa2v3KY2f7KYWb7K4eZ7a8cZra/cpjZ/sphZvsrh5ntrxxmtr9ymNn+ymFm+yuHme2vnP8egVYLeg==
+   eJztkLEJADAMgLLm/4d7Q4cWEQVnwZ2ZzXzsD+rU+YHtVx0mtl91mNh+1WFi+1WHie1XHSa2X3WY2H7VYWL7VYeJ7VcdJrZfdZjYftVhYvtVh4ntVx0mtl91mNh+1WFi+1WHie1XHSa2X3WY2H7VYWL7VYeJ7VcdJrZfde45Y24Jdg==
   </data>
  </layer>
 </map>

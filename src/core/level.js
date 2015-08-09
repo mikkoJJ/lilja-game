@@ -42,7 +42,7 @@
          * @property {Object} static settings for the level objects
          */
         settings: {
-            zombieID: 11, molotovZombieID: 9
+            zombieID: 9, molotovZombieID: 7
         },
         
         /**
@@ -55,7 +55,7 @@
             this.mapLayer = this.map.createLayer('bg');
             this.mapLayer.resizeWorld();
             
-            this.map.setCollisionByExclusion([1, 10, 25], true, this.layerBg, true);
+            this.map.setCollisionByExclusion([1, 8, 25, 16, 17, 42], true, this.layerBg, true);
             
             this.game.world.sendToBack(this.mapLayer);
             
