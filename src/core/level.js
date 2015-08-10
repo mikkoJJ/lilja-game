@@ -55,7 +55,7 @@
             this.mapLayer = this.map.createLayer('bg');
             this.mapLayer.resizeWorld();
             
-            this.map.setCollisionByExclusion([1, 8, 25, 16, 17, 42], true, this.layerBg, true);
+            this.map.setCollisionByExclusion([1, 10, 18, 19, 50, 23, 24, 54, 55, 31, 5, 36], true, this.layerBg, true);
             
             this.game.world.sendToBack(this.mapLayer);
             
