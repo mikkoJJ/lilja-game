@@ -7,13 +7,13 @@
             },
             {
                 "picture": "face_hero",
-                "speaker": "Teräslilja",
+                "speaker": "Poliisikomentaja",
                 "line": "Sinun on murtauduttava zombielinjojen läpi ja löydettävä **ZOMBELLAN** asunto!"
             },
             {
                 "picture": "face_hero",
                 "speaker": "Poliisikomentaja",
-                "line": "Ole varovainen! Muista, että sinun rakenteesi ja virtapiirisi maksoivat poliisille maltaita, ja MINÄ olen vastuussa!"
+                "line": "Ole varovainen! Muista, että sinun rakenteesi ja virtapiirisi maksoivat poliisille omaisuuden, ja MINÄ olen vastuussa!"
             }  
         ],
         "level01_boss": [
