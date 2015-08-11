@@ -44,39 +44,59 @@
       "end": 14.225351473922903,
       "loop": false
     },
-    "jump1": {
+    "introduction": {
       "start": 16,
-      "end": 16.13424036281179,
+      "end": 17.949546485260772,
+      "loop": false
+    },
+    "jump1": {
+      "start": 19,
+      "end": 19.13424036281179,
+      "loop": false
+    },
+    "menuconfirm": {
+      "start": 21,
+      "end": 23.848798185941043,
+      "loop": false
+    },
+    "menuselect": {
+      "start": 25,
+      "end": 25.22893424036281,
       "loop": false
     },
     "missionstart": {
-      "start": 18,
-      "end": 21.455419501133786,
+      "start": 27,
+      "end": 30.455419501133786,
       "loop": false
     },
     "shot1": {
-      "start": 23,
-      "end": 23.261224489795918,
+      "start": 32,
+      "end": 32.26122448979592,
       "loop": false
     },
     "splat": {
-      "start": 25,
-      "end": 25.416507936507937,
+      "start": 34,
+      "end": 34.416507936507934,
+      "loop": false
+    },
+    "startup": {
+      "start": 36,
+      "end": 38.01968253968254,
       "loop": false
     },
     "tick": {
-      "start": 27,
-      "end": 27.074013605442175,
+      "start": 40,
+      "end": 40.074013605442175,
       "loop": false
     },
     "zombiedie": {
-      "start": 29,
-      "end": 29.815102040816328,
+      "start": 42,
+      "end": 42.81510204081633,
       "loop": false
     },
     "zombiehit": {
-      "start": 31,
-      "end": 31.09201814058957,
+      "start": 44,
+      "end": 44.092018140589566,
       "loop": false
     }
   }

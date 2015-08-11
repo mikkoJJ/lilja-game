@@ -5,6 +5,7 @@ All audio assets are from artists at [Freesound](http://freesound.org), licenced
 
 * *intromusic* by [FoolBoyMedia](http://www.foolboymedia.co.uk/)
 * *leveldrums* by **mastertronic**
+* *darkmenu* by [Zetauri](http://www.youtube.com/Zetauri)
 * *splat* by [duckduckpony](http://www.bryanvbecker.com/)
 * *energyshot* by **ejfortin**
 * *energyshot2* by [jobro](http://audiojungle.net/user/jobromedia/portfolio)
@@ -16,3 +17,4 @@ All audio assets are from artists at [Freesound](http://freesound.org), licenced
 * *blop* by [GreenCouch](http://www.greencouch.nl/)
 * *ding* by **n_audioman**
 * *explosion1* by [timgormly](http://freesound.org/people/timgormly/)
+* *menuselect* by [broumbroum](http://www.b23prodtm.info/)

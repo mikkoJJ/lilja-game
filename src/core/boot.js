@@ -21,6 +21,7 @@
         //
         create: function () {
             this.state.add('Preload', Lilja.Preloader);
+            this.state.add('Menu', Lilja.Menu);
             this.state.add('Main', Lilja.Main);
         },
         
