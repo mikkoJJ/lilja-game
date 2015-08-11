@@ -3,18 +3,40 @@
             {
                 "picture": "face_hero",
                 "speaker": "Poliisikomentaja",
-                "line": "Teräslilja! Saavut **Mutanttizombievyöhykkeelle**! Etene tästä eteenpäin varovasti."
+                "line": "Teräslilja! Saavut **MUTANTTIZOMBIEVYÖHYKKEELLE**! Ole tästä eteenpäin tarkkaavainen!"
             },
             {
                 "picture": "face_hero",
                 "speaker": "Teräslilja",
-                "line": "Liikuttavaa. Kuulostat ihan siltä kuin välittäisit, mitä minulle tapahtuu."
+                "line": "Sinun on murtauduttava zombielinjojen läpi ja löydettävä **ZOMBELLAN** asunto!"
             },
             {
                 "picture": "face_hero",
                 "speaker": "Poliisikomentaja",
-                "line": "No... \nPoliisilaitos on panostanut sinuun paljon rahaa. Minä olen vastuussa."
+                "line": "Ole varovainen! Muista, että sinun rakenteesi ja virtapiirisi maksoivat poliisille maltaita, ja MINÄ olen vastuussa!"
             }  
+        ],
+        "level01_boss": [
+            {
+                "picture": "face_hero",
+                "speaker": "Megazombie",
+                "line": "Tästä eteenpäin et pääse!"
+            },
+            {
+                "picture": "face_hero",
+                "speaker": "Megazombie",
+                "line": "Olet taistellut vain tavanomaisia, tyhmiä zombieita vastaan tähän mennessä."
+            },
+            {
+                "picture": "face_hero",
+                "speaker": "Megazombie",
+                "line": "Minä olen kuitenkin jotain muuta. Suuren johtajan, DINO-FÜHRERIN, lahjat ovat antaneet minulle SUPERVOIMAT."
+            },
+            {
+                "picture": "face_hero",
+                "speaker": "Megazombie",
+                "line": "Et mahda minulle mitään, rääpäle. AHHAHAHHAA!"
+            }
         ]
     }
 }

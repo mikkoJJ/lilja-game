@@ -42,7 +42,7 @@
          * @property {Object} static settings for the level objects
          */
         settings: {
-            zombieID: 9, molotovZombieID: 7
+            zombieID: 9, molotovZombieID: 7, bossID: 1
         },
         
         /**
