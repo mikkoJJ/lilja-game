@@ -1,6 +1,6 @@
 {
   "name": "lilja-game",
-  "version": "0.0.1",
+  "version": "0.5.1",
   "description": "A comic tie-in game (or something) about Teräslilja",
   "main": "src/main.js",
   "scripts": {
