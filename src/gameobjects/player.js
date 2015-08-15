@@ -60,6 +60,11 @@
         this._jumpTimer = 0;
         
         /**
+         * @property {Boolean} this is set to true when the player takes fatal damage.
+         */
+        this._dead = false;
+        
+        /**
          * @property {Number} how many hitpoints do we currently have.
          */
         this._hitpoints = this.settings.hitpoints;
@@ -208,8 +213,14 @@
         if (this.invincible) return;
         damage = damage || 1;
         
-        this.game.time.events.add(1000, this._removeInvincibility, this);
-        this.game.time.events.add(400, this._returnControl, this);
+        this.hitpoints -= damage;
+        
+        if ( this.hitpoints <= 0 ) this.die();
+        
+        if ( ! this._dead ) {
+            this.game.time.events.add(1000, this._removeInvincibility, this);
+            this.game.time.events.add(400, this._returnControl, this);
+        }
         
         this.tint = 0xff0000;
         this.body.velocity.x = -400 * this.scale.x;
@@ -217,10 +228,54 @@
         this.invincible = true;
         this.disableControls = true;
         
-        this.hitpoints -= damage;
         
         Lilja.sfx.play('hurt');
     };
+    
+    
+    /**
+     * Kill the player.
+     */
+    Lilja.Player.prototype.die =  function() {
+        this.frameName = 'lilja_jump';
+        this._dead = true;
+        this._explosionLoop = this.game.time.events.loop(160, this._explode, this);
+        this.game.time.events.add(1000, this._finalExplode, this);
+        this.game.time.events.add(500, this._returnControl, this);
+    };
+    
+    /**
+     * Create an explosion on the player.
+     */
+    Lilja.Player.prototype._explode = function() {
+        var ex = this.game.add.image(this.x + this.game.rnd.integerInRange(-30, 30), this.y + this.game.rnd.integerInRange(-40, 40), 
+                                     'sprites', 'explosion1');
+        ex.anchor.set(0.5);
+        
+        this.game.add.tween(ex.scale).from({ x: 0, y: 0}, 300, Phaser.Easing.Back.Out, true)
+            .onComplete.add(function() { this.destroy(); }, ex);
+        
+        Lilja.sfx.play('explosion1');
+    };
+    
+    /**
+     * Explode into nothing.
+     */
+    Lilja.Player.prototype._finalExplode = function() {
+        var ex = this.game.add.image(this.x + this.game.rnd.integerInRange(-30, 30), this.y + this.game.rnd.integerInRange(-40, 40), 
+                                     'sprites', 'explosion1');
+        ex.anchor.set(0.5);
+        ex.scale.set(3);
+        
+        this.game.add.tween(ex.scale).from({ x: 0, y: 0}, 300, Phaser.Easing.Back.Out, true)
+            .onComplete.add(function() { this.destroy(); }, ex);
+        
+        Lilja.sfx.play('explosion1');
+        this.game.time.events.remove(this._explosionLoop);
+        
+        this.kill();
+    };
+    
     
     /**
      * Call to disable invincibility after a hit.
@@ -261,6 +316,7 @@
         set: function(newhp) {
             if (newhp < this._hitpoints) {
                 for (var i = this._hitpoints; i > newhp; i--) {
+                    if ( i <= 0 ) break;
                     var hpSprite = this.hitTracker.getChildAt(i-1);
                     hpSprite.frameName = 'hp_empty';
                     this.game.add.tween(hpSprite.scale).to({x: 0.3, y: 0.3 }, 200, Phaser.Easing.Back.In, true);

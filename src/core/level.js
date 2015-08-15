@@ -81,6 +81,8 @@
          */
         createObjects: function() {
             this.player = new Lilja.Player(this.game, 112, this.game.world.height - 64);
+            this.player.events.onKilled.add(this.respawn, this);
+            
             this.game.camera.y = this.game.world.height - this.game.camera.height;
             
             this.bullets = this.player.bullets;
@@ -110,13 +112,46 @@
             this.game.physics.arcade.collide(this.giblets, this.mapLayer);
         },
         
+        /**
+         * Remake the level. Called when the player dies.
+         */
+        respawn: function() {
+            var black = this.game.add.graphics(0, 0);
+            black.beginFill(0x000000);
+            black.drawRect(0, 0, this.game.world.width, this.game.world.height);
+            black.endFill();
+            
+            var _doRespawn = function() {
+                Lilja.skipIntro = true;
+                this.game.time.events.add(200, function() { this.game.state.restart(); }, this);
+            };
+            
+            this.game.add.tween(black).from({ y: -this.game.world.height }, 500, Phaser.Easing.Cubic.Out, true)
+                .onComplete.add(_doRespawn, this);
+        },
+        
+        /**
+         * Show the level intro
+         */
         intro: function() {
+            if ( Lilja.skipIntro ) {
+                this._startMission();
+                return;
+            }
             this.introMusic.play();
             
             this.player.disableControls = true;
             this.player.animations.play('walk');
             var walk = this.game.add.tween(this.player).from({x: -30 }, 2000, Phaser.Easing.Linear.None, true);
             walk.onComplete.add(this._beginIntro, this);
+        },
+        
+        /**
+         * Do shutdown actions for the level.
+         */
+        shutdown: function(){
+            this.bgMusic.stop();
+            this.introMusic.stop();
         },
         
         /**

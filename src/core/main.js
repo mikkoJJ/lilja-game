@@ -64,6 +64,11 @@
             
             this.level.handleCollisions();
             this.fpsCounter.text = '' + this.game.time.fps + ' FPS'; 
+        },
+        
+        
+        shutdown: function(){
+            this.level.shutdown();
         }
         
     };

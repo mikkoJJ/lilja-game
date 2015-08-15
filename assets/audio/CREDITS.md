@@ -3,9 +3,14 @@ AUDIO CREDITS
 
 All audio assets are from artists at [Freesound](http://freesound.org), licenced under Creative Commons Attribution licences.
 
+The music
+---------
 * *intromusic* by [FoolBoyMedia](http://www.foolboymedia.co.uk/)
 * *leveldrums* by **mastertronic**
 * *darkmenu* by [Zetauri](http://www.youtube.com/Zetauri)
+
+The sounds
+----------
 * *splat* by [duckduckpony](http://www.bryanvbecker.com/)
 * *energyshot* by **ejfortin**
 * *energyshot2* by [jobro](http://audiojungle.net/user/jobromedia/portfolio)

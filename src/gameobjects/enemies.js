@@ -258,11 +258,18 @@
         this.scale.x = direction;  
     };
     
-    
+    /**
+     * Called when a molotov hits a target. This refers to the molotov itself.
+     * 
+     * @static
+     * @private
+     * @param {Object} target the target that the molotov hit.
+     */
     Lilja.MolotovZombie._molotovHit = function(target) {
-        if (this._exploded ) return;
+        if ( this._exploded ) return;
         this.frameName = 'explosion1';
         this.body.immovable = true;
+        this.body.allowGravity = false;
         this._exploded = true;
         this.body.velocity.set(0);
         this.game.time.events.loop(100, function(){ this.visible = !this.visible; }, this);

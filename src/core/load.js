@@ -55,7 +55,7 @@
          //
         //
         update: function () {        
-            this.state.start('Menu');
+            this.state.start('Main');
         }
     };
     
