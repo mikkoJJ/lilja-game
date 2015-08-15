@@ -41,6 +41,7 @@
         preload: function () {
             this.game.load.atlasJSONHash('sprites', 'assets/graphics/sprites.png', 'assets/graphics/sprites_data.json');
             this.game.load.json('level_meta', 'assets/level_meta.json');
+            this.game.load.json('credits', 'assets/credits.json');
             this.game.load.tilemap('level01', 'assets/level01.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/graphics/tiles.png');
             this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.mp3'], 'assets/audio/sfx.json');

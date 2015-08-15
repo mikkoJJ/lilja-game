@@ -13,7 +13,7 @@ All audio assets are from artists at [Freesound](http://freesound.org), licenced
 * *shot1* by [Taira Komori](http://taira-komori.jpn.org/freesounden.html)
 * *zombiedie* by [Corsica_S](http://www.facebook.com/corsica.ess)
 * *zombiehit* by **StaneStane**
-* *hurt* by **timgormly**
+* *hurt* by [timgormly](http://freesound.org/people/timgormly/)
 * *blop* by [GreenCouch](http://www.greencouch.nl/)
 * *ding* by **n_audioman**
 * *explosion1* by [timgormly](http://freesound.org/people/timgormly/)

@@ -18,6 +18,16 @@
                 name: 'Äänet: päällä',
                 activated: 'Äänet: pois',
                 callback: '_setSound'
+            },
+            controls: {
+                name: 'Kontrollit',
+                activated: null,
+                callback: '_showControls'
+            },
+            credits: {
+                name: 'Krediitit',
+                activated: null,
+                callback: '_showCredits'
             }
         },
         
@@ -31,40 +41,53 @@
             this.music.loop = true;
             this.music.volume = 0.6;
             
-            this.game.time.events.add(2000, this.showSeittiLogo, this);
+            this.game.time.events.add(1000, this.showSkeleLogo, this);
         },
         
         /**
-         * Show the Seitti logo in the beginning.
+         * Show the Skelebot logo.
+         */
+        showSkeleLogo: function() {
+            this.startCredits = this.add.group();
+            this.startCredits.alpha = 0;
+            
+            this.whiteBg = this.add.graphics(0, 0);
+            this.whiteBg.beginFill(0xffffff);
+            this.whiteBg.drawRect(0, 0, this.camera.width, this.camera.height);
+            this.whiteBg.endFill();
+            
+            this.startCredits.add(this.whiteBg);
+            
+            this.skelelogo = this.add.image(this.camera.width / 2, this.camera.height / 2, 'sprites', 'skelelogo');
+            this.skelelogo.anchor.set(0.5);
+            this.startCredits.add(this.skelelogo);
+            
+            this.add.tween(this.startCredits).to({ alpha: 1 }, 200, Phaser.Easing.Linear.None, true);
+            
+            this.game.time.events.add(3000, this.showSeittiLogo, this);
+            
+            this.sfx.play('lazer');
+        },
+        
+        /**
+         * Show the Seitti logo.
          */
         showSeittiLogo: function() {
-            this.seitti = this.add.group();
-            this.seitti.alpha = 0;
+            this.add.tween(this.startCredits).to({ alpha: 0 }, 200, Phaser.Easing.Linear.None, true)
+                .onComplete.add(function(){ this.skelelogo.frameName = 'seitti'; }, this);
             
-            var seittiBg = this.add.graphics(0, 0);
-            seittiBg.beginFill(0xffffff);
-            seittiBg.drawRect(0, 0, this.camera.width, this.camera.height);
-            seittiBg.endFill();
-            this.seitti.add(seittiBg);
-            this.seittiBg = seittiBg;
+            this.add.tween(this.startCredits).to({ alpha: 1 }, 200, Phaser.Easing.Linear.None, true, 400);
             
-            var logo = this.add.image(this.camera.width / 2, this.camera.height / 2, 'sprites', 'seitti');
-            logo.anchor.set(0.5);
-            
-            this.seitti.add(logo);
-            
-            this.add.tween(this.seitti).to({ alpha: 1 }, 100, Phaser.Easing.Linear.None, true);
-            this.game.time.events.add(2400, this.createNavigation, this);
-            
-            this.sfx.play('introduction');
+            this.game.time.events.add(300, function() { this.sfx.play('introduction'); }, this);
+            this.game.time.events.add(3400, this.createNavigation, this);
         },
         
         /**
          * Start navigation.
          */
         createNavigation: function() {
-            this.game.world.bringToTop(this.seittiBg);
-            this.add.tween(this.seitti).to({ alpha: 0 }, 300, Phaser.Easing.Linear.None, true); 
+            this.game.world.bringToTop(this.whiteBg);
+            this.add.tween(this.startCredits).to({ alpha: 0 }, 300, Phaser.Easing.Linear.None, true); 
             
             this.logo = this.add.image(this.camera.width / 2, this.camera.height / 2, 'sprites', 'logo');
             this.logo.anchor.set(0.5);
@@ -146,7 +169,7 @@
             var _old = this.currentMenu.cursor;
             _old.text = _old.baseText;
             
-            var _new = this.currentMenu.next();
+            var _new = this.currentMenu.previous();
             _new.text = '> ' + _new.baseText + ' <';
             
             this.sfx.play('menuselect');
@@ -159,7 +182,7 @@
             var _old = this.currentMenu.cursor;
             _old.text = _old.baseText;
             
-            var _new = this.currentMenu.previous(); 
+            var _new = this.currentMenu.next(); 
             _new.text = '> ' + _new.baseText + ' <';
             
             this.sfx.play('menuselect');
@@ -173,6 +196,24 @@
             if (!this.currentMenu) { 
                 this.press.destroy();
                 this.createMenu(this.choices);
+                return;
+            }
+            
+            if (!this.currentMenu.visible) {
+                if (this.creditGroup) {
+                    this.creditGroup.destroy();
+                    this.currentMenu.visible = true;
+                    this.logo.visible = true;
+                    
+                    this.sfx.play('menuconfirm');
+                }
+                if (this.controls) {
+                    this.controls.destroy();
+                    this.currentMenu.visible = true;
+                    this.logo.visible = true;
+                    
+                    this.sfx.play('menuconfirm');
+                }
                 return;
             }
             
@@ -199,6 +240,43 @@
          */
         _setSound: function() {
             this.game.sound.mute = !this.game.sound.mute;
+        },
+        
+        _showControls: function() {
+            this.currentMenu.visible = false;
+            this.logo.visible = false;
+            
+            this.controls = this.add.image(this.camera.width / 2, this.camera.height / 2, 'sprites', 'controls');
+            this.controls.anchor.set(0.5);
+        },
+        
+        /**
+         * Show the credits.
+         */
+        _showCredits: function() {
+            this.currentMenu.visible = false;
+            this.logo.visible = false;
+            
+            var credits = this.game.cache.getJSON('credits').credits;
+            this.creditGroup = this.add.group();
+            this.creditGroup.y = this.camera.height;
+            
+            var prevHeight = 0;
+            for (var i in credits) {
+                var what = this.add.text(50, prevHeight, credits[i].what.toUpperCase(), { font: '20px VT323', fill: "#AAAAAA" });
+                var who = this.add.text(100, prevHeight + what.height, credits[i].who, { font: '20px VT323', fill: "#FFFFFF" });
+                prevHeight += Math.max(what.height, who.height) + 50;
+                
+                this.creditGroup.add(what);
+                this.creditGroup.add(who);
+            }
+            
+            this.add.tween(this.creditGroup).to({ y: -prevHeight }, 40000, Phaser.Easing.Linear.None, true)
+                .onComplete.add(function() {
+                    this.creditGroup.destroy();
+                    this.currentMenu.visible = true;
+                    this.logo.visible = true;
+                }, this);
         }
         
     };
