@@ -2,7 +2,7 @@
   "name": "lilja-game",
   "version": "0.5.1",
   "description": "A comic tie-in game (or something) about Teräslilja",
-  "main": "src/main.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +19,15 @@
     "url": "https://github.com/mikkoJakonen/escape-game/issues"
   },
   "homepage": "https://github.com/mikkoJakonen/escape-game",
+  "window": {
+    "title": "Loading...",
+    "icon": "link.png",
+    "toolbar": false,
+    "width": 800,
+    "height": 600,
+    "position": "center",
+    "resizeable": false  
+  },
   "dependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-copy": "^0.8.0",

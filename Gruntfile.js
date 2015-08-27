@@ -39,7 +39,7 @@ module.exports = function(grunt) {
             dist: { 
                 files: [
                     {
-                        src: ['*.css'],
+                        src: ['*.css', 'package.json'],
                         dest: 'dist/',
                     },
                     { 
