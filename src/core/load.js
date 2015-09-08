@@ -14,7 +14,6 @@
          //
         //
         create: function () {
-            this.add.text(this.camera.width, this.camera.height, 'Loading', { font: '24px VT323' });
         },
         
         
@@ -22,7 +21,7 @@
          //
         //
         loadUpdate: function () {
-            return;
+            this.loadText.text = 'Loading: ' + this.game.load.progress + '&';
         },
         
           ///////{ initialize scale }//////////////////////////////////////////////
@@ -48,6 +47,8 @@
             this.game.load.audio('leveldrums', ['assets/audio/leveldrums.ogg', 'assets/audio/leveldrums.mp3']);
             this.game.load.audio('intromusic', ['assets/audio/intromusic.ogg', 'assets/audio/intromusic.mp3']);
             this.game.load.audio('menumusic', ['assets/audio/darkmenu.ogg', 'assets/audio/darkmenu.mp3']);
+            
+            this.loadText = this.add.text(this.camera.width / 2, this.camera.height /2, 'Loading', { font: '24px VT323' });
         },
 
         
