@@ -28,7 +28,7 @@
           ///////{ define loaded resources }////////////////////////////////////////
          //
         //        
-        preload: function () {            
+        preload: function () { 
             WebFont.load({
                 google: {
                   families: ['VT323']
