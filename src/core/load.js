@@ -44,7 +44,7 @@
             this.game.load.tilemap('level01', 'assets/level01.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/graphics/tiles.png');
             this.game.load.audiosprite('sfx', ['assets/audio/sfx.ogg', 'assets/audio/sfx.mp3'], 'assets/audio/sfx.json');
-            this.game.load.audio('leveldrums', ['assets/audio/leveldrums.ogg', 'assets/audio/leveldrums.mp3']);
+            this.game.load.audio('levelmusic', ['assets/audio/megassimus.ogg', 'assets/audio/megassimus.mp3']);
             this.game.load.audio('intromusic', ['assets/audio/intromusic.ogg', 'assets/audio/intromusic.mp3']);
             this.game.load.audio('menumusic', ['assets/audio/darkmenu.ogg', 'assets/audio/darkmenu.mp3']);
             

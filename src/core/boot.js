@@ -20,7 +20,6 @@
          //
         //
         create: function () {
-            this.game.sound.mute = true;
             this.state.add('Preload', Lilja.Preloader);
             this.state.add('Menu', Lilja.Menu);
             this.state.add('Main', Lilja.Main);

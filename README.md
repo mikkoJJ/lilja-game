@@ -7,4 +7,4 @@ NOTE
 ----
 **The code** is released under the MIT Licence.
 
-**The graphical assets** are released under the Creative Commons attribution licence. See assets/COPYRIGHT.md for more information.
+**The graphics and audio assets** are released/used under the Creative Commons attribution licence. Please see assets/COPYRIGHT.md for details.

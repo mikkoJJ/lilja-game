@@ -67,7 +67,7 @@
             /**
              * @property {Phaser.Audio} the background music for the level.
              */
-            this.bgMusic = this.game.add.audio('leveldrums');
+            this.bgMusic = this.game.add.audio('levelmusic');
             this.bgMusic.loop = true;
             this.bgMusic.volume = 0.6;
         },
