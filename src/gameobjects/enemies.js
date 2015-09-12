@@ -177,6 +177,8 @@
         
         this.alpha = 0;
         
+        Lilja.score.enemyKilled();
+        
         this.game.time.events.add(4000, this.destroy, this);
     };
     

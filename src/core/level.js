@@ -33,6 +33,11 @@
          * @property {Phaser.Group} group containing the enemies
          */
         this.enemies = this.game.add.group();
+        
+        // setup score tracking
+        Lilja.score = new Lilja.ScoreTracker(this.game);
+        
+        Lilja.score.startTimer();
     };
     
     
@@ -242,15 +247,7 @@
             this._flashTimer = this.game.time.create(false);
             this._flashTimer.repeat(500, 6, function() { this._flash.visible = !this._flash.visible; }, this);
             this._flashTimer.start();
-        },
-        
-        /**
-         * Removes the mission start text from view.
-         */
-        _hideMissionStartText: function() {
-            
         }
-        
     };
     
 })();
