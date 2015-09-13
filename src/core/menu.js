@@ -25,7 +25,7 @@
                 callback: '_showControls'
             },
             credits: {
-                name: 'Krediitit',
+                name: 'Tekijät',
                 activated: null,
                 callback: '_showCredits'
             }
@@ -89,17 +89,22 @@
             this.game.world.bringToTop(this.whiteBg);
             this.add.tween(this.startCredits).to({ alpha: 0 }, 300, Phaser.Easing.Linear.None, true); 
             
+            //game name logo
             this.logo = this.add.image(this.camera.width / 2, this.camera.height / 2, 'sprites', 'logo');
             this.logo.anchor.set(0.5);
             
+            //logo entry animation
             this.add.tween(this.logo).from({ y: 0 }, 1000, Phaser.Easing.Cubic.Out, true);
             
+            //"press start" text
             this.press = this.add.text(this.camera.width / 2, this.camera.height / 2 + 190, 'Paina välilyöntiä', 
                                        { font: '30px VT323', fill: '#ffffff', align: 'center' });
             this.press.anchor.set(0.5);
             
+            //text blinking animation
             this.game.time.events.loop(900, function(){ this.press.visible = !this.press.visible; }, this);
             
+            //navigation keys
             this.navUp = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
             this.navUp.onDown.add(this._navUp, this);
             this.navDown = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
@@ -107,6 +112,18 @@
             this.navEnter = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
             this.navEnter.onDown.add(this._navEnter, this);
             
+            //navigation gamepad bindings
+            if ( this.game.input.gamepad.supported && this.game.input.gamepad.active && Lilja.gamepad.connected ) {
+                this.padNavEnter = Lilja.gamepad.getButton(Phaser.Gamepad.XBOX360_A);
+                this.padNavEnter.onDown.add(this._navEnter, this);
+                
+                this.game.time.events.loop(100, this._axisUpdate, this); 
+                this._handleAxis = true;
+                
+                this.gamePadEnabled = true;
+            }
+            
+            //play music
             this.sfx.play('startup');
             this.music.play();
         },
@@ -161,6 +178,27 @@
             this.add.tween(black).from({ y: -this.camera.height }, 500, Phaser.Easing.Cubic.Out, true)
                 .onComplete.add(_begin, this);
         },
+        
+        
+        /**
+         * Update the joystick axes to check menu navigation
+         */
+        _axisUpdate: function() {    
+            //this._handleAxis = true;
+            if ( Lilja.gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.3 ) this._navUp();
+            if ( Lilja.gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.3 ) this._navDown();
+        },
+        
+        /*_axisChange: function(pad, axis, value) {
+            if ( !this.gamePadEnabled ) return;
+            if ( !this._handleAxis ) return;
+            if ( axis != Phaser.Gamepad.XBOX360_STICK_LEFT_Y ) return;
+            
+            if ( value < -0.1 ) this._navUp();
+            if ( value > 0.1 ) this._navDown();
+            
+            this._handleAxis = false;
+        },*/
         
         /**
          * Called when up is pressed, navigate the menu.

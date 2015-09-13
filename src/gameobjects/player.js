@@ -48,7 +48,6 @@
         
         // Setup gamepad controls:
         if ( game.input.gamepad.supported && game.input.gamepad.active && Lilja.gamepad.connected ) {
-            console.log('Player gamepad enabled.');
             this.padJumpButton = Lilja.gamepad.getButton(Phaser.Gamepad.XBOX360_A);
             this.padFireButton = Lilja.gamepad.getButton(Phaser.Gamepad.XBOX360_X);
             
