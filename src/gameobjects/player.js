@@ -324,7 +324,7 @@
     Lilja.Player.prototype._makeHP = function() {
         var hpSprite;
         for (var hp = 0; hp < this.settings.hitpoints; hp++) {
-            hpSprite = this.hitTracker.create(10 + 18 * hp, 20, 'sprites', 'hp_full');
+            hpSprite = this.hitTracker.create(10 + 18 * hp, 15, 'sprites', 'hp_full');
             hpSprite.fixedToCamera = true;
             hpSprite.anchor.set(0.5);
             this.game.add.tween(hpSprite.scale).from({x: 0, y: 0 }, 500, Phaser.Easing.Bounce.Out, true, hp * 50);

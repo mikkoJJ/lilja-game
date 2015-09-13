@@ -9,7 +9,7 @@
      * various score events called from the game code.
      */
     Lilja.ScoreTracker = function(game) {
-        Phaser.Text.call(this, game, game.camera.width / 2, 20, '000000', { fill: '#FFFFFF', font: '23px VT323' });
+        Phaser.Text.call(this, game, game.camera.width / 2, 15, '000000', { fill: '#FFFFFF', font: '38px VT323' });
 
         game.add.existing(this);
         

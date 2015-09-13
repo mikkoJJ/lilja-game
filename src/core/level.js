@@ -34,10 +34,17 @@
          */
         this.enemies = this.game.add.group();
         
+        /**
+         * @property {Phaser.Sprite} ui thingy at the top.
+         */
+        this.ui = this.game.add.sprite(0, 0, 'sprites', 'top_ui');
+        this.ui.fixedToCamera = true;
+        
         // setup score tracking
         Lilja.score = new Lilja.ScoreTracker(this.game);
         
         Lilja.score.startTimer();
+        
     };
     
     
@@ -226,27 +233,23 @@
          * Shows a flashing 'mission start' text.
          */
         _showMissionStartText: function() {
-            this._flashBG = this.game.add.graphics(0, this.game.camera.height / 2);
+            this._flashBG = this.game.add.graphics(0, 0);
             this._flashBG.beginFill(0xffffff);
-            this._flashBG.drawRect(0, -40, this.game.camera.width, 80);
+            this._flashBG.drawRect(0, -40, this.game.camera.width + 20, 80);
             this._flashBG.endFill();
             this._flashBG.fixedToCamera = true;
+            this._flashBG.cameraOffset.y = -80;
             
-            this.game.add.tween(this._flashBG.scale)
-                .from({ y: 0 }, 500, Phaser.Easing.Back.Out)
-                .to({y: 0}, 500, Phaser.Easing.Back.In, true, 500 * 6 + 50)
+            this.game.add.tween(this._flashBG.cameraOffset)
+                .to({ y: this.game.camera.height / 2 }, 1500, Phaser.Easing.Exponential.Out)
+                .to({ y: this.game.camera.height + 80 }, 500, Phaser.Easing.Back.In, true)
             ;
             
             
-            this._flash = this.game.add.text(this.game.camera.width / 2, this.game.camera.height / 2, 
-                                             'MISSION START', { font: '32px VT323', fill: '#000000' });
+            this._flash = this.game.add.text(this.game.camera.width / 2, 0, 'MISSION START', { font: '36px VT323', fill: '#000000' });
             this._flash.anchor.set(0.5);
-            this._flash.fixedToCamera = true;
-            this._flash.visible = false;
             
-            this._flashTimer = this.game.time.create(false);
-            this._flashTimer.repeat(500, 6, function() { this._flash.visible = !this._flash.visible; }, this);
-            this._flashTimer.start();
+            this._flashBG.addChild(this._flash);
         }
     };
     
