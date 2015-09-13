@@ -23,6 +23,10 @@
             this.state.add('Preload', Lilja.Preloader);
             this.state.add('Menu', Lilja.Menu);
             this.state.add('Main', Lilja.Main);
+            
+            //check for gamepad:
+            this.game.input.gamepad.start();
+            Lilja.gamepad = this.game.input.gamepad.pad1;
         },
         
           ///////{ define loaded resources }////////////////////////////////////////

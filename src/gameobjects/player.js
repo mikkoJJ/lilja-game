@@ -30,9 +30,30 @@
         this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         
         /**
+         * @property {Phaser.GamepadButton} jump button for the gamepad. Null if not supported.
+         */ 
+        this.padJumpButton = { isDown: false };
+        
+        /**
          * @property {Phaser.Key} the button used for gunning
          */
         this.fireButton = game.input.keyboard.addKey(Phaser.Keyboard.CONTROL);
+        
+        /**
+         * @property {Phaser.GamepadButton} fire button for the gamepad. Dummy button if not supported.
+         */
+        this.padFireButton = { isDown: false };
+        
+        this.gamePadEnabled = false;
+        
+        // Setup gamepad controls:
+        if ( game.input.gamepad.supported && game.input.gamepad.active && Lilja.gamepad.connected ) {
+            console.log('Player gamepad enabled.');
+            this.padJumpButton = Lilja.gamepad.getButton(Phaser.Gamepad.XBOX360_A);
+            this.padFireButton = Lilja.gamepad.getButton(Phaser.Gamepad.XBOX360_X);
+            
+            this.gamePadEnabled = true;
+        }
         
         /**
          * @property {Boolean} wether this sprite is facing right or not [default = true]
@@ -154,19 +175,25 @@
         Phaser.Sprite.prototype.update.call(this);
         
         var firing = false;
-        if (this.fireButton.isDown) firing = true;        
+        if ( this.fireButton.isDown || this.padFireButton.isDown ) firing = true;        
         
-        if (this.disableControls) return;
+        if ( this.disableControls ) return;
         this.body.velocity.x = 0;
 
-        if (this.cursors.left.isDown)
+        var left = this.cursors.left.isDown;
+        if ( this.gamePadEnabled ) left = left || Lilja.gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1;
+        
+        var right = this.cursors.right.isDown;
+        if ( this.gamePadEnabled ) right = right || Lilja.gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1;
+        
+        if ( left )
         {
             this.body.velocity.x = -this.settings.walkVelocity;
             if (firing) this.animations.play('gun_walk');
             else this.animations.play('walk');
             this.scale.x = -1;
         }
-        else if (this.cursors.right.isDown)
+        else if ( right )
         {
             this.body.velocity.x = this.settings.walkVelocity;
             if (firing) this.animations.play('gun_walk');
@@ -184,7 +211,7 @@
             if ( firing ) this.animations.play('jump_gun');
             else this.animations.play('jump');
         }
-        else if ( this.jumpButton.isDown ) {
+        else if ( this.jumpButton.isDown || this.padJumpButton.isDown ) {
             this.body.velocity.y = -this.settings.jumpVelocity;
             Lilja.sfx.play('jump1');
             this.dustTrail.x = this.x;
@@ -197,7 +224,7 @@
      * Process shooting the character's weapon. Shoot at a predefined interval.
      */
     Lilja.Player.prototype.shoot = function() {
-        if (!this.fireButton.isDown) return;
+        if ( !this.fireButton.isDown && !this.padFireButton.isDown ) return;
         if ( this.disableControls ) return; 
         this.bullets.make(this.x + this.scale.x * this.settings.shootPoint.x, this.y + this.settings.shootPoint.y, this.scale.x);
         var bang = this.game.add.tween(this.bang.scale).from({ x: 1 }, 100);
