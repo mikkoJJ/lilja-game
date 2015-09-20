@@ -108,6 +108,9 @@
             this.enemies.setAll('chase', this.player);
             this.enemies.setAll('ground', this.mapLayer);
             this.enemies.setAll('projectiles', this.projectiles);
+            
+            //TODO: different boss each level (when we have more levels)
+            this.boss = new Lilja.Boss1(this.game);
         },
         
         /**

@@ -27,6 +27,10 @@
             //check for gamepad:
             this.game.input.gamepad.start();
             Lilja.gamepad = this.game.input.gamepad.pad1;
+            if ( this.game.input.gamepad.supported && this.game.input.gamepad.active && Lilja.gamepad.connected ) {
+                console.log('Gamepad active');
+            }
+            else console.log('Gamepad inactive');
         },
         
           ///////{ define loaded resources }////////////////////////////////////////

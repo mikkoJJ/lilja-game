@@ -40,14 +40,14 @@
      * Notify an enemy killed. The player will be scored accordingly.
      */
     Lilja.ScoreTracker.prototype.enemyKilled = function() {
-        this.score += 100;
+        this.score += 80;
     };
     
     /**
      * Notify a strong enemy killed. The player will be scored accordingly.
      */
     Lilja.ScoreTracker.prototype.strongEnemyKilled = function() {
-        this.score += 150;
+        this.score += 90;
     };
 
     /**
